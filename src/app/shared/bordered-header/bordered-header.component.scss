@@ -1,0 +1,17 @@
+@import '../../variables';
+:host {
+  padding: 18px;
+  font-size: 1.7em;
+  border: 5px solid white;
+  font-family: $antonio;
+  font-weight: 200;
+  text-align: center;
+  color: white;
+  display: inline-block;
+  letter-spacing: 0.15em;
+}
+
+:host(.orange) {
+  border-color: $sn-orange;
+  color: $sn-orange;
+}

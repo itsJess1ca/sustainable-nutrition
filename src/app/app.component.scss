@@ -1,0 +1,45 @@
+@import 'variables';
+:host {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+#wrapper {
+  max-width: 100vw;
+  flex: 1;
+}
+
+#header {
+  position: absolute;
+  top: 0;
+  padding: 30px 48px 0;
+  width: calc(100% - (48px * 2));
+  flex-grow: 1;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+}
+
+#main-nav {
+  display: flex;
+  flex-flow: row nowrap;
+  margin-top: 35px;
+  height: 20px;
+  .navItem {
+    margin: 0 10px;
+    font-size: 1.4em;
+    font-family: $metropolis;
+    font-weight: bold;
+    color: white;
+    text-decoration: none;
+
+    &.selected {
+      text-decoration: underline;
+    }
+  }
+}
+
+#brand-logo {
+  height: 250px;
+}

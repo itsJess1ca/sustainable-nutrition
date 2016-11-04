@@ -1,0 +1,28 @@
+@import 'functions';
+@import 'mixins';
+
+// palette
+$sn-orange: #cc4520;
+$sn-green: #348a36;
+$sn-yellow: #f7ab1d;
+
+// theme
+$sn-primary: $sn-green;
+$sn-accent: $sn-orange;
+
+
+// fonts
+$antonio: 'Antonio', sans-serif;
+$metropolis: 'Metropolis', sans-serif;
+$roboto: 'Roboto', sans-serif;
+
+// vars
+$gutter: 48px;
+$footerHeight: 107px;
+
+
+// Yellow -> Transparent reflected
+//@include linear-gradient(135deg, $sn-yellow 0%, transparent 40%, transparent 60%, $sn-yellow 100%);
+
+// Yellow -> Orange Diagonal Linear
+//@include linear-gradient(135deg, $sn-yellow 0%, $sn-orange 100%);

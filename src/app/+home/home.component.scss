@@ -1,0 +1,65 @@
+@import '../variables';
+
+:host {
+  display: block;
+}
+
+#hero {
+  padding: 30px $gutter 0;
+  min-height: 100vh;
+  width: calc(100% - (#{$gutter} * 2));
+  background: #ffa914 url('../../assets/img/buckets/home-hero.jpg') no-repeat left center;
+  background-size: auto 100%;
+
+  display: flex;
+  flex-flow: row nowrap;
+  color: white;
+}
+
+#left-side, #right-side{
+  width: 50%;
+}
+
+#right-side {
+  padding-top: 200px;
+  display: flex;
+  align-items: flex-end;
+  flex-flow: column nowrap;
+}
+
+.cta {
+  .getInTouch {
+    font-size: 3rem;
+  }
+}
+
+#hero-content {
+  height: 50%;
+}
+
+#title {
+  font-size: 4em;
+  letter-spacing: 10px;
+  text-align: right;
+  font-family: $metropolis;
+  font-weight: 900;
+}
+
+.learnMore {
+  margin-top: 48px;
+  letter-spacing: 5px;
+  padding-bottom: 10px;
+  font-family: $antonio;
+  font-size: 2em;
+  border-bottom: 5px solid white;
+  display: block;
+  width: 100%;
+  text-align: right;
+}
+
+.arrow {
+  float: right;
+  padding-right: 25px;
+  margin-top: 5px;
+  font-size: 2em;
+}

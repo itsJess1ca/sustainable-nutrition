@@ -1,0 +1,51 @@
+@import '../variables';
+
+:host {
+  height: $footerHeight - 20;
+  max-height: $footerHeight;
+  background-color: $sn-accent;
+  display: flex;
+  flex-flow: row nowrap;
+  padding: 10px 50px;
+}
+
+#main-content {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-around;
+
+  #contact-info, .contact-tel, .contact-email {
+    display: flex;
+    flex-flow: row nowrap;
+  }
+}
+.contact-container {
+  margin-right: 10px;
+  .contact-container, .contact-label {
+    line-height: 12px;
+  }
+  .contact-label {
+    margin: 0 5px 0 0;
+  }
+  &:not(:first-child) {
+    .contact-label {
+      margin: 0 5px;
+    }
+  }
+}
+
+#copyright, .contact-label {
+  color: $sn-yellow;
+  font-family: $antonio;
+}
+
+.contact-content {
+  color: white;
+  font-family: $metropolis;
+  font-weight: 500;
+}
+
+#copyright {
+  font-size: 0.8em;
+  font-family: $roboto;
+}
