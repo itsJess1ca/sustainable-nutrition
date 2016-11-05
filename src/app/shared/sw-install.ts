@@ -9,14 +9,17 @@ export function installServiceWorker() {
     return;
   }
 
-  let currentVersion: string;
+  let currentVersion: string | null;
 
   navigator.serviceWorker.onmessage = function (evt) {
     if (typeof evt.data.version !== 'undefined') {
-      if (currentVersion === null) {
+      if (!currentVersion) {
         currentVersion = evt.data.version;
+        console.log("currentVersion", currentVersion);
       } else {
         const newVersion = evt.data.version;
+        console.log("currentVersion", currentVersion);
+        console.log("newVersion", newVersion);
         const cvParts = currentVersion.split('.');
         const nvParts = newVersion.split('.');
 
@@ -36,7 +39,7 @@ export function installServiceWorker() {
     PushHandler.init();
   });
 
-  navigator.serviceWorker.register('/assets/sw-caching.js').then(function (registration) {
+  navigator.serviceWorker.register('service-worker.js').then(function (registration) {
     if (registration.active) {
       registration.active.postMessage('version');
     }

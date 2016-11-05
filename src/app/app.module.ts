@@ -7,7 +7,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FooterModule } from './footer/footer.module';
 import { BrandLogoModule } from './brand-logo/brand-logo.module';
-import { installServiceWorker } from './shared/sw-install';
 
 @NgModule({
   declarations: [
@@ -26,6 +25,5 @@ import { installServiceWorker } from './shared/sw-install';
 })
 export class AppModule {
   constructor() {
-    installServiceWorker();
   }
 }
