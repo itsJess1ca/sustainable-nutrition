@@ -5,4 +5,7 @@ const fs = require('fs');
 
 const CURRENT_VERSION = pkgJson.version;
 
-console.log(CURRENT_VERSION);
+fs.writeFile('./src/environments/version.ts', `export const APP_VERSION = "${CURRENT_VERSION}";`, (err) => {
+  if (err) throw err;
+  console.log("It\'s Saved!");
+});
