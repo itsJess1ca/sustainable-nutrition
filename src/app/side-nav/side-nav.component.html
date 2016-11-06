@@ -1,0 +1,6 @@
+<div id="sidenav" [class.active]="visible">
+  <nav id="sidenav-routes">
+    <a *ngFor="let navItem of Routes" [routerLink]="navItem.destination" class="navItem">{{navItem.name | uppercase}}</a>
+  </nav>
+</div>
+<div id="sidenav-backdrop" [class.active]="visible"></div>

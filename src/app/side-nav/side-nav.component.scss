@@ -1,0 +1,67 @@
+@import '../variables';
+:host {
+  height: 100%;
+  width: 100%;
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  pointer-events: auto;
+}
+
+#sidenav {
+  height: 100%;
+  width: 300px;
+  max-width: 300px;
+  display: flex;
+  flex-flow: column nowrap;
+  position: absolute;
+  top: 0;
+  background-color: rgba(204,69,32,1);
+  left: 0;
+  box-shadow: 3px 3px 5px rgba(0,0,0,0.34);
+  z-index: 100;
+  transform: translateX(-305px);
+  will-change: translate;
+  transition: transform 0.6s ease-out;
+}
+
+#sidenav-routes {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+
+  .navItem {
+    width: 280px;
+    text-align: center;
+    height: 24px;
+    padding: 12px;
+    font-family: $metropolis;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    color: white;
+
+    &:first-child {
+      margin-top: 12px;
+    }
+    &:active {
+      background-color: rgba(0,0,0,0.16);
+    }
+  }
+}
+
+#sidenav-backdrop {
+  display: none;
+  pointer-events: auto;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,0.76);
+  &.active {
+    display: block;
+    pointer-events: none;
+  }
+}
