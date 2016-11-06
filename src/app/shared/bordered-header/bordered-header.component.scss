@@ -9,9 +9,35 @@
   color: white;
   display: inline-block;
   letter-spacing: 0.15em;
+  overflow: hidden;
+  position: relative;
+}
+
+.ripple {
+  display:block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -300px;
+  margin-left: -300px;
+  background-color: rgba(255,255,255,0.4);
+  border-radius: 50%;
+  width: 600px;
+  height: 600px;
+  transform: scale(0);
+  transition: transform 0.4s ease-in-out;
+  will-change: transform;
+
+  &.active {
+    transform: scale(1);
+  }
 }
 
 :host(.orange) {
   border-color: $sn-orange;
   color: $sn-orange;
+
+  .ripple {
+    background-color: rgba(204,69,32,0.4);
+  }
 }
