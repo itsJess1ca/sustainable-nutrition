@@ -1,26 +1,9 @@
-/*
 'use strict';
 
-//importScripts('/assets/scripts/cache-manifest.js');
-importScripts('/assets/scripts/analytics.js');
+const NAME = 'SUSNUTRITION';
+const VERSION = '0.0.4';
 
-self.analytics.trackingId = 'UA-86878430-1';
-
-const NAME = 'CDS';
-const VERSION = '{{ version }}';
-
-self.oninstall = evt => {
-  /!*const urls = cacheManifest.map(url => {
-    return new Request(url, {credentials: 'include'});
-  });*!/
-
-  evt.waitUntil(
-    caches
-      .open(NAME + '-v' + VERSION)
-      .then(cache => {
-        //return cache.addAll(urls);
-      }));
-
+self.oninstall = _ => {
   self.skipWaiting();
 };
 
@@ -46,7 +29,7 @@ self.onactivate = _ => {
 };
 
 self.onmessage = evt => {
-  if (evt.data === "version") {
+  if (evt.data === 'version') {
     evt.source.postMessage({
       version: VERSION
     });
@@ -55,43 +38,30 @@ self.onmessage = evt => {
 
 self.onfetch = evt => {
   const cacheName = NAME + '-v' + VERSION;
+
   evt.respondWith(
     caches.match(evt.request, {cacheName})
       .then(response => {
-        if (response) {
-          return response;
-        }
+        if (response) return response;
 
         const request = evt.request;
         return fetch(request).then(fetchResponse => {
+          // Never cache Analytics requests.
+          if (/google/.test(request.url)) {
+            return fetchResponse;
+          }
+
+          // Cache for next time
           return caches.open(NAME + '-v' + VERSION).then(cache => {
             return cache.put(request.clone(), fetchResponse.clone());
           }).then(_ => {
             return fetchResponse;
           });
         }, err => {
-          console.warn(`Unable to fetch ${evt.request.url}.`);
+          console.warn(`Unable to fetch ${evt.request.url}`);
           console.warn(err.stack);
           return new Response('Unable to fetch.');
         });
       })
   );
-};
-*/
-
-'use strict';
-
-const NAME = 'SUSNUTRITION';
-const VERSION = '{{version}}';
-
-self.oninstall = _ => {
-  self.skipWaiting();
-};
-
-self.onactivate = _ => {
-  self.clients.claim();
-};
-
-self.onfetch = evt => {
-  evt.respondWith(fetch(evt.request));
 };
