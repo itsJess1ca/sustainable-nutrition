@@ -1,7 +1,6 @@
 import { NotificationService } from './notification.service';
 const _Notification = new NotificationService();
 
-declare var PushHandler: any;
 
 export function installServiceWorker() {
   if (!('serviceWorker' in navigator)) {
@@ -31,13 +30,6 @@ export function installServiceWorker() {
       }
     }
   };
-
-  navigator.serviceWorker.ready.then((registration) => {
-    if (!('pushManager' in registration)) {
-      return;
-    }
-    PushHandler.init();
-  });
 
   navigator.serviceWorker.register('service-worker.js').then(function (registration) {
     if (registration.active) {
