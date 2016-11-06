@@ -8,7 +8,8 @@ import { installServiceWorker } from './app/shared/sw-install';
 
 if (environment.production) {
   enableProdMode();
-  installServiceWorker();
 }
+
+installServiceWorker();
 
 platformBrowserDynamic().bootstrapModule(AppModule);
