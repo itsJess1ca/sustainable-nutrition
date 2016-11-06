@@ -6,29 +6,57 @@
   background-color: $sn-accent;
   display: flex;
   flex-flow: row nowrap;
-  padding: 10px 50px;
+  padding: 5px 25px;
+  @include respond-to(medium) {
+    padding: 10px 50px;
+  }
 }
 
 #main-content {
   display: flex;
   flex-flow: column nowrap;
   justify-content: space-around;
-
-  #contact-info, .contact-tel, .contact-email {
+  font-size: 1em;
+  #contact-info {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: flex-start;
+    @include respond-to(medium) {
+      flex-flow: row nowrap;
+    }
+  }
+  .contact-tel, .contact-email {
     display: flex;
     flex-flow: row nowrap;
   }
 }
 .contact-container {
   margin-right: 10px;
+  a {
+    text-decoration: none;
+    color: currentColor;
+  }
   .contact-container, .contact-label {
-    line-height: 12px;
+    line-height: 20px;
+    @include respond-to(medium) {
+      line-height: 12px;
+    }
   }
   .contact-label {
     margin: 0 5px 0 0;
   }
-  &:not(:first-child) {
-    .contact-label {
+
+  .contact-content {
+    font-size: 0.7em;
+    line-height: 26px;
+    @include respond-to(medium) {
+      line-height: 12px;
+      font-size: 1.1em;
+    }
+  }
+
+  .contact-email .contact-label {
+    @include respond-to(medium) {
       margin: 0 5px;
     }
   }
@@ -46,6 +74,6 @@
 }
 
 #copyright {
-  font-size: 0.8em;
+  font-size: 0.7em;
   font-family: $roboto;
 }

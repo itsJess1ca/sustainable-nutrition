@@ -6,5 +6,35 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'sn works!';
+  navList: NavItem[] = [
+    {
+      name: 'Home',
+      destination: ['home']
+    },
+    {
+      name: 'Services',
+      destination: ['services']
+    },
+    {
+      name: 'Coaches',
+      destination: ['coaches']
+    },
+    {
+      name: 'Blog',
+      destination: ['blog']
+    },
+    {
+      name: 'Testimonials',
+      destination: ['testimonials']
+    },
+    {
+      name: 'Contact',
+      destination: ['contact']
+    }
+  ]
+}
+
+interface NavItem {
+  name: string;
+  destination: any;
 }

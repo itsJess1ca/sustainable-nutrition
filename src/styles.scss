@@ -1,6 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 @import 'reset';
 @import 'fonts';
+@import 'app/breakpoints';
 
 html, body {
   height: 100%;
@@ -12,4 +13,10 @@ html, body {
 
 .bold {
   font-weight: bold;
+}
+
+.hide-on-small {
+  @include hide-on-small() {
+    display: none !important;
+  }
 }

@@ -1,7 +1,7 @@
 'use strict';
 
 const NAME = 'SUSNUTRITION';
-const VERSION = '0.0.4';
+const VERSION = '0.0.5';
 
 self.oninstall = _ => {
   self.skipWaiting();
@@ -47,7 +47,7 @@ self.onfetch = evt => {
         const request = evt.request;
         return fetch(request).then(fetchResponse => {
           // Never cache Analytics requests.
-          if (/google/.test(request.url)) {
+          if (/analytics/.test(request.url)) {
             return fetchResponse;
           }
 
