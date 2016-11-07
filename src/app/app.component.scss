@@ -26,9 +26,14 @@
   position: absolute;
   top: 10px;
   left: 10px;
-  @include respond-to(large) {
+  /*@include respond-to(large) {
     display: none;
-  }
+  }*/
+}
+
+.sidenav-contain {
+  background-color: rgba(204,69,32,1);
+  box-shadow: 3px 3px 5px rgba(0,0,0,0.34);
 }
 
 #main-nav {

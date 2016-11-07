@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ElementRef, Renderer } from '@angular/core';
+import { Component, OnInit, Input, ElementRef, Renderer, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'sn-side-nav',
@@ -7,17 +7,22 @@ import { Component, OnInit, Input, ElementRef, Renderer } from '@angular/core';
 })
 export class SideNavComponent implements OnInit {
   @Input() Routes: any;
+  @ViewChild('sidenav') sidenav: ElementRef;
   visible: boolean = false;
 
-  constructor() { }
+  constructor(
+    private renderer: Renderer
+  ) { }
 
   ngOnInit() {
   }
 
   open() {
     this.visible = true;
+    this.renderer.setElementClass(this.sidenav.nativeElement, 'sidenav--visible', true);
   }
   close() {
     this.visible = false;
+    this.renderer.setElementClass(this.sidenav.nativeElement, 'sidenav--visible', false);
   }
 }

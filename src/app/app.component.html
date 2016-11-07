@@ -1,13 +1,17 @@
 <sn-side-nav [Routes]="navList" #sidenav></sn-side-nav>
+
 <section id="wrapper">
 
   <header id="header">
     <button sn-icon-button id="menu-button" (click)="sidenav.open()"><i class="material-icons">menu</i></button>
 
-    <a [routerLink]="['home']"><sn-brand-logo id="brand-logo"></sn-brand-logo></a>
+    <a [routerLink]="['home']">
+      <sn-brand-logo id="brand-logo"></sn-brand-logo>
+    </a>
 
     <nav id="main-nav" class="hide-on-small">
-      <a *ngFor="let navItem of navList" [routerLink]="navItem.destination" class="navItem">{{navItem.name | uppercase}}</a>
+      <a *ngFor="let navItem of navList" [routerLink]="navItem.destination" class="navItem">{{navItem.name |
+        uppercase}}</a>
     </nav>
 
   </header>
