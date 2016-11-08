@@ -5,7 +5,7 @@ import { DebugElement } from '@angular/core';
 
 import { SideNavComponent } from './side-nav.component';
 
-describe('SideNavComponent', () => {
+/*describe('SideNavComponent', () => {
   let component: SideNavComponent;
   let fixture: ComponentFixture<SideNavComponent>;
 
@@ -25,4 +25,4 @@ describe('SideNavComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-});
+});*/

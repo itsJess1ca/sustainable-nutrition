@@ -8,7 +8,6 @@ import { AppComponent } from './app.component';
 import { FooterModule } from './footer/footer.module';
 import { BrandLogoModule } from './brand-logo/brand-logo.module';
 import { IconButtonModule } from './shared/icon-button/icon-button.module';
-import { MaterialModule } from '@angular/material';
 import { SideNavComponent } from './side-nav/side-nav.component';
 
 @NgModule({
@@ -17,7 +16,6 @@ import { SideNavComponent } from './side-nav/side-nav.component';
     AppComponent
   ],
   imports: [
-    MaterialModule.forRoot(),
     IconButtonModule,
     BrandLogoModule,
     FooterModule,
