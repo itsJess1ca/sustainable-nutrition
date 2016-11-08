@@ -3,15 +3,16 @@ import { Component, OnInit, Input, ElementRef, Renderer, ViewChild } from '@angu
 @Component({
   selector: 'sn-side-nav',
   templateUrl: './side-nav.component.html',
-  styleUrls: ['./side-nav.component.scss']
+  styleUrls: ['./side-nav.component.scss'],
+  host: {
+    '[class.sidenav--visible]': 'visible'
+  }
 })
 export class SideNavComponent implements OnInit {
   @Input() Routes: any;
-  @ViewChild('sidenav') sidenav: ElementRef;
   visible: boolean = false;
 
   constructor(
-    private renderer: Renderer
   ) { }
 
   ngOnInit() {
@@ -19,10 +20,8 @@ export class SideNavComponent implements OnInit {
 
   open() {
     this.visible = true;
-    this.renderer.setElementClass(this.sidenav.nativeElement, 'sidenav--visible', true);
   }
   close() {
     this.visible = false;
-    this.renderer.setElementClass(this.sidenav.nativeElement, 'sidenav--visible', false);
   }
 }
