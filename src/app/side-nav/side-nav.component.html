@@ -1,4 +1,20 @@
 <div id="sidenav-backdrop" (click)="close()"></div>
-<nav id="sidenav__routes">
-  <!--<a *ngFor="let navItem of Routes" [routerLink]="navItem.destination" class="navItem">{{navItem.name | uppercase}}</a>-->
+<nav
+  id="sidenav"
+  #sidenav
+  [class.animatable]="animatableSidenav"
+  (transitionend)="onTransitionEnd($event)"
+  (touchstart)="touchStart($event)"
+  (touchmove)="touchMove($event)"
+  (touchend)="touchEnd($event)"
+>
+  <button sn-icon-button id="close-menu-btn" class="material-icons" (click)="close()">close</button>
+  <header id="menu-header">
+    <div id="wide-brand-logo"></div>
+  </header>
+  <ul id="menu">
+    <li *ngFor="let navItem of Routes" class="menu__list-item">
+      <a [routerLink]="navItem.destination" class="menuItem">{{navItem.name | uppercase}}</a>
+    </li>
+  </ul>
 </nav>
