@@ -27,11 +27,15 @@ export class SideNavComponent implements OnInit {
 
   open() {
     this.animatableSidenav = true;
-    this.visible = true;
+    requestAnimationFrame(() => {
+      this.visible = true;
+    })
   }
   close() {
     this.animatableSidenav = true;
-    this.visible = false;
+    requestAnimationFrame(() => {
+      this.visible = false;
+    });
   }
 
   onTransitionEnd(event) {
@@ -60,10 +64,16 @@ export class SideNavComponent implements OnInit {
     const translateX = Math.min(0, this.currentX - this.startX);
 
     if (translateX < -100) {
-      this.renderer.setElementStyle(this.sidenav.nativeElement, 'transform', '');
-      this.close();
+
+      requestAnimationFrame(() => {
+        this.renderer.setElementStyle(this.sidenav.nativeElement, 'transform', '');
+        this.close();
+      });
     } else if (translateX > -150 && translateX < 0) {
-      this.renderer.setElementStyle(this.sidenav.nativeElement, 'transform', 'initial');
+
+      requestAnimationFrame(() => {
+        this.renderer.setElementStyle(this.sidenav.nativeElement, 'transform', 'initial');
+      });
     }
   }
 }
