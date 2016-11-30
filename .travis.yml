@@ -37,7 +37,7 @@ deploy:
   bucket: susnutrition
   region: eu-west-1
   skip_cleanup: true
-  local-dir: dist
+  local-dir: dist/client
   acl: public_read
   detect_encoding: true
   on:
