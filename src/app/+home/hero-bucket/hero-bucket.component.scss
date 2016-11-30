@@ -1,0 +1,157 @@
+@import '../../variables';
+:host {
+  padding: 20px $gutterMobile 0;
+  flex: 1;
+  //min-height: calc(100vh - 10px);
+  background: #ffa914 url('../../../assets/img/buckets/home-hero/home-hero--mobile.jpg') no-repeat left bottom;
+  background-size: cover;
+  display: flex;
+  flex-flow: row nowrap;
+  color: white;
+
+  @include respond-to(medium) {
+    background-image: url('../../../assets/img/buckets/home-hero/background.jpg');
+  }
+  @include respond-to(large) {
+    background-size: auto 100%;
+    padding: 30px $gutterDesktop 0;
+    //width: calc(100% - (#{$gutterDesktop} * 2));
+  }
+}
+
+#left-side {
+  display: block;
+  position: absolute;
+  left: $gutterMobile * -1;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  @include respond-to(medium) {
+
+  }
+  @include respond-to(large) {
+    height: inherit;
+    position: relative;
+    left: $gutterDesktop * -1;
+  }
+}
+
+#right-side {
+  margin-top: 200px;
+  display: flex;
+  flex: 1;
+  align-items: flex-end;
+  flex-flow: column nowrap;
+  position: relative;
+  z-index: 2;
+}
+
+#bowl {
+  $size: 45vmax;
+  height: $size;
+  width: $size;
+  position: absolute;
+  bottom: -25%;
+  left: -5%;
+  background-image: url(../../../assets/img/buckets/home-hero/bowl.png);
+  display: none;
+  background-size: contain;
+  @include respond-to(medium) {
+    display: block;
+    $size: 500px;
+    height: $size;
+    width: $size;
+  }
+  @include respond-to(large) {
+    left: 0;
+    background-repeat:no-repeat;
+    background-position-y: 30%;
+    height: 100%;
+    width: 100%;
+  }
+}
+
+
+#hero-content {
+  height: 100%;
+
+  #title {
+    font-size: 2em;
+    line-height: 1em;
+    text-align: right;
+    font-family: $metropolis;
+    font-weight: 900;
+  }
+
+  @include respond-to(medium) {
+    letter-spacing: 10px;
+    //font-size: 3em;
+  }
+
+  @include respond-to(large) {
+    height: 50%;
+    font-size: 2em;
+  }
+}
+
+.learn-more-container {
+  display: flex;
+  flex-flow: column nowrap;
+  margin-bottom: 20px;
+  &:hover {
+    cursor: pointer;
+  }
+
+  .learnMore {
+    margin-top: 48px;
+    letter-spacing: 5px;
+    padding-bottom: 10px;
+    font-family: $antonio;
+    font-size: 1em;
+    display: block;
+    width: 100%;
+    text-align: right;
+
+    // Transition Details
+    transform: none;
+    will-change: transform;
+    transition: transform 0.3s ease-in-out;
+  }
+
+  .arrow {
+    align-self: flex-end;
+    padding-right: 25px;
+    margin-top: 5px;
+    font-size: 2em;
+
+    // Transition Details
+    transform: none;
+    will-change: transform;
+    transition: transform 0.3s ease-in-out;
+  }
+}
+
+@include respond-to(large) {
+  #left-side, #right-side {
+    display: inherit;
+    width: 50%;
+  }
+
+  .cta {
+    .getInTouch {
+      font-size: 3rem;
+    }
+  }
+
+  .learn-more-container {
+    &:hover {
+      .learnMore {
+        transform: translateY(-10px);
+      }
+      .arrow {
+        transform: translateY(10px);
+      }
+    }
+  }
+}

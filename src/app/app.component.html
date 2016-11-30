@@ -1,0 +1,20 @@
+<sn-side-nav [routes]="navList" #sidenav viewport-height></sn-side-nav>
+
+<section id="wrapper">
+
+  <header id="header">
+    <button sn-icon-button id="menu-button" (click)="sidenav.open()"><i class="material-icons">menu</i></button>
+
+    <a [routerLink]="['home']" id="brand-logo-button">
+      <sn-brand-logo id="brand-logo"></sn-brand-logo>
+    </a>
+
+    <nav id="main-nav" class="hide-on-small">
+      <a *ngFor="let navItem of navList" [routerLink]="navItem.destination" class="navItem">{{navItem.name | uppercase}}</a>
+    </nav>
+
+  </header>
+
+  <router-outlet></router-outlet>
+</section>
+<sn-footer></sn-footer>

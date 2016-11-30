@@ -1,0 +1,23 @@
+<section id="main-content">
+
+  <div id="contact-info">
+
+    <section class="contact-container contact-tel">
+      <div class="contact-label">TEL</div>
+      <div class="contact-content">James on <span class="bold"><a href="tel:+447531 892794">07531 892794</a></span> or Clare on <span class="bold"><a href="tel:+447775 727351">07775 727351</a></span></div>
+    </section>
+
+    <section class="contact-container contact-email">
+      <div class="contact-label">EMAIL</div>
+      <div class="contact-content"><a href="mailto:sustainable.nutrition99@gmail.com">sustainable.nutrition99@gmail.com</a></div>
+    </section>
+
+  </div>
+
+  <div id="copyright">© Copyright Sustainable Nutrition 2016</div>
+
+  <section id="social-buttons">
+    <a *ngFor="let icon of socialMedia" href="{{icon.destination}}"><i class="sn-social-icon icon-{{icon.name}}"></i></a>
+  </section>
+
+</section>

@@ -1,0 +1,119 @@
+@import '../variables';
+
+:host {
+  min-height: $footerHeight - 20;
+  //max-height: $footerHeight;
+  background-color: $sn-accent;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  padding: 5px 25px;
+  @include respond-to(medium) {
+    padding: 10px 50px;
+  }
+}
+
+#main-content {
+  display: flex;
+  flex: 1;
+  flex-flow: column nowrap;
+  justify-content: space-around;
+  font-size: 1em;
+  position: relative;
+  #contact-info {
+    margin-top: 20px;
+    display: block;
+    order: -5;
+    @include respond-to(medium) {
+      flex-flow: row nowrap;
+      order: 0;
+    }
+  }
+  .contact-tel, .contact-email {
+    display: flex;
+    flex-flow: row nowrap;
+  }
+}
+
+.contact-container {
+  margin-right: 10px;
+  height: 1.5em;
+  a {
+    text-decoration: none;
+    color: currentColor;
+  }
+  .contact-container, .contact-label {
+    line-height: 20px;
+    @include respond-to(medium) {
+      line-height: 12px;
+    }
+  }
+  .contact-label {
+    margin: 0 5px 0 0;
+  }
+
+  .contact-content {
+    font-size: 0.7em;
+    line-height: 26px;
+    a {
+      text-decoration: underline;
+    }
+    @include respond-to(medium) {
+      line-height: 12px;
+      font-size: 1.1em;
+    }
+  }
+
+  .contact-email .contact-label {
+    @include respond-to(medium) {
+      margin: 0 5px;
+    }
+  }
+}
+
+#copyright, .contact-label {
+  color: $sn-yellow;
+  font-family: $antonio;
+}
+
+.contact-content {
+  color: white;
+  font-family: $metropolis;
+  font-weight: 500;
+}
+
+#copyright {
+  order: 5;
+  font-size: 0.7em;
+  font-family: $roboto;
+}
+
+#social-buttons {
+  align-self: flex-start;
+  padding: 10px 0;
+  @include respond-to(medium) {
+    align-self: flex-end;
+    position: absolute;
+    top: 5px;
+  }
+  $icon-size: 36px;
+  height: $icon-size;
+  color: white;
+  order: -3;
+
+  a {
+    color: white;
+    margin-left: 10px;
+    display: inline-block;
+    text-decoration: none;
+
+    &:first-of-type {
+      margin-left: 0;
+    }
+  }
+
+  .sn-social-icon {
+    font-size: $icon-size;
+    line-height: $icon-size;
+  }
+}

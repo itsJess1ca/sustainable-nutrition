@@ -1,0 +1,18 @@
+:host {
+  display: inline-block;
+  $size: 42px;
+  height: $size;
+  width: $size;
+  min-width: $size;
+  min-height: $size;
+  border-radius: 50%;
+  background: transparent;
+  margin: 0;
+  padding: 4px 0 0;
+  outline: none;
+  border: none;
+
+  &:active {
+    background-color: rgba(255,255,255,0.3);
+  }
+}

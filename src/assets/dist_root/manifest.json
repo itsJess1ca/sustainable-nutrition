@@ -1,0 +1,25 @@
+{
+ "name": "Sustainable Nutrition",
+ "start_url": "/",
+ "display": "standalone",
+ "theme_color": "#f7ab1d",
+ "background_color": "#348a36",
+ "description": "The official site for Sustainable Nutrition",
+ "author": "Jordan Ide <https://twitter.com/j3d__>",
+ "orientation": "portrait",
+ "background": {
+  "persistent": false
+ },
+ "icons": [
+  {
+   "src": "\/assets\/icon\/android-chrome-192x192.png",
+   "sizes": "192x192",
+   "type": "image\/png"
+  },
+  {
+   "src": "\/assets\/icon\/android-chrome-512x512.png",
+   "sizes": "512x512",
+   "type": "image\/png"
+  }
+ ]
+}

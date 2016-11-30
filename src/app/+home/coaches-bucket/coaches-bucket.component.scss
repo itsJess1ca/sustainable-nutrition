@@ -1,0 +1,9 @@
+@import '../../variables';
+:host {
+  padding: 20px $gutterMobile 0;
+  flex: 1;
+  display: flex;
+  flex-flow: row nowrap;
+  color: white;
+  background-color: $sn-green;
+}

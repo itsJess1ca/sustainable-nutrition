@@ -1,0 +1,30 @@
+@import '../../variables';
+:host {
+  padding: 20px $gutterMobile 40px;
+  flex: 1;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  color: white;
+  background-color: white;
+  //min-height: 75vh;
+}
+
+#services {
+  width: 100%;
+  @include respond-to(large) {
+    width: 960px;
+  }
+}
+
+#title {
+  color: rgba(0,0,0,0.5);
+  font-weight: 900;
+}
+
+#serviceWrap {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  margin: -5px;
+}

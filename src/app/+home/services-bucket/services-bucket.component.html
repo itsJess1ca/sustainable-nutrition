@@ -1,0 +1,7 @@
+<section id="services">
+  <h1 id="title">OUR SERVICES</h1>
+  <div id="serviceWrap">
+    <sn-service *ngFor="let service of services" class="service" [image]="service.image">{{service.name}}</sn-service>
+  </div>
+</section>
+
