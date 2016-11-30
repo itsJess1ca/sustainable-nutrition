@@ -1,5 +1,5 @@
 require('ts-node/register');
-const ports = require('../constants')
+const ports = require('../constants');
 const helpers = require('../helpers');
 
 let port;
