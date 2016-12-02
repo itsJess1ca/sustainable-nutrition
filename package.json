@@ -1,11 +1,11 @@
 {
-  "name": "angular-webpack2-starter",
-  "version": "1.13.1",
-  "description": "Angular and Webpack 2 Starter",
-  "author": "Qdouble <qdouble@gmail.com>",
+  "name": "Sustainable-Nutrition",
+  "version": "1.0.0",
+  "description": "Official website for susnutrition.com",
+  "author": "Jed <https://github.com/j3ddesign>",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/qdouble/angular-webpack2-starter.git"
+    "url": "git+https://github.com/j3ddesign/sustainable-nutrition.git"
   },
   "scripts": {
     "postinstall": "npm run sass && npm run build:dll",
@@ -87,7 +87,9 @@
     "watch:universal": "npm-run-all -p -r \"build:universal -- --watch\" sass:watch",
     "universal": "npm run build:universal && npm run server:universal",
     "universal:aot": "npm run compile:universal && npm run server:universal",
-    "universal:watch": "npm run build:universal && npm-run-all -p -r watch:universal server:universal"
+    "universal:watch": "npm run build:universal && npm-run-all -p -r watch:universal server:universal",
+    "postversion": "node run version.bump.js",
+    "deploy": "npm version patch && git commit -a -m \"version bump\" && git checkout master && git merge dev && git push"
   },
   "dependencies": {
     "@angular/common": "2.1.0",
@@ -190,7 +192,7 @@
   },
   "license": "Apache-2.0",
   "bugs": {
-    "url": "https://github.com/qdouble/angular-webpack2-starter/issues"
+    "url": "https://github.com/j3ddesign/sustainable-nutrition/issues"
   },
-  "homepage": "https://github.com/qdouble/angular-webpack2-starter#readme"
+  "homepage": "https://susnutrition.com"
 }

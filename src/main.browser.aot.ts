@@ -5,12 +5,14 @@ declare var ENV: string;
 import { enableProdMode } from '@angular/core';
 import { platformBrowser } from '@angular/platform-browser';
 import { AppModuleNgFactory } from './compiled/src/app/app.module.ngfactory';
+import { installServiceWorker } from './app/shared/sw-install';
 
 if ('production' === ENV) {
   enableProdMode();
 }
 
 export function main() {
+  installServiceWorker();
   return platformBrowser().bootstrapModuleFactory(AppModuleNgFactory)
     .catch(err => console.log(err));
 }

@@ -24,6 +24,4 @@ export class TestimonialsBucketComponent implements OnInit {
 
   ngOnInit() {
   }
-
-
 }
