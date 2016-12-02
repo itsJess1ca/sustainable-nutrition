@@ -88,7 +88,7 @@
     "universal": "npm run build:universal && npm run server:universal",
     "universal:aot": "npm run compile:universal && npm run server:universal",
     "universal:watch": "npm run build:universal && npm-run-all -p -r watch:universal server:universal",
-    "postversion": "node run version.bump.js",
+    "postversion": "node version.bump.js",
     "deploy": "npm version patch && git commit -a -m \"version bump\" && git checkout master && git merge dev && git push"
   },
   "dependencies": {
