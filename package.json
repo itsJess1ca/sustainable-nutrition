@@ -89,7 +89,7 @@
     "universal:aot": "npm run compile:universal && npm run server:universal",
     "universal:watch": "npm run build:universal && npm-run-all -p -r watch:universal server:universal",
     "postversion": "node version.bump.js",
-    "deploy": "npm version patch && git commit -a -m \"version bump\" && git checkout master && git merge dev && git push"
+    "deploy": "npm version patch && git commit -a -m \"version bump\" && git checkout master && git merge dev && git push && git checkout dev"
   },
   "dependencies": {
     "@angular/common": "2.1.0",
