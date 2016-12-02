@@ -12,7 +12,7 @@ fs.writeFile('./src/app-version.ts', `export const APP_VERSION = "${CURRENT_VERS
   console.log("Version environment variable updated.");
 });
 
-fs.readFile('./src/assets/service-worker.js', {encoding: 'utf8'}, (err, data) => {
+fs.readFile('./src/service-worker.js', {encoding: 'utf8'}, (err, data) => {
   if (err) throw err;
 
   const newData = data
