@@ -1,9 +1,9 @@
 <section id="coach-images">
-  <div id="james" [ngClass]="{inactive: activeCoach !== 'james', active: activeCoach === 'james'}"></div>
-  <div id="clare" [ngClass]="{inactive: activeCoach !== 'clare', active: activeCoach === 'clare'}"></div>
+  <div id="james" [ngClass]="{inactive: activeCoach !== 'james', active: activeCoach === 'james'}" (click)="switchCoachTo('james')"></div>
+  <div id="clare" [ngClass]="{inactive: activeCoach !== 'clare', active: activeCoach === 'clare'}" (click)="switchCoachTo('clare')"></div>
 </section>
 <section id="coach-details">
   <h1>OUR COACHES</h1>
-  <span bordered-header>{{coach.name | uppercase}}</span>
-  <div class="coach-details">{{coach.details}}</div>
+  <span bordered-header>{{coach?.firstName | uppercase}} {{coach?.lastName | uppercase}}</span>
+  <div class="coach-details">{{coach?.shortDescription}}</div>
 </section>

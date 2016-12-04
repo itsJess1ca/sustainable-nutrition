@@ -7,11 +7,7 @@
   </div>
   <span class="flex-filler hide-on-small">&nbsp;</span>
   <div id="hero-content">
-    <div id="title">
-      ARE YOU<br>
-      SICK OF YO-YO<br>
-      DIETING?
-    </div>
+    <div id="title" [innerHTML]="_title | newLine | uppercase"></div>
     <a pageScroll href="#details-bucket">
       <div class="learn-more-container">
         <span class="learnMore">LEARN MORE</span>
