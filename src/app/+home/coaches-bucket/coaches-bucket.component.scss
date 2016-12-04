@@ -37,9 +37,9 @@
     background: url('../../../assets/img/james.jpg') no-repeat -.5% 0;
     -webkit-mask-image: url('../../../assets/img/james_clip.png');
     mask-image: url('../../../assets/img/james_clip.png');
-    -webkit-mask-position: 0 0;
-    mask-position: 0 0;
-    -webkit-mask-size: 100%;
+    -webkit-mask-position: 0 1px;
+    mask-position: 0 1px;
+    -webkit-mask-size: 99.9%;
     position: absolute;
     background-size: 200%;
     z-index: 2;

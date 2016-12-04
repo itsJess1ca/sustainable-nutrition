@@ -47,7 +47,9 @@ exports.STORE_DEV_TOOLS = 'monitor'
 exports.EXCLUDE_SOURCE_MAPS = [
   // these packages have problems with their sourcemaps
   root('node_modules/@angular'),
-  root('node_modules/rxjs')
+  root('node_modules/rxjs'),
+  root('node_modules/ng2-page-scroll'),
+  root('node_modules/contentful')
 ]
 
 exports.MY_COPY_FOLDERS = [

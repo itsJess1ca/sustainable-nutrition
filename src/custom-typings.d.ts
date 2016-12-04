@@ -30,6 +30,18 @@ declare var PORT: number;
 declare var STORE_DEV_TOOLS: string;
 declare var System: SystemJS;
 declare var UNIVERSAL: boolean;
+declare module 'contentful' {
+   export function createClient(options: any): ContentfulClient;
+}
+
+interface ContentfulClient {
+  getEntries(query?: EntriesQuery): Promise<any>;
+  getEntry(entryID?: string): Promise<any>;
+}
+interface EntriesQuery {
+  limit?: number;
+  content_type?: string;
+}
 
 interface SystemJS {
   import: (path?: string) => Promise<any>;
