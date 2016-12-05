@@ -1,5 +1,5 @@
 <sn-hero viewportHeight id="hero-bucket" [title]="generalData | async"></sn-hero>
-<sn-details viewportHeight id="details-bucket" [title]="generalData | async"></sn-details>
+<sn-details viewportHeight id="details-bucket" [data]="generalData | async"></sn-details>
 <sn-services id="services-bucket"></sn-services>
 <sn-coaches id="coaches-bucket" [coaches]="coaches | async"></sn-coaches>
 <sn-testimonials id="testimonials-bucket" [testimonial]="testimonial | async"></sn-testimonials>
