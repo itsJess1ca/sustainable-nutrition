@@ -6,19 +6,20 @@ import { Component, OnInit, Input, ChangeDetectorRef } from '@angular/core';
   styleUrls: ['details-bucket.component.css']
 })
 export class DetailsBucketComponent implements OnInit {
-  @Input() set title(generalData) {
+  title: string;
+  content: string;
+  @Input() set data(generalData) {
     if (generalData) {
-      this._title = generalData.fields.companyDetailsTitle;
-      this._content = generalData.fields.companyDetails;
+      this.title = generalData.fields.companyDetailsTitle;
+      this.content = generalData.fields.companyDetails;
       this._ref.markForCheck();
     }
   }
-  _title: string;
-  _content: string;
 
   constructor(private _ref: ChangeDetectorRef) { }
 
   ngOnInit() {
+    this._ref.markForCheck();
   }
 
 }

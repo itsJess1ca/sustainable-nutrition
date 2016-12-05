@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, NgZone } from '@angular/core';
 import * as Contentful from 'contentful';
 import { Observable } from 'rxjs';
 
@@ -9,24 +9,32 @@ export class ContentfulService {
     space: '5o14xo9vvej5'
   });
 
+  constructor(private zone: NgZone) {}
+
   getEntries(query: EntriesQuery): Observable<any[]> {
     return Observable
-      .fromPromise(this.contentful.getEntries(query))
+      .fromPromise(new Promise(resolve => {
+        this.contentful.getEntries(query).then((entries) => resolve(entries));
+      }))
       .map((entries: any) => entries.items.map(e => {
         let r = e.fields;
         r.fieldType = e.sys.contentType.sys.id;
         return r;
       }));
   }
+
   getEntry(entryID: string): Observable<any> {
     return Observable
-      .fromPromise(this.contentful.getEntry(entryID));
+      .fromPromise(new Promise(resolve => {
+        this.contentful.getEntry(entryID).then(entry => resolve(entry));
+      }));
   }
 
   // Testimonials
   getTestimonials(): Observable<any> {
     return this.getEntries({content_type: 'testimonials'}).distinctUntilChanged();
   }
+
   getRandomTestimonial(): Observable<any> {
     return this.getTestimonials()
       .map(testimonials => testimonials[Math.floor(Math.random() * testimonials.length)]);

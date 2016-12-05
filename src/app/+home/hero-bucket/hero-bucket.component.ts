@@ -10,11 +10,10 @@ export class HeroBucketComponent implements OnInit, AfterViewInit {
   @Input() set title(generalData) {
     if (generalData) {
       this._title = generalData.fields.title;
-      this._ref.markForCheck();
     }
   }
   _title: string = '';
-  constructor(private _ref: ChangeDetectorRef) { }
+  constructor() { }
 
   ngOnInit() {
   }

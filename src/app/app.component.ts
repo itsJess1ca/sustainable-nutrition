@@ -1,10 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { PageScrollConfig } from 'ng2-page-scroll';
 
 @Component({
   selector: 'sn-root',
   styleUrls: ['./app.component.css'],
-  templateUrl: './app.component.html'
+  templateUrl: './app.component.html',
+  changeDetection: ChangeDetectionStrategy.Default
 })
 export class AppComponent {
   navList: NavItem[] = [
