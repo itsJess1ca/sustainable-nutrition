@@ -12,8 +12,8 @@ import { NewLinePipe } from '../../shared/new-line.pipe';
     Ng2PageScrollModule
   ],
   declarations: [
-    HeroBucketComponent,
-    NewLinePipe
+    NewLinePipe,
+    HeroBucketComponent
   ],
   exports: [HeroBucketComponent]
 })

@@ -5,9 +5,9 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 
 export class NewLinePipe implements PipeTransform {
-  transform(value: any, args: any[]): any {
-    if (value) {
-      return value
+  transform(input: any): string {
+    if (input) {
+      return '' + input
         .split('%new-line')
         .map(str => str.trim())
         .join('<br>');
