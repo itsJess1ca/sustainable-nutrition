@@ -59,9 +59,17 @@
     font-weight: bold;
     color: white;
     text-decoration: none;
+    padding-bottom: 5px;
+    line-height: 0;
+    display: inline-block;
 
     &.selected, &:hover {
-      text-decoration: underline;
+      border-bottom: 5px solid white;
+    }
+
+    &.secondary-theme {
+      color: #979797;
+      border-bottom-color: $sn-orange;
     }
   }
 }
@@ -73,6 +81,18 @@
     height: 125px;
     @include respond-to(large) {
       height: 250px;
+    }
+  }
+}
+
+@include respond-to(large) {
+  .cta {
+    position: absolute;
+    right: $gutterDesktop;
+    top: 120px;
+    .getInTouch {
+      font-size: 3rem;
+      padding: 30px 28px;
     }
   }
 }

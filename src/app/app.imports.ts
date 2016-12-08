@@ -5,8 +5,10 @@ import { FooterModule } from './footer/footer.module';
 import { BrandLogoModule } from './brand-logo/brand-logo.module';
 import { IconButtonModule } from './shared/icon-button/icon-button.module';
 import { ViewportHeightModule } from './shared/viewport-height/viewport-height.module';
+import { BorderedHeaderModule } from './shared/bordered-header/bordered-header.module';
 
 export const APP_IMPORTS = [
+  BorderedHeaderModule,
   ViewportHeightModule,
   IconButtonModule,
   BrandLogoModule,

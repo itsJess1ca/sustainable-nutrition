@@ -3,7 +3,9 @@
   <div id="clare" [ngClass]="{inactive: activeCoach !== 'clare', active: activeCoach === 'clare'}" (click)="switchCoachTo('clare')"></div>
 </section>
 <section id="coach-details">
-  <h1>OUR COACHES</h1>
-  <span bordered-header>{{coach?.firstName | uppercase}} {{coach?.lastName | uppercase}}</span>
-  <div class="coach-details">{{coach?.shortDescription}}</div>
+  <div id="content">
+    <h1>OUR COACHES</h1>
+    <span bordered-header>{{coach?.firstName | uppercase}} {{coach?.lastName | uppercase}}</span>
+    <div class="coach-description">{{coach?.shortDescription}}</div>
+  </div>
 </section>

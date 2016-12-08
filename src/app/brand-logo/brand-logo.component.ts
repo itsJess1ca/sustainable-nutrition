@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'sn-brand-logo',
@@ -6,4 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./brand-logo.component.css']
 })
 export class BrandLogoComponent {
+  @Input() theme: 'original' | 'green' = 'original';
 }

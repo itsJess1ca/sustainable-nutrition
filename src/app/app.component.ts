@@ -1,5 +1,6 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ChangeDetectionStrategy, OnInit } from '@angular/core';
 import { PageScrollConfig } from 'ng2-page-scroll';
+import { RouterStateSnapshot, Router, NavigationEnd } from '@angular/router';
 
 @Component({
   selector: 'sn-root',
@@ -7,36 +8,47 @@ import { PageScrollConfig } from 'ng2-page-scroll';
   templateUrl: './app.component.html',
   changeDetection: ChangeDetectionStrategy.Default
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   navList: NavItem[] = [
     {
-      name: 'Home',
+      name: 'home',
       destination: ['home']
     },
     {
-      name: 'Services',
+      name: 'services',
       destination: ['services']
     },
     {
-      name: 'Coaches',
+      name: 'coaches',
       destination: ['coaches']
     },
     {
-      name: 'Blog',
+      name: 'blog',
       destination: ['blog']
     },
     {
-      name: 'Testimonials',
+      name: 'testimonials',
       destination: ['testimonials']
     },
     {
-      name: 'Contact',
+      name: 'contact',
       destination: ['contact']
     }
   ];
+  currentPage: possibleRoutes = 'home';
+  activeTheme: 'home' | 'other' = this.currentPage === 'home' ? 'home' : 'other';
 
-  constructor() {
+  constructor(private router: Router) {
     PageScrollConfig.defaultDuration = 250;
+  }
+  ngOnInit() {
+    this.router.events.subscribe((event: NavigationEnd) => {
+      if (event instanceof NavigationEnd) {
+        const r: possibleRoutes = <possibleRoutes>event.url.replace('/', '');
+        this.currentPage = r === '' ? 'home' : r;
+        this.activeTheme = this.currentPage === 'home' ? 'home' : 'other';
+      }
+    });
   }
 }
 
@@ -44,3 +56,4 @@ interface NavItem {
   name: string;
   destination: any;
 }
+type possibleRoutes = 'home' | 'services' | 'coaches' | 'blog' | 'testimonials' | 'contact' | '';

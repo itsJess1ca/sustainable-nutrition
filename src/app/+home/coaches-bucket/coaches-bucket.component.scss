@@ -18,9 +18,9 @@
   width: 100%;
   min-height: 290px;
   position: relative;
-  @include linear-gradient(180deg, $sn-yellow, transparent);
+  @include patterned-linear-gradient($sn-yellow, 180deg, $sn-yellow 0%, $sn-yellow 15%, #409b42 65%);
   overflow: hidden;
-  -webkit-mask: url('../../../assets/img/curved-shape3.svg');
+  -webkit-mask: url('../../../assets/img/curved-shape.svg');
   -webkit-mask-repeat: no-repeat;
   -webkit-mask-position-x: 0;
 
@@ -95,4 +95,7 @@
   flex: 1;
   background: $sn-green;
   padding: 20px $gutterMobile;
+  .coach-description {
+    max-width: 600px;
+  }
 }

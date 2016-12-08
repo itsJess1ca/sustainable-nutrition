@@ -11,6 +11,8 @@ export const routes: Routes = [
 
   { path: 'coaches', loadChildren: './+coaches/coaches.module#CoachesModule' },
 
+  { path: 'blog', loadChildren: './+blog/blog.module#BlogModule' },
+
   { path: 'testimonials', loadChildren: './+testimonials/testimonials.module#TestimonialsModule' },
 
   { path: 'contact', loadChildren: './+contact/contact.module#ContactModule' },
