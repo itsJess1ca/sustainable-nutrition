@@ -1,0 +1,105 @@
+@import '../../variables';
+:host {
+  display: flex;
+  flex-flow: row wrap;
+  flex: 1;
+  width: 100%;
+  margin: 20px auto;
+}
+
+#left-side, #right-side {
+  height: 500px;
+  width: 100%;
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  @include respond-to(large) {
+    width: 50%;
+  }
+}
+#left-side {}
+#left-side.odd {
+  order: 1;
+  @include respond-to(medium) {
+    order: 0;
+  }
+}
+
+#coach-name {
+  margin-bottom: 25px;
+}
+#coach-image {
+  height: 100%;
+  background: no-repeat center;
+  &.james {
+    background-image: url('../../../assets/img/james.png');
+  }
+  &.clare {
+    background-image: url('../../../assets/img/clare.png');
+  }
+  background-size: contain;
+}
+
+#coach-details {
+  color: rgba(0,0,0,0.4);
+  font-family: $metropolis;
+  font-weight: 600;
+  font-size: 1.3em;
+}
+
+
+.icon {
+  width: 53px;
+  max-height: 36px;
+  margin: 12px 15px 12px 12px;
+}
+
+#coach-phone {
+  position: relative;
+  display: flex;
+  flex-flow: row;
+}
+#coach-phone__details {
+  display: flex;
+  flex-flow: column;
+}
+#coach-phone__title {
+  margin: 0 0;
+  font-family: $metropolis;
+  color: rgba(0,0,0,0.4);
+  font-size: 1em;
+  font-weight: 900;
+}
+#coach-phone__number {
+  color: $sn-orange;
+  font-family: $antonio;
+  font-size: 1.25em;
+  @include respond-to(medium) {
+    font-size: 2em;
+  }
+}
+
+#coach-email {
+  position: relative;
+  display: flex;
+  flex-flow: row;
+}
+#coach-email__details {
+  display: flex;
+  flex-flow: column;
+}
+#coach-email__title {
+  margin: 0 0;
+  font-family: $metropolis;
+  color: rgba(0,0,0,0.4);
+  font-size: 1em;
+  font-weight: 900;
+}
+#coach-email__email {
+  color: $sn-orange;
+  font-family: $antonio;
+  font-size: 1.25em;
+  @include respond-to(medium) {
+    font-size: 2em;
+  }
+}

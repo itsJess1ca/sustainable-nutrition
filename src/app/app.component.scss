@@ -34,6 +34,9 @@
   position: absolute;
   top: 10px;
   left: 10px;
+  &.dark {
+    color: rgba(0,0,0,0.8);
+  }
   @include respond-to(large) {
     display: none;
   }
@@ -80,7 +83,7 @@
   #brand-logo {
     height: 125px;
     @include respond-to(large) {
-      height: 250px;
+      height: 175px;
     }
   }
 }

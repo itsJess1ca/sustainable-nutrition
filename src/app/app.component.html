@@ -3,7 +3,7 @@
 <section id="wrapper">
 
   <header id="header">
-    <button sn-icon-button id="menu-button" (click)="sidenav.open()"><i class="material-icons">menu</i></button>
+    <button sn-icon-button [ngClass]="{dark: activeTheme === 'other'}" id="menu-button" (click)="sidenav.open()"><i class="material-icons">menu</i></button>
 
     <a [routerLink]="['home']" id="brand-logo-button">
       <sn-brand-logo [theme]="activeTheme === 'home' ? 'original' : 'green'" id="brand-logo"></sn-brand-logo>

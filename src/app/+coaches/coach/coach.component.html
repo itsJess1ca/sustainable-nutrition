@@ -1,0 +1,37 @@
+<div id="left-side" [ngClass]="{odd: index % 2}">
+  <template [ngTemplateOutlet]="index % 2 ? details : image"></template>
+</div>
+<div id="right-side">
+  <template [ngTemplateOutlet]="index % 2 ? image : details"></template>
+</div>
+
+
+<template #details>
+  <div id="coach-container">
+    <span id="coach-name" bordered-header class="orange">{{coach.firstName}} {{coach.lastName}}</span>
+    <div id="coach-details">
+      {{coach.shortDescription}}
+    </div>
+    <div id="coach-contact">
+      <div id="coach-phone">
+        <img src="/assets/img/icons/phone.svg" alt="An Icon of a phone" id="coach-phone__icon" class="icon">
+        <div id="coach-phone__details">
+          <h4 id="coach-phone__title">Get in touch with {{coach.firstName}}</h4>
+          <span id="coach-phone__number">{{coach.telephoneNumber}}</span>
+        </div>
+      </div>
+      <div id="coach-email">
+        <img src="/assets/img/icons/desktop.svg" alt="An Icon of a desktop" id="coach-email__icon" class="icon">
+        <div id="coach-email__details">
+          <h4 id="coach-email__title">Get in touch with {{coach.firstName}}</h4>
+          <span id="coach-email__email">{{coach.emailAddress}}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<template #image>
+  <div id="coach-image" class="{{coach.firstName.toLowerCase()}}">
+  </div>
+</template>

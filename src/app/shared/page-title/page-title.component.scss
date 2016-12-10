@@ -1,0 +1,30 @@
+@import '../../variables';
+
+:host {
+  width: 100%;
+}
+#header {
+  padding: 0 $gutterMobile;
+  @include linear-gradient(0deg, rgba(0,0,0,0.05) 0%, transparent 100%);
+  display: flex;
+  flex-flow: column nowrap;
+  height: 170px;
+  justify-content: flex-end;
+
+  @include respond-to(large) {
+    padding: 0 $gutterDesktop;
+    height: 300px;
+  }
+}
+
+#page-title {
+  font-weight: 900;
+  color: $sn-green;
+  font-size: 3em;
+  margin-bottom: 0;
+  font-variant: all-small-caps;
+  @include respond-to(large) {
+    font-size: 4em;
+    margin-bottom: inherit;
+  }
+}

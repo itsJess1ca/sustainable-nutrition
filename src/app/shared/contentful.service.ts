@@ -1,4 +1,4 @@
-import { Injectable, NgZone } from '@angular/core';
+import { Injectable } from '@angular/core';
 import * as Contentful from 'contentful';
 import { Observable } from 'rxjs';
 
@@ -9,7 +9,24 @@ export class ContentfulService {
     space: '5o14xo9vvej5'
   });
 
-  constructor(private zone: NgZone) {}
+  _coaches: Coach[] = null;
+
+  constructor() {}
+
+  get coaches(): Promise<Coach[]> {
+    return new Promise((resolve, reject) => {
+      if (!this._coaches) {
+        this.getEntries({'content_type': 'coaches'})
+          .subscribe(coaches => {
+            console.log(coaches);
+            this._coaches = coaches;
+            resolve(coaches);
+          });
+      } else {
+        resolve(this._coaches);
+      }
+    });
+  }
 
   getEntries(query: EntriesQuery): Observable<any[]> {
     return Observable
@@ -39,6 +56,15 @@ export class ContentfulService {
     return this.getTestimonials()
       .map(testimonials => testimonials[Math.floor(Math.random() * testimonials.length)]);
   }
+}
+
+export interface Coach {
+  emailAddress: string;
+  fieldType: 'coaches';
+  firstName: string;
+  lastName: string;
+  shortDescription: string;
+  telephoneNumber: string;
 }
 
 

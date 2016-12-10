@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ContentfulService, Coach } from '../shared/contentful.service';
 
 @Component({
   selector: 'sn-coaches',
@@ -6,8 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./coaches.component.css']
 })
 export class CoachesComponent implements OnInit {
-
-  constructor() { }
+  coaches: Promise<Coach[]> = this.content.coaches;
+  constructor(private content: ContentfulService) { }
 
   ngOnInit() {
   }

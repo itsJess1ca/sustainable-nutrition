@@ -1,3 +1,12 @@
-<p>
-  coaches works!
-</p>
+<sn-page-title [title]="coaches"></sn-page-title>
+<section id="page-content">
+  <div id="page-description">
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque ultricies nisi non risus convallis convallis. Aliquam erat volutpat. Curabitur efficitur sed enim a molestie.
+  </div>
+
+  <sn-coach
+    *ngFor="let coach of (coaches | async); let i = index;"
+    [coach]="coach"
+    [index]="i"
+  ></sn-coach>
+</section>

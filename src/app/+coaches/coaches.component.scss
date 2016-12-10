@@ -1,0 +1,27 @@
+@import '../variables';
+:host {
+  display: flex;
+  flex-flow: column nowrap;
+  flex: 1;
+  width: 100%;
+}
+
+#page-content {
+  padding: 0 $gutterMobile;
+  @include respond-to(large) {
+    padding: 0 $gutterDesktop;
+  }
+}
+
+#page-description {
+  margin-top: 50px;
+  font-family: $metropolis;
+  font-weight: 900;
+  line-height: 1em;
+  font-variant: all-small-caps;
+  font-size: 1.5em;
+  color: rgba(0,0,0,0.4);
+  @include respond-to(medium) {
+    font-size: 2em;
+  }
+}
