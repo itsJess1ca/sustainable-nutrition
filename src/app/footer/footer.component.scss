@@ -2,6 +2,7 @@
 
 :host {
   min-height: $footerHeight - 20;
+  font-size: 0.8rem;
   //max-height: $footerHeight;
   background-color: $sn-accent;
   display: flex;
@@ -10,6 +11,7 @@
   padding: 5px 25px;
   @include respond-to(medium) {
     padding: 10px 50px;
+    font-size: 0.6rem;
   }
 }
 

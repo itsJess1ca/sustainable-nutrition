@@ -1,7 +1,5 @@
 <div class="testimonial">
-  <div class="content">
-    “{{testimonial?.content}}”
-  </div>
+  <div class="content" [innerHTML]="'“' + testimonial?.content + '”'"></div>
   <div class="author">
     - {{testimonial?.author}} -
   </div>

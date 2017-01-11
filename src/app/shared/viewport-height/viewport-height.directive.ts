@@ -13,9 +13,10 @@ export class ViewportHeightDirective implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
-    this.heightSub = this.screenSize.height$.subscribe((height: number) => {
-      if (height > this.currentHeight + 60) {
-        this.currentHeight = Math.max(height, 500);
+    console.log('viewport height directive');
+    this.heightSub = this.screenSize.size$.subscribe(({height}: {width: number, height: number}) => {
+      if (height > this.currentHeight + 60 || height < this.currentHeight - 60) {
+        this.currentHeight = Math.max(height - 25, 650);
         this.adjustSize(this.currentHeight);
       }
     });
@@ -25,6 +26,7 @@ export class ViewportHeightDirective implements OnInit, AfterViewInit {
   }
 
   adjustSize(height: number) {
+    console.log(`setting min-height to ${height}`);
     this.renderer.setElementStyle(this.el.nativeElement, 'min-height', `${height}px`);
   }
 }

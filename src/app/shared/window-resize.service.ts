@@ -28,7 +28,7 @@ export class WindowSize {
     let windowSize$ = createWindowSize$();
     this.width$ = (windowSize$.pluck('width') as Observable<number>).distinctUntilChanged();
     this.height$ = (windowSize$.pluck('height') as Observable<number>).distinctUntilChanged();
-    this.size$ = this.height$.combineLatest(this.width$, (height, width) => ({
+    this.size$ = this.height$.do(data => console.log(data)).combineLatest(this.width$, (height, width) => ({
       height: height,
       width: width
     }));

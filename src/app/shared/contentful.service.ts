@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import * as Contentful from 'contentful';
 import { Observable } from 'rxjs';
+import * as marked from 'marked';
+import { Marked } from './marked.service';
 
 @Injectable()
 export class ContentfulService {
@@ -11,14 +13,19 @@ export class ContentfulService {
 
   _coaches: Coach[] = null;
 
-  constructor() {}
+  constructor(private marked: Marked) {}
 
   get coaches(): Promise<Coach[]> {
     return new Promise((resolve, reject) => {
       if (!this._coaches) {
         this.getEntries({'content_type': 'coaches'})
+          .map((coaches: any[]) => {
+            return coaches.map((coach: any) => {
+              coach.shortDescription = this.marked.transform(coach.shortDescription);
+              return coach;
+            });
+          })
           .subscribe(coaches => {
-            console.log(coaches);
             this._coaches = coaches;
             resolve(coaches);
           });
@@ -49,7 +56,12 @@ export class ContentfulService {
 
   // Testimonials
   getTestimonials(): Observable<any> {
-    return this.getEntries({content_type: 'testimonials'}).distinctUntilChanged();
+    return this.getEntries({content_type: 'testimonials'})
+      .map(testimonials => testimonials.map((testimonial: any) => {
+        testimonial.content = this.marked.transform(testimonial.content);
+        return testimonial;
+      }))
+      .distinctUntilChanged();
   }
 
   getRandomTestimonial(): Observable<any> {

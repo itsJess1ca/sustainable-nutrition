@@ -12,6 +12,7 @@
 
 #header {
   position: absolute;
+  z-index: 10;
   top: 0;
   padding: 30px 24px 0;
   width: calc(100% - (24px * 2));
@@ -57,7 +58,7 @@
   }
   .navItem {
     margin: 0 10px;
-    font-size: 1.4em;
+    font-size: 0.6em;
     font-family: $metropolis;
     font-weight: bold;
     color: white;
@@ -94,8 +95,8 @@
     right: $gutterDesktop;
     top: 120px;
     .getInTouch {
-      font-size: 3rem;
-      padding: 30px 28px;
+      font-size: 1rem;
+      padding: 25px 22px;
     }
   }
 }

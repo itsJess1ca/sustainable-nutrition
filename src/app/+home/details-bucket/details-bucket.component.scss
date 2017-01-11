@@ -22,7 +22,8 @@
   margin-bottom: 0;
   @include respond-to(large) {
     max-width: 600px;
-    font-size: 1.2em;
+    font-size: 0.8em;
+    line-height:1em;
   }
   &:before {
     content: '';
@@ -38,18 +39,22 @@
   #details-title {
     position: relative;
     width: 100%;
-    font-size: 2em;
+    font-size: 1.2em;
+    line-height: 1em;
     font-family: $metropolis;
     font-variant: all-small-caps;
     font-weight: 900;
     margin-bottom: 14px;
   }
-  #details-body {
-    position: relative;
-    width: 100%;
-    font-size: 1em;
+}
+#details-body {
+  /deep/ p {
+    font-size: 0.5rem;
+    line-height: 1em;
     font-family: $metropolis;
   }
+  position: relative;
+  width: 100%;
 }
 
 
@@ -72,7 +77,7 @@
     letter-spacing: 5px;
     padding-bottom: 10px;
     font-family: $antonio;
-    font-size: 1em;
+    font-size: 0.74em;
     display: block;
     width: 100%;
     text-align: right;

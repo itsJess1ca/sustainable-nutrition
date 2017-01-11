@@ -1,8 +1,8 @@
 <section id="details-content">
   <h1 id="details-title">{{title}}</h1>
-  <p id="details-body">
-    {{content}}
-  </p>
+  <div id="details-body" [innerHTML]="content">
+
+  </div>
 </section>
 
 <a pageScroll href="#services-bucket">

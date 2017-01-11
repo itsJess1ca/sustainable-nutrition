@@ -1,7 +1,7 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { ContentfulService } from '../shared/contentful.service';
 import { Observable } from 'rxjs';
-
+import { Marked } from '../shared/marked.service';
 @Component({
   selector: 'sn-home',
   templateUrl: './home.component.html',
@@ -9,10 +9,13 @@ import { Observable } from 'rxjs';
   changeDetection: ChangeDetectionStrategy.Default
 })
 export class HomeComponent implements OnInit {
-  generalData: Observable<string> = this.content.getEntry('52yMQv1MOkQAKMueWEEcyM');
+  generalData: Observable<string> = this.content.getEntry('52yMQv1MOkQAKMueWEEcyM').map((data: any) => {
+    data.fields.companyDetails = this.marked.transform(data.fields.companyDetails);
+    return data;
+  });
   testimonial: Observable<any> = this.content.getRandomTestimonial();
-  coaches: Observable<any> = this.content.getEntries({'content_type': 'coaches'});
-  constructor(public content: ContentfulService) { }
+  coaches: Promise<any> = this.content.coaches;
+  constructor(public content: ContentfulService, private marked: Marked) { }
 
   ngOnInit() {
   }

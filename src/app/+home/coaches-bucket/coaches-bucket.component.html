@@ -4,8 +4,8 @@
 </section>
 <section id="coach-details">
   <div id="content">
-    <h1>OUR COACHES</h1>
-    <span bordered-header>{{coach?.firstName | uppercase}} {{coach?.lastName | uppercase}}</span>
-    <div class="coach-description">{{coach?.shortDescription}}</div>
+    <h1 id="title">OUR COACHES</h1>
+    <span id="coachName" bordered-header>{{coach?.firstName | uppercase}} {{coach?.lastName | uppercase}}</span>
+    <div id="coach-description" [innerHTML]="coach?.shortDescription"></div>
   </div>
 </section>
