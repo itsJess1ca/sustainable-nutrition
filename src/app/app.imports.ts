@@ -6,8 +6,10 @@ import { BrandLogoModule } from './brand-logo/brand-logo.module';
 import { IconButtonModule } from './shared/icon-button/icon-button.module';
 import { ViewportHeightModule } from './shared/viewport-height/viewport-height.module';
 import { BorderedHeaderModule } from './shared/bordered-header/bordered-header.module';
+import { SimpleNotificationsModule } from 'angular2-notifications';
 
 export const APP_IMPORTS = [
+  SimpleNotificationsModule,
   BorderedHeaderModule,
   ViewportHeightModule,
   IconButtonModule,

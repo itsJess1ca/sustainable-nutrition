@@ -1,30 +1,44 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
+import { StripeService } from '../stripe.service';
+import { NotificationsService } from 'angular2-notifications';
 
 @Component({
   selector: 'sn-stripe-form',
-  template: `
-    <button (click)="openCheckout()">Purchase</button>
-    {{message}}
-  `
+  templateUrl: 'stripe-form.component.html',
+  styleUrls: ['stripe-form.component.css']
 })
 export class StripeFormComponent implements OnInit {
-  @Input() purchase: { title: string; price: string; };
+  stripeFormVisible: boolean = false;
+  @Input() purchase: {title: string; price: string; };
   api: 'stripe' | 'paymentRequest' = (<any>window).PaymentRequest ? 'paymentRequest' : 'stripe';
   message: string = '';
-  constructor() { }
+
+  stripeButtonActive: boolean = true;
+  stripeButtonMessage: string = 'Submit Payment';
+
+  card: FormGroup;
+
+  constructor(
+    private stripe: StripeService,
+    private notifications: NotificationsService
+  ) { }
 
   ngOnInit() {
-
-    this.message = `Using ${this.api}`;
+    this.resetFormValues();
   }
 
   openCheckout() {
-    this.message = `Purchasing ${JSON.stringify(this.purchase)} with ${this.api}`;
     const methods = {
-      stripe: this.useStripeDirect,
-      paymentRequest: this.usePaymentRequest
+      stripe: this.openStripeForm.bind(this),
+      paymentRequest: this.usePaymentRequest.bind(this)
     };
     methods[this.api]();
+  }
+
+  openStripeForm() {
+    console.log('Showing stripe form');
+    this.stripeFormVisible = true;
   }
 
   usePaymentRequest() {
@@ -55,25 +69,54 @@ export class StripeFormComponent implements OnInit {
 
     // Show the native UI with `.show()`
     request.show()
-    // Process the payment
-    .then(result => {
-      console.log(result);
-    });
+      // Process the payment
+      .then(result => {
+        console.log(result);
+      });
 
   }
 
-  useStripeDirect() {const handler: any = (<any>window).StripeCheckout.configure({
-    key: 'pk_test_4spoIPk72A3xSHPSI4z7yLJV',
-    locale: 'auto',
-    token: (token: any) => {
-      this.message = `Stripe purchase finished - token: ${token}`;
-    }
-  });
-    handler.open({
-      name: 'Demo Site',
-      description: 'Test thing',
-      amount: 2000
+  getToken() {
+    event.preventDefault();
+    this.stripeButtonMessage = 'Processing...';
+    this.stripeButtonActive = false;
+    this.stripe.getToken(this.card.value)
+      .subscribe(
+        (token: StripeTokenResponse) => {
+          this.stripeButtonMessage = 'Done!';
+          this.stripeButtonActive = false;
+          this.notifications.success('Success!', token.id);
+          setTimeout(() => {
+            this.closePayWindow();
+          }, 2000);
+        },
+        (err: any) => {
+          this.stripeButtonMessage = 'Error!';
+          this.stripeButtonActive = true;
+          this.message = err.message;
+          this.notifications.error(err.type, err.message);
+        });
+  }
+
+  closePayWindow() {
+    this.stripeFormVisible = false;
+    this.resetStripeButton();
+    this.resetFormValues();
+  }
+
+  resetFormValues() {
+    this.card = new FormGroup({
+      number: new FormControl('4242 4242 4242 4242'),
+      exp_month: new FormControl('08'),
+      exp_year: new FormControl('18'),
+      cvc: new FormControl('123')
     });
+  }
+
+  resetStripeButton() {
+    this.stripeButtonActive = true;
+    this.stripeButtonMessage = 'Submit Payment';
   }
 
 }
+
