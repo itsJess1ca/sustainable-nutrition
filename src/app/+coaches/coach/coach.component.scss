@@ -40,7 +40,7 @@
   background-size: contain;
 }
 
-#coach-details {
+#coach-details /deep/ p {
   color: rgba(0,0,0,0.4);
   font-family: $metropolis;
   font-weight: 600;
