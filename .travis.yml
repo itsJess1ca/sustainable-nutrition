@@ -19,15 +19,15 @@ apt:
   - google-chrome-stable
   - google-chrome-beta
 before_install:
- - export CHROME_BIN=/usr/bin/google-chrome
- - export DISPLAY=:99.0
- - sh -e /etc/init.d/xvfb start
- - sudo apt-get update
- - sudo apt-get install -y libappindicator1 fonts-liberation
- - wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
- - sudo dpkg -i google-chrome*.deb
+- export CHROME_BIN=/usr/bin/google-chrome
+- export DISPLAY=:99.0
+- sh -e /etc/init.d/xvfb start
+- sudo apt-get update
+- sudo apt-get install -y libappindicator1 fonts-liberation
+- wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+- sudo dpkg -i google-chrome*.deb
 install:
- - npm install
+- npm install
 before_script:
 - npm run compile:aot
 - ls
@@ -44,15 +44,9 @@ deploy:
   detect_encoding: true
   on:
     branch: master
-
-## Setup notifications
 notifications:
   email:
     on_success: change
     on_failure: change
   slack:
-    secure: "CsIzLgGOz8ApiPy5xq9/MZuW1O1nYvRYgajtctp+/zVIr8Ty67zf/V+y3+c5um4E8o6avvcgOu+jseLC24rRE5WoZM6qeTCChChSDdLTiMXoe0G3eGV0MCbjegq6CQca1tlF+j2nzC8LedoFRN4VrS/AHLRXaoTTD
-y2b+HnP7EmQsSiOnnJXuQs3bnR3OfgMsuh/G0LIrCz/UG1PIzkznJqeR+4jnTqSnMRLK/4fQRnfZpAIOg3MHE3ut1jCIx2Rtv1ouZXluRJS3X5Vg2+jugzgSMWvTHPXEjDWhqF7DRCs7Ku6UJhJxfOYuvNzOjnnWe9E1HSBE6/39
-gEcrO9Exfb/GxyQo6GmMpjDpyj7SqTHcRjz3wNnfZjth9J1lyiJ7pQO0nwd3d9lNcZ8hI6W33813UJSQzP45hcA/w4QCuUDnI4XOm6noL8OMoG2bVWlHtdnrvRr9Lo17BeWzRQTdCZAH/6pqHn6v4YxT+ng4SnwinUspHpOrJP5J
-gAtTjm7Zrhax9JCK64O3rIKnErMX6FicmGwWduCfF/Xc9QHfur5BPj6jQPcey/jgbj1WQw0w58y2G4fk1GVg57OcXhT2YUkvxD9thvKrAElu3axqcSkz19+u0yeGX56OYbZMP/RMngpQkYezQPsXAteZq3FWF8cWEC9ctBc/rF1p
-xQ/hF8="
+    secure: G0HIlI7UwzgYboqLf4QGGS7/++HVNR2freBh/vDbyDFuk4TNgeta/nN9gvT60fh4/BIW3BiafzqNOTNWB6bIRW26e8TNpWW5KVqAoyjzTz7am3qvW1cODFzfUz4M2Pit8sph6xPQ7CDamIcUgeyVVWv2EQyhiNc+eHFn1WTfT+dgJHfTKCPS+CHLGdZj6Mbm76gbtQpRM3Ls+Y8f74ULy49KyJeZXdJ5+xhy+0eh7A0raK5XlWGCw7vr8pajBw/DWGFVBk2f9ta3x/RM2qSGKLaLjkrlBnxM9clcLtR0CBDzdSfYTpGpjDbsOdlaT4epdRP0Rpxq+lz+Wns6eOPZg/5FTtbpfJ5sZYvW9y0tZeqRrR9aCmBYodFjw/MlMXqRpk27a1GzTIpk+K0CCO7jeBkihcNgjZSWsXG6NJubReQe37RWmGVtlsmFgjZbgEfb+mJr7+br2wldHXbnWDSXI7E0/c50mVCpquckzsn0mtqPMUv/t6Yj1GuwoHmfVZLy8ZUqt3lJNujyr2J2ZiSmV3DDtbMRZDNTxxn744OMxnM1hq4oIqgjonbFVkjuuiI6VmJUUXuDa8QlI/f+W9RDfaE1ckFIvV3xyq/AJg9WRm5tGv9t30VtcODgx9fzIGkUEpvZShZjzX9lXCcKTHkfldkfJZYkAtzR1xouVhgCaUA=
