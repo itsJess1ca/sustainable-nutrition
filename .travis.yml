@@ -50,3 +50,9 @@ notifications:
   email:
     on_success: change
     on_failure: change
+  slack:
+    secure: "CsIzLgGOz8ApiPy5xq9/MZuW1O1nYvRYgajtctp+/zVIr8Ty67zf/V+y3+c5um4E8o6avvcgOu+jseLC24rRE5WoZM6qeTCChChSDdLTiMXoe0G3eGV0MCbjegq6CQca1tlF+j2nzC8LedoFRN4VrS/AHLRXaoTTD
+y2b+HnP7EmQsSiOnnJXuQs3bnR3OfgMsuh/G0LIrCz/UG1PIzkznJqeR+4jnTqSnMRLK/4fQRnfZpAIOg3MHE3ut1jCIx2Rtv1ouZXluRJS3X5Vg2+jugzgSMWvTHPXEjDWhqF7DRCs7Ku6UJhJxfOYuvNzOjnnWe9E1HSBE6/39
+gEcrO9Exfb/GxyQo6GmMpjDpyj7SqTHcRjz3wNnfZjth9J1lyiJ7pQO0nwd3d9lNcZ8hI6W33813UJSQzP45hcA/w4QCuUDnI4XOm6noL8OMoG2bVWlHtdnrvRr9Lo17BeWzRQTdCZAH/6pqHn6v4YxT+ng4SnwinUspHpOrJP5J
+gAtTjm7Zrhax9JCK64O3rIKnErMX6FicmGwWduCfF/Xc9QHfur5BPj6jQPcey/jgbj1WQw0w58y2G4fk1GVg57OcXhT2YUkvxD9thvKrAElu3axqcSkz19+u0yeGX56OYbZMP/RMngpQkYezQPsXAteZq3FWF8cWEC9ctBc/rF1p
+xQ/hF8="
