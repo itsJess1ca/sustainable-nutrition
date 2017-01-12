@@ -19,7 +19,7 @@ const {
   DllPlugin,
   DllReferencePlugin,
   ProgressPlugin,
-  NoEmitOnErrorsPlugin
+  NoErrorsPlugin
 } = require('webpack');
 
 const CompressionPlugin = require('compression-webpack-plugin');
@@ -174,7 +174,7 @@ const commonConfig = function webpackConfig(): WebpackConfig {
 
   if (PROD) {
     config.plugins.push(
-      new NoEmitOnErrorsPlugin(),
+      new NoErrorsPlugin(),
       new UglifyJsPlugin({
         beautify: false,
         comments: false
