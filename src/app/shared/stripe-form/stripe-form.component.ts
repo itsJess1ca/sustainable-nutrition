@@ -49,12 +49,18 @@ export class StripeFormComponent implements OnInit {
     }];
     const details: any = {
       displayItems: [{
-        label: 'Test Purchase',
-        amount: {currency: 'USD', value: '20.00'}
+        label: this.purchase.title,
+        amount: {
+          currency: 'GBP',
+          value: this.purchase.price
+        }
       }],
       total: {
         label: 'Total due',
-        amount: {currency: 'USD', value: '20.00'}
+        amount: {
+          currency: 'GBP',
+          value: '20.00'
+        }
       }
     };
     const options = {
