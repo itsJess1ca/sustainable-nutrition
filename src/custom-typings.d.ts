@@ -30,6 +30,8 @@ declare var PORT: number;
 declare var STORE_DEV_TOOLS: string;
 declare var System: SystemJS;
 declare var UNIVERSAL: boolean;
+declare var StripeCheckout: any;
+declare var PaymentRequest: any;
 declare module 'contentful' {
    export function createClient(options: any): ContentfulClient;
 }

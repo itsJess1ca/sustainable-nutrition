@@ -89,14 +89,17 @@
   }
 }
 
-@include respond-to(large) {
-  .cta {
-    position: absolute;
-    right: $gutterDesktop;
-    top: 120px;
-    .getInTouch {
-      font-size: 2em;
-      padding: 25px 22px;
-    }
+.cta {
+  position: absolute;
+  right: $gutterDesktop;
+  top: 120px;
+  display: none;
+  .getInTouch {
+    font-size: 2em;
+    padding: 25px 22px;
+  }
+
+  @include respond-to(large) {
+    display: block;
   }
 }
