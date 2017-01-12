@@ -21,6 +21,7 @@ interface WebpackConfig {
     quiet?: boolean;
     noInfo?: boolean;
     watchOptions?: any;
+    https?: boolean;
   };
   node?: {
     process?: boolean;

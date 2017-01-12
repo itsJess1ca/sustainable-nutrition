@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'sn-stripe-form',
@@ -8,19 +8,23 @@ import { Component, OnInit } from '@angular/core';
   `
 })
 export class StripeFormComponent implements OnInit {
-  stripeKey = 'pk_test_4spoIPk72A3xSHPSI4z7yLJV';
+  @Input() purchase: { title: string; price: string; };
+  api: 'stripe' | 'paymentRequest' = (<any>window).PaymentRequest ? 'paymentRequest' : 'stripe';
   message: string = '';
   constructor() { }
 
-  ngOnInit() { }
+  ngOnInit() {
+
+    this.message = `Using ${this.api}`;
+  }
 
   openCheckout() {
-    if ((<any>window).PaymentRequest) {
-      this.message = 'using paymentrequest';
-      return this.usePaymentRequest();
-    }
-    this.message = 'using stripe';
-    return this.useStripeDirect();
+    this.message = `Purchasing ${JSON.stringify(this.purchase)} with ${this.api}`;
+    const methods = {
+      stripe: this.useStripeDirect,
+      paymentRequest: this.usePaymentRequest
+    };
+    methods[this.api]();
   }
 
   usePaymentRequest() {
@@ -59,10 +63,10 @@ export class StripeFormComponent implements OnInit {
   }
 
   useStripeDirect() {const handler: any = (<any>window).StripeCheckout.configure({
-    key: this.stripeKey,
+    key: 'pk_test_4spoIPk72A3xSHPSI4z7yLJV',
     locale: 'auto',
-    token: function (token: any) {
-
+    token: (token: any) => {
+      this.message = `Stripe purchase finished - token: ${token}`;
     }
   });
     handler.open({

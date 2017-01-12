@@ -273,7 +273,8 @@ const clientConfig = function webpackConfig(): WebpackConfig {
       disableDotRule: true,
     },
     host: '0.0.0.0',
-    watchOptions: DEV_SERVER_WATCH_OPTIONS
+    watchOptions: DEV_SERVER_WATCH_OPTIONS,
+    https: true
   };
 
   if (USE_DEV_SERVER_PROXY) {
