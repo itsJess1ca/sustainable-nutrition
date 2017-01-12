@@ -49,4 +49,10 @@ notifications:
     on_success: change
     on_failure: change
   slack:
-    secure: G0HIlI7UwzgYboqLf4QGGS7/++HVNR2freBh/vDbyDFuk4TNgeta/nN9gvT60fh4/BIW3BiafzqNOTNWB6bIRW26e8TNpWW5KVqAoyjzTz7am3qvW1cODFzfUz4M2Pit8sph6xPQ7CDamIcUgeyVVWv2EQyhiNc+eHFn1WTfT+dgJHfTKCPS+CHLGdZj6Mbm76gbtQpRM3Ls+Y8f74ULy49KyJeZXdJ5+xhy+0eh7A0raK5XlWGCw7vr8pajBw/DWGFVBk2f9ta3x/RM2qSGKLaLjkrlBnxM9clcLtR0CBDzdSfYTpGpjDbsOdlaT4epdRP0Rpxq+lz+Wns6eOPZg/5FTtbpfJ5sZYvW9y0tZeqRrR9aCmBYodFjw/MlMXqRpk27a1GzTIpk+K0CCO7jeBkihcNgjZSWsXG6NJubReQe37RWmGVtlsmFgjZbgEfb+mJr7+br2wldHXbnWDSXI7E0/c50mVCpquckzsn0mtqPMUv/t6Yj1GuwoHmfVZLy8ZUqt3lJNujyr2J2ZiSmV3DDtbMRZDNTxxn744OMxnM1hq4oIqgjonbFVkjuuiI6VmJUUXuDa8QlI/f+W9RDfaE1ckFIvV3xyq/AJg9WRm5tGv9t30VtcODgx9fzIGkUEpvZShZjzX9lXCcKTHkfldkfJZYkAtzR1xouVhgCaUA=
+    rooms:
+      #send to sustainable nutrition slack room
+      secure: "KZiT3WANLvPga/S6lgn9/eCxrwrHCqmeUCrxW2TYkelcrZ+kOHwueg5aSCjvBsmDeHwkIduz8DlB0wCXRWjaYmu7LmzPLYWhTdSyN6xKKXfm6q+LWVGW/97anXpAndzGtPJzdOF7Q19XVqCKRpyVErIwYjIBWoV4x
+      bZM64bOZMxkRD/pRj6aM8ViSY+bKlm+imfyfxYqGV5kSgMHLom+7FZ579/cY/pe9jcGNn2tzrYx9pVC5pUFbz6y94fJWgcb7vu4FhWQSeu009aHDv20gmhGX3tjCUQPWAHWl2PbuVBv7kc1dwvpsNGXrQksw56Jt3gwYlU50MD7A
+      G/aB9NZxT0vkkx9YQurXfzhaG+3vNXB/PrG5fCthtVqAwe9vskgl2rPR7Telp7vCxMFYsSS+sNJA/Sl6ENqkZdeG1VFGQc05jdZrK1FYVQGZznrPSqjyWOL0A7g7BNrVGSX35w2n8mZLqUXUT0jpL6gbhRBsiAaPOjeaIeK+/lt6
+      Yro8qT/PBo1G1n0jw7RzkBTrGhPncI3yhcQKWBdOTgp9V3/ahjtxCOnh8E/sqQfkb/ddslC5e5zwuNkRiK3Aj5M6P3ZpqxZoyMWih9rDj6D3XJ7XBWeJdsD/TkbUskHdTVjJ60ozJRne8rd31N3+dPVqNcYA1Occcp5YAuzc/2Wg
+      HcIprw="
