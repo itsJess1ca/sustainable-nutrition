@@ -1,0 +1,22 @@
+<div id="left-side" [ngClass]="{odd: index % 2}">
+  <template [ngTemplateOutlet]="index % 2 ? right : left"></template>
+</div>
+<div id="right-side">
+  <template [ngTemplateOutlet]="index % 2 ? left : right"></template>
+</div>
+
+
+<template #left>
+  <div id="sn-service--image">
+    <img src="../../../assets/img/{{service.image}}" />
+  </div>
+</template>
+
+<template #right>
+  <div id="sn-service--details">
+    <span id="sn-service--details-title" bordered-header>{{service.title | uppercase}}</span>
+    <p id="sn-service--details-body">
+      {{service.description}}
+    </p>
+  </div>
+</template>

@@ -1,3 +1,15 @@
-<p>
-  services works!
-</p>
+<sn-page-title [title]="'Services'"></sn-page-title>
+<section id="page-content">
+  <div id="page-description-header">
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque ultricies nisi non risus convallis convallis. Aliquam erat volutpat. Curabitur efficitur sed enim a molestie.
+  </div>
+  <div id="page-description">
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque ultricies nisi non risus convallis convallis. Aliquam erat volutpat. Curabitur efficitur sed enim a molestie.
+  </div>
+
+  <sn-service
+    *ngFor="let service of services; let i = index;"
+    [service]="service"
+    [index]="i"
+  ></sn-service>
+</section>
