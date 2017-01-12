@@ -82,10 +82,7 @@
 #coach-phone__number {
   color: $sn-orange;
   font-family: $antonio;
-  font-size: 1.25em;
-  @include respond-to(medium) {
-    font-size: 2em;
-  }
+  font-size: 1.5em;
 }
 
 #coach-email__details {
@@ -106,8 +103,5 @@
 #coach-email__email {
   color: $sn-orange;
   font-family: $antonio;
-  font-size: 1.25em;
-  @include respond-to(medium) {
-    font-size: 2em;
-  }
+  font-size: 1.5em;
 }

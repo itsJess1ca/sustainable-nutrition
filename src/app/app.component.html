@@ -22,7 +22,9 @@
     </nav>
 
     <div class="cta hide-on-small" *ngIf="currentPage !== 'contact'">
-      <span bordered-header class="getInTouch" [ngClass]="{orange: activeTheme === 'other'}">GET IN TOUCH NOW</span>
+      <a [routerLink]="['/contact']">
+        <span bordered-header class="getInTouch" [ngClass]="{orange: activeTheme === 'other'}">GET IN TOUCH NOW</span>
+      </a>
     </div>
   </header>
 
