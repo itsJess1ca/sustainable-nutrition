@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import * as Contentful from 'contentful';
 import { Observable } from 'rxjs';
-import * as marked from 'marked';
 import { Marked } from './marked.service';
 
 @Injectable()

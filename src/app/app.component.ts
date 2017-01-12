@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy, OnInit, ViewContainerRef } from '@angular/core';
+import { Component, ChangeDetectionStrategy, OnInit } from '@angular/core';
 import { PageScrollConfig } from 'ng2-page-scroll';
 import { Router, NavigationEnd } from '@angular/router';
 
