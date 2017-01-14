@@ -1,7 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { StripeService } from '../stripe.service';
+import { StripeService, StripePurchase, StripeCard } from '../stripe.service';
 import { NotificationsService } from 'angular2-notifications';
+import { Observer, Observable } from 'rxjs';
 
 @Component({
   selector: 'sn-stripe-form',
@@ -10,7 +11,7 @@ import { NotificationsService } from 'angular2-notifications';
 })
 export class StripeFormComponent implements OnInit {
   stripeFormVisible: boolean = false;
-  @Input() purchase: {title: string; price: string; };
+  @Input() purchase: StripePurchase;
   api: 'stripe' | 'paymentRequest' = (<any>window).PaymentRequest ? 'paymentRequest' : 'stripe';
   message: string = '';
 
@@ -19,10 +20,8 @@ export class StripeFormComponent implements OnInit {
 
   card: FormGroup;
 
-  constructor(
-    private stripe: StripeService,
-    private notifications: NotificationsService
-  ) { }
+  constructor(private stripe: StripeService,
+              private notifications: NotificationsService) { }
 
   ngOnInit() {
     this.resetFormValues();
@@ -37,7 +36,6 @@ export class StripeFormComponent implements OnInit {
   }
 
   openStripeForm() {
-    console.log('Showing stripe form');
     this.stripeFormVisible = true;
   }
 
@@ -49,17 +47,17 @@ export class StripeFormComponent implements OnInit {
     }];
     const details: any = {
       displayItems: [{
-        label: this.purchase.title,
+        label: this.purchase.productName,
         amount: {
           currency: 'GBP',
-          value: this.purchase.price
+          value: this.purchase.productPrice
         }
       }],
       total: {
         label: 'Total due',
         amount: {
           currency: 'GBP',
-          value: '20.00'
+          value: this.purchase.productPrice
         }
       }
     };
@@ -76,32 +74,83 @@ export class StripeFormComponent implements OnInit {
     // Show the native UI with `.show()`
     request.show()
       // Process the payment
-      .then(result => {
-        console.log(result);
+      .then((paymentResponse: any) => {
+      console.log(paymentResponse);
+      this.purchase.receipt_email = paymentResponse.payerEmail;
+        const card: StripeCard = {
+          exp_month: paymentResponse.details.expiryMonth,
+          exp_year: paymentResponse.details.expiryYear,
+          cvc: paymentResponse.details.cardSecurityCode,
+          number: paymentResponse.details.cardNumber
+        };
+        this.handlePayment(card).subscribe(response => {
+          if (response.statusCode === 200) {
+            paymentResponse.complete('success').then(() => {this.message = 'Thank you for your purchase.'; });
+          } else {
+            paymentResponse.complete('fail');
+          }
+        });
+      })
+      .catch(err => {
+        console.error('Uh oh, something bad happened', err.message);
       });
 
   }
 
-  getToken() {
-    event.preventDefault();
-    this.stripeButtonMessage = 'Processing...';
-    this.stripeButtonActive = false;
-    this.stripe.getToken(this.card.value)
-      .subscribe(
-        (token: StripeTokenResponse) => {
-          this.stripeButtonMessage = 'Done!';
-          this.stripeButtonActive = false;
-          this.notifications.success('Success!', token.id);
-          setTimeout(() => {
-            this.closePayWindow();
-          }, 2000);
-        },
-        (err: any) => {
-          this.stripeButtonMessage = 'Error!';
-          this.stripeButtonActive = true;
-          this.message = err.message;
-          this.notifications.error(err.type, err.message);
-        });
+  submitStripePayment(card: any = this.card.value) {
+    this.purchase.receipt_email = card.receipt_email;
+    delete card.receipt_email;
+    this.handlePayment(card).subscribe(response => {
+      if (response.statusCode === 200) {
+        this.stripeButtonMessage = 'Thank you.';
+        this.closePayWindow();
+      }
+    });
+  }
+
+  handlePayment(card: StripeCard) {
+    console.log(`Handle payment for ${this.purchase.productName}`, card);
+
+    return this.stripe
+      .getToken(card)
+      .switchMap((token) => {
+        console.log('Got Charge token', token);
+        this.stripeButtonMessage = 'Card Confirmed.';
+        setTimeout(() => {
+          this.stripeButtonMessage = 'Processing...';
+        }, 500);
+        this.stripeButtonActive = false;
+        this.purchase.stripeToken = token.id;
+        return this.stripe.requestCharge(this.purchase);
+      })
+      .map(response => response.json())
+      .map(response => Object.assign({}, response, {body: JSON.parse(response.body)}))
+      .do((charge: StripePurchase) => console.log(charge));
+  }
+
+  getToken(card: StripeCard): Promise<StripePurchase> {
+    return new Promise((resolve, reject) => {
+      this.stripeButtonMessage = 'Processing...';
+      this.stripeButtonActive = false;
+      this.stripe.getToken(card || this.card.value)
+        .subscribe(
+          (token: StripeTokenResponse) => {
+            this.stripeButtonMessage = 'Done!';
+            this.stripeButtonActive = false;
+            this.purchase.stripeToken = token.id;
+            this.stripe.requestCharge(this.purchase)
+              .subscribe(data => {
+                resolve(data);
+              });
+          },
+          (err: any) => {
+            this.stripeButtonMessage = 'Error!';
+            this.stripeButtonActive = true;
+            this.message = err.message;
+            reject(err);
+            this.notifications.error(err.type, err.message, {timeOut: 5000});
+          });
+    });
   }
 
   closePayWindow() {
@@ -115,7 +164,8 @@ export class StripeFormComponent implements OnInit {
       number: new FormControl('4242 4242 4242 4242'),
       exp_month: new FormControl('08'),
       exp_year: new FormControl('18'),
-      cvc: new FormControl('123')
+      cvc: new FormControl('123'),
+      receipt_email: new FormControl('fake-email@nowhere.land')
     });
   }
 

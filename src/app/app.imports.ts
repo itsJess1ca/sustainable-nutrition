@@ -7,8 +7,10 @@ import { IconButtonModule } from './shared/icon-button/icon-button.module';
 import { ViewportHeightModule } from './shared/viewport-height/viewport-height.module';
 import { BorderedHeaderModule } from './shared/bordered-header/bordered-header.module';
 import { SimpleNotificationsModule } from 'angular2-notifications';
+import { HttpModule } from '@angular/http';
 
 export const APP_IMPORTS = [
+  HttpModule,
   SimpleNotificationsModule,
   BorderedHeaderModule,
   ViewportHeightModule,
