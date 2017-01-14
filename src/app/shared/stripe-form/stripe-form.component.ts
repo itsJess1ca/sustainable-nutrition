@@ -2,7 +2,6 @@ import { Component, OnInit, Input } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { StripeService, StripePurchase, StripeCard } from '../stripe.service';
 import { NotificationsService } from 'angular2-notifications';
-import { Observer, Observable } from 'rxjs';
 
 @Component({
   selector: 'sn-stripe-form',
