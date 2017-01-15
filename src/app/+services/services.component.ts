@@ -21,7 +21,7 @@ export class ServicesComponent implements OnInit {
       },
       {
         'image': 'handplatething.png',
-        'title': 'weekly educational updates',
+        'title': 'weekly updates',
         'description' : 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque ultricies nisi non risus convallis convallis. Aliquam erat volutpat. Curabitur efficitur sed enim a molestie.'
       },
       {
