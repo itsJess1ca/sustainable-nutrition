@@ -15,6 +15,7 @@
     ]
   },
   "exclude": [
+    "angular-cli-tools",
     "node_modules",
     "src/compiled",
     "src/**/*.e2e.ts",
