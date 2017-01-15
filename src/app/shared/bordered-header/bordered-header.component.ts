@@ -3,7 +3,7 @@ import { Component, Renderer, ElementRef, HostListener } from '@angular/core';
 @Component({
   selector: '[bordered-header]',
   styleUrls: ['bordered-header.component.css'],
-  template: `<div class="ripple"></div><ng-content></ng-content>`
+  template: `<div class="ripple-container"><div class="ripple"></div></div><ng-content></ng-content>`
 })
 export class BorderedHeaderComponent {
   isAlive: boolean = false;

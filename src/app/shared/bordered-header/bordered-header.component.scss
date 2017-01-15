@@ -9,8 +9,16 @@
   color: white;
   display: inline-block;
   letter-spacing: 0.15em;
-  overflow: hidden;
   position: relative;
+}
+
+.ripple-container {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  left: 0;
+  top: 0;
+  overflow: hidden;
 }
 
 .ripple {
