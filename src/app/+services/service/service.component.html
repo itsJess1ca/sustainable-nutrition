@@ -13,8 +13,7 @@
   </div>
   <div id="sn-service--details">
     <span id="sn-service--details-title" bordered-header>{{service.title | uppercase}}</span>
-    <p id="sn-service--details-body">
-      {{service.description}}
+    <p id="sn-service--details-body" [innerHTML]="service.summary">
     </p>
   </div>
 </template>
