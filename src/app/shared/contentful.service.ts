@@ -21,9 +21,9 @@ export class ContentfulService {
       if (!this._services) {
         this.getEntries({'content_type': 'service'})
           .map((services) => {
-            return services.map((service, index) => {
+            return services.map((service) => {
               return Object.assign({} , service, {
-                id: `${slugify(service.title)}${index}`,
+                id: `${slugify(service.title)}`,
                 description: this.marked.transform(service.description),
                 summary: this.marked.transform(service.summary),
                 image: {
