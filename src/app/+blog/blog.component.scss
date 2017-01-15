@@ -23,8 +23,10 @@
     display:flex;
     position:relative;
     flex-flow: column nowrap;
-    padding:30px 0;
+    padding:30px 25px 55px 25px;
   }
+
+
 
   .blog--date--social {
     width: 100%;
@@ -51,14 +53,86 @@
     color: $sn-orange;
   }
 
+
+
   .blog--desc {
+    margin-top:10px;
     font-family: $metropolis;
-    font-weight: 600;
+    font-weight: 300;
     line-height: 1.15em;
   font-size: 1.15em;
   color: rgba(0,0,0,0.5);
 }
 
 .blog--social {
+  display:none;
+  color: white;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: space-around;
   margin-left:15px;
+  min-width: 150px;
+
+  .blog--social-share {
+    font-family: $antonio;
+    font-weight: 900;
+    line-height: 1em;
+    font-variant: all-small-caps;
+    font-size: 1.35em;
+  }
+
+}
+
+.blog--arrow {
+  display:none;
+  position:absolute;
+  bottom: 10px;
+  right: 15px;
+  color: white;
+}
+
+.blog-container:focus, .blog-container:hover {
+  @include linear-gradient(175deg, $sn-yellow 0%, $sn-orange 100%);
+  .blog--date, .blog--title, .blog--desc {
+    color: white;
+
+  }
+  .blog--social {
+    display: flex;
+  }
+
+  .blog--arrow {
+    display:block;
+  }
+}
+
+.more-entries--hr {
+  width: 100%;
+  max-width: 1000px;
+  border-color: rgba(0, 0, 0, 0.2);
+}
+
+.more-entries {
+  display:flex;
+  width: 100%;
+  max-width: 1000px;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: space-between;
+  padding:25px 0;
+
+
+  .more-entries--text {
+    font-family: $metropolis;
+    font-weight: 900;
+    line-height: 1em;
+    font-variant: all-small-caps;
+    font-size: 1.75em;
+    color: $sn-orange;
+  }
+
+  .more-entries--arrow {
+    color: $sn-orange;
+    line-height: 1em;
+  }
 }
