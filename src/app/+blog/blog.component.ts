@@ -7,9 +7,6 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BlogComponent implements OnInit {
 
-  constructor() { }
-
-
   blogs: any[] =
     [
       {
@@ -19,6 +16,9 @@ export class BlogComponent implements OnInit {
         'two': 1
       }
     ];
+
+  constructor() { }
+
 
   ngOnInit() {
   }
