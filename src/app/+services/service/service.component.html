@@ -8,15 +8,14 @@
 
 <template #left>
   <div id="sn-service--image">
-    <img src="../../../assets/img/{{service.image}}" />
+    <img src="{{service.image.url}}" alt="Image of {{service.image.name}}" />
   </div>
 </template>
 
 <template #right>
   <div id="sn-service--details">
     <span id="sn-service--details-title" bordered-header>{{service.title | uppercase}}</span>
-    <p id="sn-service--details-body">
-      {{service.description}}
+    <p id="sn-service--details-body" [innerHTML]="service.summary">
     </p>
   </div>
 </template>

@@ -9,7 +9,7 @@
   </div>
 
   <sn-service
-    *ngFor="let service of services; let i = index;"
+    *ngFor="let service of (services | async); let i = index;"
     [service]="service"
     [index]="i"
   ></sn-service>

@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, ChangeDetectionStrategy } from '@angular/core';
+import { Service } from '../../shared/contentful.service';
 
 @Component({
   selector: 'sn-service',
@@ -7,7 +8,7 @@ import { Component, OnInit, Input, ChangeDetectionStrategy } from '@angular/core
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ServiceComponent implements OnInit {
-  @Input() service: '';
+  @Input() service: Service;
 
   @Input() index: number;
 

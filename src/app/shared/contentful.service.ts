@@ -10,9 +10,37 @@ export class ContentfulService {
     space: '5o14xo9vvej5'
   });
 
-  _coaches: Coach[] = null;
+  private _coaches: Coach[] = null;
+  private _services: Service[] = null;
 
   constructor(private marked: Marked) {}
+
+  get services(): Promise<Service[]> {
+    return new Promise((resolve, reject) => {
+      if (!this._services) {
+        this.getEntries({'content_type': 'service'})
+          .map((services) => {
+            return services.map((service, index) => {
+              return Object.assign({} , service, {
+                id: index,
+                description: this.marked.transform(service.description),
+                summary: this.marked.transform(service.summary),
+                image: {
+                  name: service.image.fields.title,
+                  url: service.image.fields.file.url
+                }
+              });
+            });
+          })
+          .subscribe((services: any[]) => {
+          this._services = services;
+            resolve(services);
+          });
+      } else {
+        resolve(this._services);
+      }
+    });
+  }
 
   get coaches(): Promise<Coach[]> {
     return new Promise((resolve, reject) => {
@@ -67,6 +95,25 @@ export class ContentfulService {
     return this.getTestimonials()
       .map(testimonials => testimonials[Math.floor(Math.random() * testimonials.length)]);
   }
+
+  getService(serviceID: number) {
+    this.services.then((services: Service[]) => {
+      return services.filter((service) => service.id === serviceID)[0];
+    });
+  }
+}
+
+export interface Service {
+  cost: string;
+  description: string;
+  fieldType: 'service';
+  id: number;
+  image: {
+    name: string;
+    url: string;
+  };
+  summary: string;
+  title: string;
 }
 
 export interface Coach {
