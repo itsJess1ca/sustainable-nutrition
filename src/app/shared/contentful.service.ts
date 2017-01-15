@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import * as Contentful from 'contentful';
 import { Observable } from 'rxjs';
 import { Marked } from './marked.service';
+import { slugify } from '../utils/slugify';
 
 @Injectable()
 export class ContentfulService {
@@ -22,7 +23,7 @@ export class ContentfulService {
           .map((services) => {
             return services.map((service, index) => {
               return Object.assign({} , service, {
-                id: index,
+                id: `${slugify(service.title)}${index}`,
                 description: this.marked.transform(service.description),
                 summary: this.marked.transform(service.summary),
                 image: {
@@ -97,8 +98,15 @@ export class ContentfulService {
   }
 
   getService(serviceID: number) {
-    this.services.then((services: Service[]) => {
-      return services.filter((service) => service.id === serviceID)[0];
+    return new Promise((resolve, reject) => {
+      this.services.then((services: Service[]) => {
+        const service = services.filter((svc) => svc.id === serviceID)[0];
+        if (service) {
+          resolve(service);
+        } else {
+          reject('No service found');
+        }
+      });
     });
   }
 }
