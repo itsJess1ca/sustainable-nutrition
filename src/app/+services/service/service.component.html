@@ -1,33 +1,33 @@
-<div id="left-side">
+<div class="services-container">
   <template [ngTemplateOutlet]="index % 2 ? right : left"></template>
 </div>
 
 
 
 <template #left>
-  <div id="sn-service--image" class="push-down">
+  <div class="sn-service--image push-down">
     <img class="sn-service--image-img" src="{{service.image.url}}" alt="Image of {{service.image.name}}" />
   </div>
-  <div id="sn-service--step">
+  <div class="sn-service--step">
     <h3 class="sn-service--step-text">{{index + 1}}</h3>
   </div>
-  <div id="sn-service--details">
-    <span id="sn-service--details-title" bordered-header>{{service.title | uppercase}}</span>
-    <p id="sn-service--details-body" [innerHTML]="service.summary">
-    </p>
+  <div class="sn-service--details">
+    <span class="sn-service--details-title" bordered-header>{{service.title | uppercase}}</span>
+    <div class="sn-service--details-body" [innerHTML]="service.summary">
+    </div>
   </div>
 </template>
 
 <template #right>
-  <div id="sn-service--image" class="push-up slide-right">
+  <div class="sn-service--image push-up slide-right">
     <img class="sn-service--image-img" src="{{service.image.url}}" alt="Image of {{service.image.name}}" />
   </div>
-  <div id="sn-service--details">
-    <span id="sn-service--details-title" bordered-header>{{service.title | uppercase}}</span>
-    <p id="sn-service--details-body" [innerHTML]="service.summary">
-    </p>
+  <div class="sn-service--details">
+    <span class="sn-service--details-title" bordered-header>{{service.title | uppercase}}</span>
+    <div class="sn-service--details-body" [innerHTML]="service.summary">
+    </div>
   </div>
-  <div id="sn-service--step-alt">
+  <div class="sn-service--step-alt">
     <h3 class="sn-service--step-text">{{index + 1}}</h3>
   </div>
 </template>
