@@ -9,6 +9,17 @@ export class BlogComponent implements OnInit {
 
   constructor() { }
 
+
+  blogs: any[] =
+    [
+      {
+        'one': 1
+      },
+      {
+        'two': 1
+      }
+    ];
+
   ngOnInit() {
   }
 

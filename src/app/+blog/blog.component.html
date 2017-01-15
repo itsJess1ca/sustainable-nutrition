@@ -1,4 +1,17 @@
 <sn-page-title [title]="'Blog'"></sn-page-title>
-<p>
-  blog works!
-</p>
+<section class="page-content">
+  <div class="blog-container" *ngFor="let blog of blogs">
+    <div class="blog--date--social">
+      <span class="blog--date">01/14/2017</span>
+      <div class="blog--social">
+        social stuff here
+      </div>
+    </div>
+
+    <span class="blog--title">some blog title here</span>
+    <span class="blog--desc">
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque ultricies nisi non risus convallis convallis. Aliquam erat volutpat. Curabitur efficitur sed enim a molestie. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque ultricies nisi non risus convallis convallis. Aliquam erat volutpat. Curabitur efficitur sed enim a molestie. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque ultricies nisi non risus convallis convallis. Aliquam erat volutpat. Curabitur efficitur sed enim a molestie.
+    </span>
+
+  </div>
+</section>
