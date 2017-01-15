@@ -1,6 +1,7 @@
 /* tslint:disable: max-line-length */
 import { Routes } from '@angular/router';
 import { NotFound404Component } from './not-found404.component';
+import { ServiceResolver } from './+service/service.resolver';
 
 export const routes: Routes = [
   // Home
@@ -8,6 +9,8 @@ export const routes: Routes = [
   { path: 'home', pathMatch: 'full', redirectTo: '/' },
 
   { path: 'services', loadChildren: './+services/services.module#ServicesModule' },
+
+  { path: 'services/:service', loadChildren: './+service/service.module#ServiceModule', resolve: {service: ServiceResolver} },
 
   { path: 'coaches', loadChildren: './+coaches/coaches.module#CoachesModule' },
 
