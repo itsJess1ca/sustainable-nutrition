@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MediumService } from '../shared/medium.service';
 
 @Component({
   selector: 'sn-blog',
@@ -17,10 +18,16 @@ export class BlogComponent implements OnInit {
       }
     ];
 
-  constructor() { }
+  constructor(private medium: MediumService) { }
 
 
   ngOnInit() {
+    this.medium.getPosts({
+      user: '@medium',
+      limit: '5'
+    }).subscribe((data) => {
+      console.log(data);
+    });
   }
 
 }
