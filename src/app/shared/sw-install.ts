@@ -1,6 +1,3 @@
-import { NotificationService } from './notification.service';
-const _Notification = new NotificationService();
-
 
 export function installServiceWorker() {
   if (!('serviceWorker' in navigator)) {
@@ -24,8 +21,10 @@ export function installServiceWorker() {
 
         if (cvParts[0] === nvParts[0]) {
           console.log(`Service Worker moved from ${currentVersion} to ${newVersion}`);
+          new (<any>window).Notification('Site updated. Refresh to get the latest');
         } else {
-          _Notification.open('Site updated. Refresh to get the latest!');
+          new (<any>window).Notification('Site updated. Refresh to get the latest');
+          // _Notification.open('Site updated. Refresh to get the latest!');
         }
       }
     }
