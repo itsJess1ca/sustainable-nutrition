@@ -17,8 +17,11 @@ function installServiceWorker() {
         console.log('newVersion', newVersion);
         const cvParts = currentVersion.split('.');
         const nvParts = newVersion.split('.');
-          console.log(`Service Worker updated from v${currentVersion} to v${newVersion}`);
+        console.log(`Service Worker updated from v${currentVersion} to v${newVersion}`);
+        // if (cvParts[0] !== nvParts[0]) {
+        //  console.log(`Update is major - notify user to update`);
           notifyToRefresh();
+        // }
       }
     }
   };

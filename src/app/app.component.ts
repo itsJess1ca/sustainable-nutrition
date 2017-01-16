@@ -22,10 +22,10 @@ export class AppComponent implements OnInit {
       name: 'coaches',
       destination: ['coaches']
     },
-    {
+    /*{
       name: 'blog',
       destination: ['blog']
-    },
+    },*/
     {
       name: 'testimonials',
       destination: ['testimonials']

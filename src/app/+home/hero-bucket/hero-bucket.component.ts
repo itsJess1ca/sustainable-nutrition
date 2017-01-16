@@ -9,7 +9,7 @@ import { Component, OnInit, Input, AfterViewInit, ChangeDetectionStrategy } from
 export class HeroBucketComponent implements OnInit, AfterViewInit {
   @Input() set title(generalData) {
     if (generalData) {
-      this._title = generalData.fields.title;
+      this._title = generalData.fields.heroTitle;
     }
   }
   _title: string = '';

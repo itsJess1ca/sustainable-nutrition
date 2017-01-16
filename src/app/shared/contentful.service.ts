@@ -7,8 +7,8 @@ import { slugify } from '../utils/slugify';
 @Injectable()
 export class ContentfulService {
   contentful = Contentful.createClient({
-    accessToken: 'a51358aa8ae36aa962c9bfceafd6ad1eabdd6d962ec05ac6df0664dc74c689b4',
-    space: '5o14xo9vvej5'
+    accessToken: '44ffc10f73c328d493af90e8c12e6ea7eeab1a5d73601ede4ac2cea6f32cf5b8',
+    space: 'sffpqijb8th2'
   });
 
   private _coaches: Coach[] = null;
@@ -19,7 +19,7 @@ export class ContentfulService {
   get services(): Promise<Service[]> {
     return new Promise((resolve, reject) => {
       if (!this._services) {
-        this.getEntries({'content_type': 'service'})
+        this.getEntries({'content_type': 'services'})
           .map((services) => {
             return services.map((service) => {
               return Object.assign({} , service, {

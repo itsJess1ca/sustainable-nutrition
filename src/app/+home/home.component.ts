@@ -9,7 +9,7 @@ import { Marked } from '../shared/marked.service';
   changeDetection: ChangeDetectionStrategy.Default
 })
 export class HomeComponent implements OnInit {
-  generalData: Observable<string> = this.content.getEntry('52yMQv1MOkQAKMueWEEcyM').map((data: any) => {
+  generalData: Observable<string> = this.content.getEntry('1K8DaO4gbOUoMuI4ISaI8W').map((data: any) => {
     data.fields.companyDetails = this.marked.transform(data.fields.companyDetails);
     return data;
   });
