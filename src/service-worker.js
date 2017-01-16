@@ -1,7 +1,7 @@
 'use strict';
 
 const NAME = 'SUSNUTRITION';
-const VERSION = '1.0.18';
+const VERSION = '1.0.19';
 
 self.oninstall = _ => {
   self.skipWaiting();
