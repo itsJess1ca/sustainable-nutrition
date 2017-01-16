@@ -1,11 +1,10 @@
-
-export function installServiceWorker() {
+function installServiceWorker() {
   if (!('serviceWorker' in navigator)) {
     console.log('Service Worker not supported - aborting');
     return;
   }
 
-  let currentVersion: string | null;
+  let currentVersion;
 
   navigator.serviceWorker.onmessage = function (evt) {
     if (typeof evt.data.version !== 'undefined') {
@@ -18,14 +17,8 @@ export function installServiceWorker() {
         console.log('newVersion', newVersion);
         const cvParts = currentVersion.split('.');
         const nvParts = newVersion.split('.');
-
-        if (cvParts[0] === nvParts[0]) {
-          console.log(`Service Worker moved from ${currentVersion} to ${newVersion}`);
-          new (<any>window).Notification('Site updated. Refresh to get the latest');
-        } else {
-          new (<any>window).Notification('Site updated. Refresh to get the latest');
-          // _Notification.open('Site updated. Refresh to get the latest!');
-        }
+          console.log(`Service Worker updated from v${currentVersion} to v${newVersion}`);
+          notifyToRefresh();
       }
     }
   };
@@ -53,4 +46,27 @@ export function installServiceWorker() {
       };
     };
   });
+}
+
+function notifyToRefresh() {
+  if (!("Notification" in window)) {
+    console.log("Notification API not supported by this browser");
+  }
+  else if (Notification.permission === "granted") {
+    sendNotification();
+  }
+  else if (Notification.permission !== 'denied') {
+    Notification.requestPermission(function(permission) {
+      if (permission === 'granted') {
+        sendNotification();
+      }
+    })
+  }
+
+  function sendNotification() {
+    const notification = new Notification('Site updated', {
+      body: 'Refresh to get the latest version',
+      icon: '/assets/icon/apple-icon-180x180.png'
+    });
+  }
 }
