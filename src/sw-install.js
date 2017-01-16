@@ -67,9 +67,11 @@ function notifyToRefresh() {
   function sendNotification() {
     try {
       navigator.serviceWorker.ready.then(function(registration) {
+        console.log('Showing notification for site update');
         registration.showNotification('Site updated', {
           body: 'Refresh to get the latest version',
           icon: '/assets/icon/apple-icon-180x180.png',
+          badge: '/assets/icon/badge-72x72.png',
           tag: 'sn-serviceworker-update'
         });
       })
@@ -78,6 +80,7 @@ function notifyToRefresh() {
       const notification = new Notification('Site updated', {
         body: 'Refresh to get the latest version',
         icon: '/assets/icon/apple-icon-180x180.png',
+        badge: '/assets/icon/badge-72x72.png',
         tag: 'sn-serviceworker-update'
       });
     }
