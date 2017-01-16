@@ -51,22 +51,34 @@ function installServiceWorker() {
 function notifyToRefresh() {
   if (!("Notification" in window)) {
     console.log("Notification API not supported by this browser");
-  }
-  else if (Notification.permission === "granted") {
-    sendNotification();
-  }
-  else if (Notification.permission !== 'denied') {
-    Notification.requestPermission(function(permission) {
-      if (permission === 'granted') {
-        sendNotification();
-      }
-    })
+  } else {
+    if (Notification.permission === "granted") {
+      sendNotification();
+    }
+    else if (Notification.permission !== 'denied') {
+      Notification.requestPermission(function (permission) {
+        if (permission === 'granted') {
+          sendNotification();
+        }
+      })
+    }
   }
 
   function sendNotification() {
-    const notification = new Notification('Site updated', {
-      body: 'Refresh to get the latest version',
-      icon: '/assets/icon/apple-icon-180x180.png'
-    });
+    try {
+      const notification = new Notification('Site updated', {
+        body: 'Refresh to get the latest version',
+        icon: '/assets/icon/apple-icon-180x180.png'
+      });
+    } catch(e) {
+      try {
+        ServiceWorkerRegistration.showNotification('Site updated', {
+          body: 'Refresh to get the latest version',
+          icon: '/assets/icon/apple-icon-180x180.png'
+        });
+      } catch(e) {
+        console.error('Notification failed', e);
+      }
+    }
   }
 }
