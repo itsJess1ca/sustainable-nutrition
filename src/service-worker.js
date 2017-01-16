@@ -36,6 +36,10 @@ self.onmessage = evt => {
   }
 };
 
+self.onpush = evt => {
+  console.log(evt);
+};
+
 self.onfetch = evt => {
   const cacheName = NAME + '-v' + VERSION;
 
