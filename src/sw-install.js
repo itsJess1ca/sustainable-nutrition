@@ -61,11 +61,14 @@ function notifyToRefresh() {
           sendNotification();
         }
       })
+    } else {
+      console.log('notification.permission', Notification.permission)
     }
   }
 
   function sendNotification() {
     try {
+      console.log('Waiting for serviceworker to be ready before sending refresh notification');
       navigator.serviceWorker.ready.then(function(registration) {
         console.log('Showing notification for site update');
         registration.showNotification('Site updated', {
