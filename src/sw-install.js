@@ -66,19 +66,20 @@ function notifyToRefresh() {
 
   function sendNotification() {
     try {
+      navigator.serviceWorker.ready.then(function(registration) {
+        registration.showNotification('Site updated', {
+          body: 'Refresh to get the latest version',
+          icon: '/assets/icon/apple-icon-180x180.png',
+          tag: 'sn-serviceworker-update'
+        });
+      })
+    } catch(e) {
+      console.log('serviceworker showNotification not supported, trying html5');
       const notification = new Notification('Site updated', {
         body: 'Refresh to get the latest version',
-        icon: '/assets/icon/apple-icon-180x180.png'
+        icon: '/assets/icon/apple-icon-180x180.png',
+        tag: 'sn-serviceworker-update'
       });
-    } catch(e) {
-      try {
-        ServiceWorkerRegistration.showNotification('Site updated', {
-          body: 'Refresh to get the latest version',
-          icon: '/assets/icon/apple-icon-180x180.png'
-        });
-      } catch(e) {
-        console.error('Notification failed', e);
-      }
     }
   }
 }
