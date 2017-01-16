@@ -110,6 +110,7 @@
 .more-entries--hr {
   width: 100%;
   max-width: 1000px;
+  margin-top:15px;
   border-color: rgba(0, 0, 0, 0.2);
 }
 
@@ -135,4 +136,8 @@
     color: $sn-orange;
     line-height: 1em;
   }
+}
+
+.down-arrow {
+   transform: rotate(90deg);
 }
