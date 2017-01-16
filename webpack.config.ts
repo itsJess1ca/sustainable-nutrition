@@ -93,6 +93,7 @@ const COPY_FOLDERS = [
   { from: 'src/app/main.css' },
   { from: 'src/app/styles.css' },
   { from: 'src/service-worker.js'},
+  { from: 'src/sw-install.js'},
   ...MY_COPY_FOLDERS
 ];
 
