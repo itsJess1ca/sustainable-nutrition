@@ -12,11 +12,13 @@ import { FooterModule } from './footer/footer.module';
 import { BrandLogoModule } from './brand-logo/brand-logo.module';
 import { SimpleNotificationsModule } from 'angular2-notifications';
 import { GraphqlService } from './shared/graphql';
+import { HttpModule } from '@angular/http';
 
 describe('App Component', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
+        HttpModule,
         SimpleNotificationsModule,
         BrandLogoModule,
         FooterModule,
