@@ -4,7 +4,6 @@ import { BlogComponent } from './blog.component';
 import { RouterModule } from '@angular/router';
 import { BLOG_ROUTES } from './blog.routes';
 import { PageTitleModule } from '../shared/page-title/page-title.module';
-import { MediumService } from '../shared/medium.service';
 
 @NgModule({
   imports: [
@@ -12,7 +11,6 @@ import { MediumService } from '../shared/medium.service';
     CommonModule,
     RouterModule.forChild(BLOG_ROUTES)
   ],
-  declarations: [BlogComponent],
-  providers: [MediumService]
+  declarations: [BlogComponent]
 })
 export class BlogModule { }

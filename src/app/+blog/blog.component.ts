@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MediumService } from '../shared/medium.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'sn-blog',
@@ -8,26 +8,29 @@ import { MediumService } from '../shared/medium.service';
 })
 export class BlogComponent implements OnInit {
 
-  blogs: any[] =
-    [
-      {
-        'one': 1
-      },
-      {
-        'two': 1
-      }
-    ];
+  blogs: Post[];
 
-  constructor(private medium: MediumService) { }
+  constructor(private route: ActivatedRoute) {
 
+  }
 
   ngOnInit() {
-    this.medium.getPosts({
-      user: '@medium',
-      limit: '5'
-    }).subscribe((data) => {
-      console.log(data);
+    this.route.data.subscribe(({posts}: {posts: Post[]}) => {
+      console.log(posts[0]);
+      this.blogs = posts;
     });
   }
 
+  linkToPost(url: string) {
+    if (window) window.open(url);
+  }
+
+}
+
+export interface Post {
+  excerpt: string;
+  subtitle: string;
+  title: string;
+  updatedAt: string;
+  url: string;
 }

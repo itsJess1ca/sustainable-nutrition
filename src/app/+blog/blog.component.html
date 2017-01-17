@@ -2,7 +2,7 @@
 <section class="page-content">
   <div class="blog-container" *ngFor="let blog of blogs">
     <div class="blog--date--social">
-      <span class="blog--date">01/14/2017</span>
+      <span class="blog--date">{{blog.updatedAt}}</span>
       <div class="blog--social">
         <span class="blog--social-share">share</span>
         <i class="sn-social-icon icon-facebook"></i>
@@ -11,18 +11,18 @@
       </div>
     </div>
 
-    <span class="blog--title">some blog title here</span>
+    <a class="blog--title" href="{{blog.url}}" target="_blank">{{blog.title}}</a>
     <span class="blog--desc">
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque ultricies nisi non risus convallis convallis. Aliquam erat volutpat. Curabitur efficitur sed enim a molestie. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque ultricies nisi non risus convallis convallis. Aliquam erat volutpat. Curabitur efficitur sed enim a molestie. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque ultricies nisi non risus convallis convallis. Aliquam erat volutpat. Curabitur efficitur sed enim a molestie.
+      {{blog.excerpt}}
     </span>
     <div class="blog--arrow">
-      <i class="sn-social-icon material-icons down-arrow">arrow_forward</i>
+      <a href="{{blog.url}}" target="_blank"><i class="sn-social-icon material-icons down-arrow">arrow_forward</i></a>
     </div>
   </div>
 
   <hr class="more-entries--hr">
   <div class="more-entries">
-    <span class="more-entries--text">more entries</span>
-    <span class="more-entries--arrow"><i class="sn-social-icon material-icons down-arrow">arrow_forward</i></span>
+    <a href="https://medium.com/@sus_nutrition" target="_blank" class="more-entries--text">more entries</a>
+    <a href="https://medium.com/@sus_nutrition" target="_blank" class="more-entries--arrow"><i class="sn-social-icon material-icons down-arrow">arrow_forward</i></a>
   </div>
 </section>

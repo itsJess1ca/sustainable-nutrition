@@ -4,6 +4,7 @@ import { NotFound404Component } from './not-found404.component';
 import { ServiceResolver } from './+service/service.resolver';
 import { ServicesResolver } from './+services/services.resolver';
 import { ContactPageResolver } from './+contact/contact.resolver';
+import { BlogResolver } from './+blog/blog.resolver';
 
 export const routes: Routes = [
   // Home
@@ -16,7 +17,7 @@ export const routes: Routes = [
 
   { path: 'coaches', loadChildren: './+coaches/coaches.module#CoachesModule' },
 
-  { path: 'blog', loadChildren: './+blog/blog.module#BlogModule' },
+  { path: 'blog', loadChildren: './+blog/blog.module#BlogModule', resolve: {posts: BlogResolver} },
 
   { path: 'testimonials', loadChildren: './+testimonials/testimonials.module#TestimonialsModule' },
 

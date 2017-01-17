@@ -4,7 +4,7 @@ import { Resolve, Router, ActivatedRouteSnapshot, RouterStateSnapshot } from '@a
 import { Marked } from '../shared/marked.service';
 
 @Injectable()
-export class ServicesResolver implements Resolve<Service> {
+export class ServicesResolver implements Resolve<[Service[], {pageDescription: string, pageDescriptionHeader: string}]> {
   constructor(private contentful: ContentfulService, private router: Router, private marked: Marked) {}
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Promise<[Service[], {pageDescription: string, pageDescriptionHeader: string}]> {
