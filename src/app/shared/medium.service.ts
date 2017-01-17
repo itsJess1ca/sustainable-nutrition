@@ -24,9 +24,15 @@ export class MediumService {
     const options = new RequestOptions({headers: headers});
     return this.http.get(requestUrl, options)
       .do(res => console.log(res))
-      .map((res) => stripJSONPrefix(res))
-      .map((res) => JSON.parse(res))
-      .map((data) => {
+      .map((res: any) => {
+        return new Promise((resolve, reject) => {
+          stripJSONPrefix(res)
+            .then((data) => Promise.resolve(JSON.parse(data)))
+            .then(resolve)
+            .catch(reject);
+        });
+      })
+      .map((data: any) => {
         const PostObject = data.payload.references.Post;
         const posts = [];
 
@@ -44,7 +50,7 @@ export class MediumService {
   }
 }
 
-function stripJSONPrefix(response: Response): Promise<string> {
+function stripJSONPrefix(response: any): Promise<string> {
   return new Promise((resolve, reject) => {
     response.text()
       .then((prefixedString: string) => prefixedString.replace('])}while(1);</x>', ''))
