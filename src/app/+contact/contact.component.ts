@@ -11,7 +11,7 @@ export class ContactComponent implements OnInit {
   constructor(private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.route.data.subscribe(({contact}: {contact: {supportEmailAddress: string, telephoneNumber: string, businessAddress: string}}) => {
+    this.route.data.subscribe(({contact}: {contact: {supportEmailAddress: string, contactNumber: string, businessAddress: string}}) => {
       this.data = contact;
     });
   }
