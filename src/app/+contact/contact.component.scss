@@ -51,7 +51,7 @@
   display:flex;
   flex-flow:row wrap;
   max-width: 700px;
-  background: linear-gradient(0deg, rgba(0,0,0,0.1) 0%,rgba(0,0,0,0.08) 100%);
+  /*background: linear-gradient(0deg, rgba(0,0,0,0.1) 0%,rgba(0,0,0,0.08) 100%);*/
   margin-top:15px;
   padding: 20px 15px 20px 15px;
 
@@ -60,17 +60,36 @@
     width:100%;
 
     input, textarea {
+      font-family: $metropolis;
       width: 100%;
       font-size: 1.25em;
+      line-height: 1.25em;
       background: transparent;
       border:0;
-      border-bottom: 1px solid $sn-orange
+      border-bottom: 1px solid $sn-orange;
     }
 
     input:focus, textarea:focus {
       outline: none;
       border-bottom: 1px solid $sn-yellow;
     }
+
+    ::-webkit-input-placeholder {
+      font-variant: all-small-caps;
+    }
+
+    :-moz-placeholder { /* Firefox 18- */
+      font-variant: all-small-caps;
+    }
+
+    ::-moz-placeholder {  /* Firefox 19+ */
+      font-variant: all-small-caps;
+    }
+
+    :-ms-input-placeholder {
+      font-variant: all-small-caps;
+    }
+
   }
 
   .form-actions {
@@ -79,7 +98,7 @@
     display: flex;
     flex-flow: column nowrap;
     justify-content: center;
-    align-items: center;
+    align-items: flex-end;
 
     .btn {
       background: $sn-orange;
