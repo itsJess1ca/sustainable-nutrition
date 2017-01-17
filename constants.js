@@ -2,7 +2,10 @@
 const root = require('./helpers.js').root
 const ip = require('ip');
 
+const isDev = true;
+
 exports.DEV = true;
+exports.STRIPE_KEY  = isDev ? '' : 'pk_live_QeQMkPRJcxHbNRuxNOc7gogP';
 exports.HOST = ip.address();
 exports.DEV_PORT = 3000;
 exports.E2E_PORT = 4201;

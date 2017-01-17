@@ -23,6 +23,7 @@ import * as _ from 'lodash'
 
 // Extra variables that live on Global that will be replaced by webpack DefinePlugin
 declare var DEV: boolean;
+declare var STRIPE_KEY: string;
 declare var AOT: boolean;
 declare var ENV: string;
 declare var HMR: boolean;

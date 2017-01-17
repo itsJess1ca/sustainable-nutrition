@@ -70,3 +70,14 @@
     border-color: $disabledColor;
   }
 }
+
+#pay-response {
+  background-color: rgba(red, 0.2);
+  width: 100%;
+  padding: 10px;
+  border: 1px solid rgba(red, 0.4);
+  &.success {
+    background-color: rgba(green, 0.2);
+    border-color: rgba(green, 0.4);
+  }
+}

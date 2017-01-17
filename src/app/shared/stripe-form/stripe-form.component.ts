@@ -102,6 +102,7 @@ export class StripeFormComponent implements OnInit {
   }
 
   submitStripePayment(card: any = this.card.value) {
+    this.stripeButtonActive = false;
     this.purchase.receipt_email = card.receipt_email;
     delete card.receipt_email;
     this.handlePayment(card).subscribe(response => {
@@ -111,7 +112,7 @@ export class StripeFormComponent implements OnInit {
         this.closePayWindow();
       } else {
         this.resetStripeButton();
-        console.log(response.errorMessage);
+        this.message.emit({type: 'success', message: 'Payment failed'});
       }
     });
   }
@@ -136,36 +137,12 @@ export class StripeFormComponent implements OnInit {
       .catch(e => Observable.of(e));
   }
 
-  /*getToken(card: StripeCard): Promise<StripePurchase> {
-    return new Promise((resolve, reject) => {
-      this.stripeButtonMessage = 'Processing...';
-      this.stripeButtonActive = false;
-      this.stripe.getToken(card || this.card.value)
-        .subscribe(
-          (token: StripeTokenResponse) => {
-            this.stripeButtonMessage = 'Done!';
-            this.stripeButtonActive = false;
-            this.purchase.stripeToken = token.id;
-            this.stripe.requestCharge(this.purchase)
-              .subscribe(data => {
-                resolve(data);
-              });
-          },
-          (err: any) => {
-            this.stripeButtonMessage = 'Error!';
-            this.stripeButtonActive = true;
-            this.message.emit({type: 'fail', message: err.message});
-            reject(err);
-            this.notifications.error(err.type, err.message, {timeOut: 5000});
-          });
-    });
-  }*/
-
   closePayWindow() {
     event.preventDefault();
     this.stripeFormVisible = false;
     this.resetStripeButton();
     this.resetFormValues();
+    this.message.emit({type: 'closed', message: 'Pay window closed'});
   }
 
   resetFormValues() {
@@ -186,6 +163,6 @@ export class StripeFormComponent implements OnInit {
 }
 
 export interface PayMessage {
-  type: 'success' | 'fail';
+  type: 'success' | 'fail' | 'closed';
   message: string;
 }
