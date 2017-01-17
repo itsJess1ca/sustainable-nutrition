@@ -7,7 +7,7 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./contact.component.css']
 })
 export class ContactComponent implements OnInit {
-  data: {supportEmailAddress: string, telephoneNumber: string, businessAddress: string};
+  data: {supportEmailAddress: string, contactNumber: string, businessAddress: string};
   constructor(private route: ActivatedRoute) { }
 
   ngOnInit() {
