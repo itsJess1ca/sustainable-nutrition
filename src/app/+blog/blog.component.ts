@@ -16,7 +16,6 @@ export class BlogComponent implements OnInit {
 
   ngOnInit() {
     this.route.data.subscribe(({posts}: {posts: Post[]}) => {
-      console.log(posts[0]);
       this.blogs = posts;
     });
   }

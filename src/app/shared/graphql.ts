@@ -73,7 +73,6 @@ export class GraphqlService {
 
       // All graphql responses are in a "data" object - just return this
       .map((res: any) => {
-        console.log(res);
         return res.data;
       });
   }
