@@ -1,6 +1,7 @@
 import { Component, ChangeDetectionStrategy, OnInit } from '@angular/core';
 import { PageScrollConfig } from 'ng2-page-scroll';
 import { Router, NavigationEnd } from '@angular/router';
+import { GraphqlService } from './shared/graphql';
 
 @Component({
   selector: 'sn-root',
@@ -38,7 +39,10 @@ export class AppComponent implements OnInit {
   currentPage: possibleRoutes = 'home';
   activeTheme: 'home' | 'other' = this.currentPage === 'home' ? 'home' : 'other';
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private gql: GraphqlService) {
+    this.gql.blog.then((posts) => {
+      console.log(`Preloaded ${posts.length} blog posts`);
+    });
     PageScrollConfig.defaultDuration = 250;
   }
   ngOnInit() {
