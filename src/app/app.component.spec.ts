@@ -11,6 +11,7 @@ import { SideNavComponent } from './side-nav/side-nav.component';
 import { FooterModule } from './footer/footer.module';
 import { BrandLogoModule } from './brand-logo/brand-logo.module';
 import { SimpleNotificationsModule } from 'angular2-notifications';
+import { GraphqlService } from './shared/graphql';
 
 describe('App Component', () => {
   beforeEach(() => {
@@ -21,7 +22,7 @@ describe('App Component', () => {
         FooterModule,
         RouterTestingModule.withRoutes(routes)
         ],
-      providers: [],
+      providers: [GraphqlService],
       declarations: [
         AppComponent,
         SideNavComponent,
