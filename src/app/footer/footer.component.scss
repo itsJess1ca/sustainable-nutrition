@@ -2,7 +2,7 @@
 
 :host {
   min-height: $footerHeight - 20;
-  font-size: 0.8rem;
+  font-size: 1.2em;
   //max-height: $footerHeight;
   background-color: $sn-accent;
   display: flex;
@@ -20,7 +20,7 @@
   flex: 1;
   flex-flow: column nowrap;
   justify-content: space-around;
-  font-size: 1em;
+  font-size: 1.2em;
   position: relative;
   #contact-info {
     margin-top: 20px;
@@ -55,7 +55,7 @@
   }
 
   .contact-content {
-    font-size: 0.7em;
+    font-size: 1em;
     line-height: 26px;
     a {
       text-decoration: underline;
@@ -86,7 +86,7 @@
 
 #copyright {
   order: 5;
-  font-size: 0.7em;
+  font-size: 1em;
   font-family: $roboto;
 }
 

@@ -2,6 +2,7 @@
 const root = require('./helpers.js').root
 const ip = require('ip');
 
+exports.DEV = true;
 exports.HOST = ip.address();
 exports.DEV_PORT = 3000;
 exports.E2E_PORT = 4201;

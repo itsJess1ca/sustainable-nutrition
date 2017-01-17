@@ -1,1 +1,72 @@
-/* .scss style file */
+@import '../variables';
+:host {
+  display:flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-content: center;
+}
+
+#service-content {
+  padding-top: 50px;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  width: 100%;
+  max-width: 960px;
+}
+#service-divider {
+  width: 80%;
+  margin: 5px 0;
+  height: 1px;
+  border: none;
+  background-color: rgba(0,0,0,0.25);
+}
+#service-description {
+  padding: 0 25px;
+  flex: 2;
+  #service-description__title {
+    font-family: $metropolis;
+    font-weight: 900;
+    margin-top: 0;
+    margin-bottom: 0;
+    color: rgba(0,0,0,0.56);
+  }
+  #service-description__content {
+    font-family: $metropolis;
+    font-weight: 400;
+    color: rgba(0,0,0,0.87);
+    padding-bottom: 50px;
+  }
+}
+#service-info {
+  flex: 1;
+}
+#service-image-container {
+  $max-size: 300px;
+  height: $max-size;
+  width: $max-size;
+  max-height: $max-size;
+  max-width: $max-size;
+  @include card(1);
+  padding: 0;
+  margin-bottom: 10px;
+
+  #service-image {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+#purchase-button {
+  $button-width: 200px;
+  $button-padding: 15px;
+  margin: 0 35px;
+  width: 200px;
+  padding: 15px;
+  cursor: pointer;
+  &[disabled] {
+    $disabledColor: rgba(0,0,0,0.75);
+    color: $disabledColor;
+    border-color: $disabledColor;
+  }
+}

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'sn-contact',
@@ -6,10 +7,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./contact.component.css']
 })
 export class ContactComponent implements OnInit {
-
-  constructor() { }
+  data: {supportEmailAddress: string, telephoneNumber: string, businessAddress: string};
+  constructor(private route: ActivatedRoute) { }
 
   ngOnInit() {
+    this.route.data.subscribe(({contact}: {contact: {supportEmailAddress: string, telephoneNumber: string, businessAddress: string}}) => {
+      this.data = contact;
+    });
   }
 
 }

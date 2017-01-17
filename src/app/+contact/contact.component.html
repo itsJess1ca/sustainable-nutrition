@@ -16,33 +16,17 @@
     </div>
   </div>
 
-  <div class="page-description-header">
-    FURTHER CONTACT DETAILS
-  </div>
-  <div class="page-description">
-    If you wish to speak to us directly, we are availably during working hours (9 till 5) Monday to Friday, at the below number:
-    <br/>
-    <span class="number">01473 871345</span>
-  </div>
+  <section id="contact-number">
+    <h3 id="contact-number__title">FURTHER CONTACT DETAILS</h3>
+    <div id="contact-number__content">
+      If you wish to speak to us directly, we are availably during working hours (9 till 5) Monday to Friday, at the below number:
+      <br/>
+      <span id="contact-number__value">{{data.contactNumber}}</span>
+    </div>
+  </section>
 
-  <div class="page-description-header">
-    OUR BUSINESS ADDRESS
-  </div>
-  <div class="page-description">
-    <span>
-      Unit 11, Alpha Business Park<br/>
-      White House Road<br/>
-      Ipswich<br/>
-      IP1 5LT
-    </span>
-
-  </div>
-
-
-
-
-
-
-
-
+  <section id="business-address">
+    <h3 id="business-address__title">OUR BUSINESS ADDRESS</h3>
+    <div id="business-address__content" [innerHTML]="data.businessAddress"></div>
+  </section>
 </section>

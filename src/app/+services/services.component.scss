@@ -4,30 +4,39 @@
   flex-flow: column nowrap;
   flex: 1;
   width: 100%;
+  align-items: center;
 }
 
 #page-content {
   padding: 0 $gutterMobile;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
   @include respond-to(large) {
     padding: 0 $gutterDesktop;
   }
 }
-
-#page-description-header {
-  margin-top: 50px;
-  font-family: $metropolis;
-  font-weight: 900;
-  line-height: 1.25em;
-  font-variant: all-small-caps;
-  font-size: 1em;
-  color: rgba(0,0,0,0.5);
-  @include respond-to(medium) {
-    font-size: 1.5em;
+#page-description-header, #page-description {
+  @include respond-to(large) {
+    max-width: 900px;
   }
+}
+#page-description-header {
+  /deep/ p {
+    font-family: $metropolis;
+    font-weight: 900;
+    line-height: 1.25em;
+    font-variant: all-small-caps;
+    font-size: 1em;
+    color: rgba(0,0,0,0.5);
+    @include respond-to(medium) {
+      font-size: 1.5em;
+    }
+  }
+  margin-top: 50px;
 }
 
 #page-description, #page-description /deep/ p {
-  margin-top: 25px;
   font-family: $metropolis;
   font-weight: 900;
   line-height: 1em;

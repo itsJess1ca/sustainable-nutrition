@@ -5,7 +5,8 @@
 <section id="coach-details">
   <div id="content">
     <h1 id="title">OUR COACHES</h1>
-    <span id="coachName" bordered-header>{{coach?.firstName | uppercase}} {{coach?.lastName | uppercase}}</span>
+    <span id="coachName" bordered-header [routerLink]="['coaches']">{{coach?.firstName | uppercase}} {{coach?.lastName | uppercase}}</span>
     <div id="coach-description" [innerHTML]="coach?.shortDescription"></div>
+    <a href="#" id="more-info" [routerLink]="['coaches']">More Info</a>
   </div>
 </section>

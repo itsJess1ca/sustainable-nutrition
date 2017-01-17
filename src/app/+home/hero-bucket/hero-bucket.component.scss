@@ -89,6 +89,7 @@
   font-size: 1em;
   position: relative;
   z-index: 1;
+  height: 300px;
 
   #title {
     font-size: 2em;
@@ -97,11 +98,14 @@
     font-family: $metropolis;
     font-weight: 900;
     white-space: nowrap;
+    @include respond-to(medium) {
+      font-size: 3em;
+    }
   }
 
   @include respond-to(medium) {
+    height: 475px;
     letter-spacing: 10px;
-    height: auto;
     font-size: 1em;
     line-height: 1em;
   }

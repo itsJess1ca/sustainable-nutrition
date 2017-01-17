@@ -14,7 +14,7 @@
   margin-bottom:20px;
 }
 
-.page-description-header {
+#contact-number__title, #business-address__title {
   margin-top: 50px;
   font-family: $metropolis;
   font-weight: 900;
@@ -27,20 +27,17 @@
   }
 }
 
-.page-description, #page-description /deep/ p {
+#contact-number__content, #business-address__content /deep/ p {
   margin-top: 25px;
   font-family: $metropolis;
   font-weight: 900;
   line-height: 1em;
   font-variant: all-small-caps;
-  font-size: 1em;
+  font-size: 1.25em;
   color: rgba(0,0,0,0.4);
-  @include respond-to(medium) {
-    font-size: 1.25em;
-  }
 }
 
-.number {
+#contact-number__value {
   color: $sn-orange;
   font-family: $antonio;
   font-size: 1.5em;

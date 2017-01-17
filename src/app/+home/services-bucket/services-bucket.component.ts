@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Service } from '../../shared/contentful.service';
 
 @Component({
   selector: 'sn-services',
@@ -7,24 +8,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ServicesBucketComponent implements OnInit {
 
-  services: any[] = [
-    {
-      name: 'Nutrition Plan',
-      image: ''
-    },
-    {
-      name: 'Recipes',
-      image: ''
-    },
-    {
-      name: 'Weekly Educational Updates',
-      image: ''
-    },
-    {
-      name: 'Something Else',
-      image: ''
-    }
-  ];
+  @Input()
+  services: Service[];
 
   constructor() { }
 

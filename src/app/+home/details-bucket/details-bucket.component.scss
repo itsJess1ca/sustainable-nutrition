@@ -39,19 +39,25 @@
   #details-title {
     position: relative;
     width: 100%;
-    font-size: 1.2em;
+    font-size: 1.5em;
     line-height: 1em;
     font-family: $metropolis;
     font-variant: all-small-caps;
     font-weight: 900;
     margin-bottom: 14px;
+    @include respond-to(medium) {
+      font-size: 2em;
+    }
   }
 }
 #details-body {
   /deep/ p {
-    font-size: 1.25em;
+    font-size: 1em;
     line-height: 1em;
     font-family: $metropolis;
+    @include respond-to(medium) {
+      font-size: 1.3em;
+    }
   }
   position: relative;
   width: 100%;

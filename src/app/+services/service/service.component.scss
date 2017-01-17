@@ -24,21 +24,22 @@
 
 
 .sn-service--image {
-  padding: 10px 5px;
+  // padding: 10px 5px;
   width:100%;
   height:100%;
-  max-width:630px;
+  max-width:300px;
+  max-height:300px;
   z-index: 2;
   position:relative;
   @include respond-to(medium) {
     display:flex;
-    padding: 20px;
+    // padding: 20px;
     max-width: 250px;
   }
 
   .sn-service--image-img {
-    width: 45%;
-    height: 45%;
+    width: 75%;
+    height: 75%;
     @include  respond-to(medium){
       width: 100%;
       height: 100%;
@@ -77,9 +78,13 @@
 $height1: 90px;
 $width1: 90px;
 
+.sn-service--step, .sn-service--step-alt {
+  @include card(2);
+}
+
 .sn-service--step {
   position: absolute;
-  left: 40%;
+  right: 3%;
   top: 63%;
   height: $height1;
   width: $width1;
@@ -87,6 +92,7 @@ $width1: 90px;
   align-items: center;
   justify-content: center;
   @include respond-to(medium){
+    right: inherit;
     left:81%;
     top:-13%;
   }
@@ -95,7 +101,7 @@ $width1: 90px;
 
 .sn-service--step-alt {
   position: absolute;
-  left: 43%;
+  left: 3%;
   top: 64%;
   height: $height1;
   width: $width1;
@@ -132,16 +138,19 @@ $width1: 90px;
 
 
 .sn-service--details {
+  @include card(1);
   display: inline-flex;
   flex-flow: column nowrap;
   align-items: center;
   background-color: rgba(0,0,0,0.3);
-  padding: 16px 25px;
+  padding: 16px 25px 25px;
   width: calc(100% - 10px);
   height:100%;
+  min-height: 200px;
   margin: 5px;
   position: relative;
   z-index: 1;
+  overflow: hidden;
 
   @include respond-to(medium) {
     margin: 9px;
@@ -167,6 +176,17 @@ $width1: 90px;
     margin-top: 25px;
     width:100%;
     padding-bottom:10px;
+    max-height: 183px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .read-more {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    color: white;
+    font-family: $antonio;
+    font-weight: 900;
   }
 
   .sn-service--details-body /deep/ p {

@@ -1,9 +1,22 @@
 <div class="services-container">
-  <template [ngTemplateOutlet]="index % 2 ? right : left"></template>
+  <!--<template [ngTemplateOutlet]="index % 2 ? right : left"></template>-->
+  <div class="sn-service--image" [ngClass]="{'push-down': !(index % 2), 'push-up': index % 2, 'slide-right': index % 2}">
+    <img class="sn-service--image-img" src="{{service.image.url}}" alt="Image of {{service.image.name}}" />
+    <div [ngClass]="{'sn-service--step': !(index % 2), 'sn-service--step-alt': index % 2}">
+      <h3 class="sn-service--step-text">{{index + 1}}</h3>
+    </div>
+  </div>
+
+  <div class="sn-service--details">
+    <a [routerLink]="[service.id]" class="sn-service--details-title" bordered-header>{{service.title | uppercase}}</a>
+    <div class="sn-service--details-body" [innerHTML]="service.summary">
+    </div>
+    <div class="read-more"><a [routerLink]="[service.id]">Read more...</a></div>
+  </div>
 </div>
 
 
-
+<!--
 <template #left>
   <div class="sn-service--image push-down">
     <img class="sn-service--image-img" src="{{service.image.url}}" alt="Image of {{service.image.name}}" />
@@ -13,7 +26,7 @@
   </div>
 
   <div class="sn-service--details">
-    <span class="sn-service--details-title" bordered-header>{{service.title | uppercase}}</span>
+    <span [routerLink]="[service.id]" class="sn-service--details-title" bordered-header>{{service.title | uppercase}}</span>
     <div class="sn-service--details-body" [innerHTML]="service.summary">
     </div>
   </div>
@@ -27,9 +40,9 @@
     </div>
   </div>
   <div class="sn-service--details">
-    <span class="sn-service--details-title" bordered-header>{{service.title | uppercase}}</span>
+    <a [routerLink]="[service.id]" class="sn-service--details-title" bordered-header>{{service.title | uppercase}}</a>
     <div class="sn-service--details-body" [innerHTML]="service.summary">
     </div>
   </div>
 
-</template>
+</template>-->

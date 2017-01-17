@@ -1,15 +1,11 @@
 <sn-page-title [title]="'Services'"></sn-page-title>
-<sn-stripe-form [purchase]="{productName: '12 Week \'All In\' Programme', productPrice: '13.37'}"></sn-stripe-form>
 <section id="page-content">
-  <div id="page-description-header">
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque ultricies nisi non risus convallis convallis. Aliquam erat volutpat. Curabitur efficitur sed enim a molestie.
+  <div id="page-description-header" [innerHTML]="header.pageDescriptionHeader">
   </div>
-  <div id="page-description">
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque ultricies nisi non risus convallis convallis. Aliquam erat volutpat. Curabitur efficitur sed enim a molestie.
+  <div id="page-description" [innerHTML]="header.pageDescription">
   </div>
-
   <sn-service
-    *ngFor="let service of (services | async); let i = index;"
+    *ngFor="let service of services; let i = index; trackBy: servicesTrackBy"
     [service]="service"
     [index]="i"
   ></sn-service>

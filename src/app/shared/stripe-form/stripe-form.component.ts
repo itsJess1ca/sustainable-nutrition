@@ -1,7 +1,8 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { StripeService, StripePurchase, StripeCard } from '../stripe.service';
 import { NotificationsService } from 'angular2-notifications';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'sn-stripe-form',
@@ -11,8 +12,9 @@ import { NotificationsService } from 'angular2-notifications';
 export class StripeFormComponent implements OnInit {
   stripeFormVisible: boolean = false;
   @Input() purchase: StripePurchase;
+  @Output() message: EventEmitter<PayMessage> = new EventEmitter<PayMessage>();
+  inlineMessage: string;
   api: 'stripe' | 'paymentRequest' = (<any>window).PaymentRequest ? 'paymentRequest' : 'stripe';
-  message: string = '';
 
   stripeButtonActive: boolean = true;
   stripeButtonMessage: string = 'Submit Payment';
@@ -84,9 +86,12 @@ export class StripeFormComponent implements OnInit {
         };
         this.handlePayment(card).subscribe(response => {
           if (response.statusCode === 200) {
-            paymentResponse.complete('success').then(() => {this.message = 'Thank you for your purchase.'; });
+            paymentResponse.complete('success').then(() => {
+              this.message.emit({type: 'success', message: 'Thank you for your purchase.'});
+            });
           } else {
             paymentResponse.complete('fail');
+            this.message.emit({type: 'fail', message: 'Payment Failed.'});
           }
         });
       })
@@ -102,7 +107,11 @@ export class StripeFormComponent implements OnInit {
     this.handlePayment(card).subscribe(response => {
       if (response.statusCode === 200) {
         this.stripeButtonMessage = 'Thank you.';
+        this.message.emit({type: 'success', message: 'Thank you for your purchase'});
         this.closePayWindow();
+      } else {
+        this.resetStripeButton();
+        console.log(response.errorMessage);
       }
     });
   }
@@ -123,11 +132,11 @@ export class StripeFormComponent implements OnInit {
         return this.stripe.requestCharge(this.purchase);
       })
       .map(response => response.json())
-      .map(response => Object.assign({}, response, {body: JSON.parse(response.body)}))
-      .do((charge: StripePurchase) => console.log(charge));
+      .map(response => typeof response.body === 'string' ? Object.assign({}, response, {body: JSON.parse(response.body)}) : response)
+      .catch(e => Observable.of(e));
   }
 
-  getToken(card: StripeCard): Promise<StripePurchase> {
+  /*getToken(card: StripeCard): Promise<StripePurchase> {
     return new Promise((resolve, reject) => {
       this.stripeButtonMessage = 'Processing...';
       this.stripeButtonActive = false;
@@ -145,14 +154,15 @@ export class StripeFormComponent implements OnInit {
           (err: any) => {
             this.stripeButtonMessage = 'Error!';
             this.stripeButtonActive = true;
-            this.message = err.message;
+            this.message.emit({type: 'fail', message: err.message});
             reject(err);
             this.notifications.error(err.type, err.message, {timeOut: 5000});
           });
     });
-  }
+  }*/
 
   closePayWindow() {
+    event.preventDefault();
     this.stripeFormVisible = false;
     this.resetStripeButton();
     this.resetFormValues();
@@ -175,3 +185,7 @@ export class StripeFormComponent implements OnInit {
 
 }
 
+export interface PayMessage {
+  type: 'success' | 'fail';
+  message: string;
+}

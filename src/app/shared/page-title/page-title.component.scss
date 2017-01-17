@@ -18,14 +18,17 @@
 }
 
 #page-title {
-  line-height: 5rem;
+  width: 50%;
+  line-height: 1em;
   font-weight: 900;
   color: $sn-green;
-  font-size: 2.5em;
+  font-size: 1.8em;
   margin-bottom: 0;
   font-variant: all-small-caps;
+  @include respond-to(medium) {
+    font-size: 2.5em;
+  }
   @include respond-to(large) {
-    font-size: 4em;
     margin-bottom: inherit;
   }
 }

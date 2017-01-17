@@ -18,6 +18,13 @@
   }
 }
 
+#close-pay-button {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  color: rgba(0,0,0,0.76);
+}
+
 #payment-form-container {
   position: relative;
   width: 300px;
@@ -62,13 +69,41 @@
   flex: 1;
   display: flex;
   flex-flow: column nowrap;
+  align-items: center;
 }
+.payment-message {
+
+}
+.form-row {
+  align-self: flex-start;
+  margin: 5px 0;
+  .form-input__label {
+    font-family: $metropolis;
+    font-weight: 600;
+    width: 100%;
+    font-size: 0.8em;
+  }
+  .form-input__field {
+    font-family: $metropolis;
+    font-weight: 400;
+    border: none;
+    border-bottom: 1px solid $sn-orange;
+    &:focus {
+      outline: none;
+      border-bottom: 3px solid $sn-orange;
+    }
+  }
+  .contact-email, .card-number {
+    width: 90%;
+  }
+}
+
+
 #pay-button {
   $button-width: 200px;
   $button-padding: 15px;
   position: absolute;
   bottom: 5px;
-  margin: 0 35px;
   width: 200px;
   // height: 50px;
   background-color: transparent;

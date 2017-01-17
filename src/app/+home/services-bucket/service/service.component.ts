@@ -1,4 +1,6 @@
-import { Component, OnInit, Input, HostBinding } from '@angular/core';
+import { Component, OnInit, Input, HostListener } from '@angular/core';
+import { Router } from '@angular/router';
+import { Service } from '../../../shared/contentful.service';
 
 @Component({
   selector: 'sn-service',
@@ -6,12 +8,20 @@ import { Component, OnInit, Input, HostBinding } from '@angular/core';
   styleUrls: ['service.component.css']
 })
 export class ServiceComponent implements OnInit {
-  @Input() image: string;
-  @HostBinding('style.backgroundImage') backgroundImage = this.image;
+  @Input() service: BucketService;
+  @HostListener('click')
+  goToRoute() {
+    this.router.navigate([this.service.isService ? 'services' : '', this.service.id]);
+  }
 
-  constructor() { }
+
+  constructor(private router: Router) { }
 
   ngOnInit() {
   }
 
+}
+
+export interface BucketService extends Service {
+  isService: boolean;
 }

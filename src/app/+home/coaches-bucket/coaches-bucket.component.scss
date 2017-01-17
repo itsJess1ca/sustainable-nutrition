@@ -102,11 +102,17 @@
     line-height: 1.2em;
   }
   #coachName {
-    font-size: 0.8em;
+    font-size: 1.3em;
     line-height: 1em;
+    cursor: pointer;
+    margin-bottom: 10px;
   }
   #title {
     font-size: 1.2em;
     line-height: 1em;
   }
+}
+
+#more-info:hover {
+  text-decoration: underline;
 }

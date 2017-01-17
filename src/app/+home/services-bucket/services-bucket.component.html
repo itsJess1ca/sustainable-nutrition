@@ -1,7 +1,15 @@
 <section id="services">
-  <h1 id="title">OUR SERVICES</h1>
+  <h1 id="title">HOW CAN WE HELP?</h1>
   <div id="serviceWrap">
-    <sn-service *ngFor="let service of services" class="service" [image]="service.image">{{service.name}}</sn-service>
+    <sn-service
+      *ngFor="let service of services"
+      class="service"
+      [service]="service"
+    >{{service.title}}</sn-service>
+    <sn-service
+      class="service"
+      [service]="{isService: false, id: 'blog'}"
+    >BLOG</sn-service>
   </div>
 </section>
 

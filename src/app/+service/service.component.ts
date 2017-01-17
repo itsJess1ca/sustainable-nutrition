@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Service } from '../shared/contentful.service';
+import { PayMessage } from '../shared/stripe-form/stripe-form.component';
 @Component({
   selector: 'sn-service-page',
   templateUrl: 'service.component.html',
@@ -8,6 +9,8 @@ import { Service } from '../shared/contentful.service';
 })
 export class ServiceComponent implements OnInit, OnDestroy {
   service: Service;
+  payMessage: PayMessage;
+
   constructor(private route: ActivatedRoute) {
 
   }

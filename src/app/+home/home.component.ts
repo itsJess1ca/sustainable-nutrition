@@ -15,6 +15,7 @@ export class HomeComponent implements OnInit {
   });
   testimonial: Observable<any> = this.content.getRandomTestimonial();
   coaches: Promise<any> = this.content.coaches;
+  services: Promise<any> = this.content.services;
   constructor(public content: ContentfulService, private marked: Marked) { }
 
   ngOnInit() {

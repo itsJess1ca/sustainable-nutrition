@@ -1,11 +1,8 @@
-{{message}}
-<br>
-<button (click)="openCheckout()">Purchase</button>
-
 <div id="stripeForm" *ngIf="stripeFormVisible">
   <div id="background" (click)="closePayWindow()"></div>
   <div id="payment-form-container">
     <header>
+      <a id="close-pay-button" href="#" (click)="closePayWindow()">Close x</a>
       <sn-brand-logo class="brand-logo" theme="other" prefix="pay"></sn-brand-logo>
       <div id="header-content">
         <div id="product">
@@ -19,35 +16,35 @@
     </header>
     <section id="payment-form-content">
       <form id="payment-form" (ngSubmit)="submitStripePayment(card.value)" novalidate [formGroup]="card">
-        <span class="payment-message">{{message}}</span>
+        <span class="payment-message">{{inlineMessage}}</span>
 
         <div class="form-row">
           <label>
-            <span>Contact Email</span>
-            <input type="email" formControlName="receipt_email">
+            <span class="form-input__label">Contact Email</span>
+            <input class="form-input__field contact-email" type="email" formControlName="receipt_email">
           </label>
         </div>
 
         <div class="form-row">
           <label>
-            <span>Card Number</span>
-            <input type="text" size="20" formControlName="number">
+            <span class="form-input__label">Card Number</span>
+            <input class="form-input__field card-number" type="text" size="20" formControlName="number">
           </label>
         </div>
 
         <div class="form-row">
           <label>
-            <span>Expiration (MM/YY)</span>
-            <input type="text" size="2" formControlName="exp_month">
+            <span class="form-input__label">Expiration (MM/YY)</span><br>
+            <input class="form-input__field exp-month" type="text" size="2" formControlName="exp_month">
           </label>
           <span> / </span>
-          <input type="text" size="2" formControlName="exp_year">
+          <input class="form-input__field exp-year" type="text" size="2" formControlName="exp_year">
         </div>
 
         <div class="form-row">
           <label>
-            <span>CVC</span>
-            <input type="text" size="4" formControlName="cvc">
+            <span class="form-input__label">CVC</span><br>
+            <input class="form-input__field cvc" type="text" size="4" formControlName="cvc">
           </label>
         </div>
 

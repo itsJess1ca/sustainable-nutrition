@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
+import { Http, Headers, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs';
 @Injectable()
 export class MediumService {
@@ -18,12 +18,13 @@ export class MediumService {
     delete params.user;
     const requestUrl = `${this.feedUrl}/${user}/latest?${serialize(params)}`;
     console.log('[Medium] Getting posts for ' + user + ` from ${requestUrl}`);
-    /*const headers = new Headers({
-      Accept: 'application/json'
-    });*/
-    return;
-    /*return this.http.get(requestUrl, new RequestOptions({headers: headers}))
-      .map(stripJSONPrefix)
+    const headers = new Headers({
+      'Content-Type': 'application/json'
+    });
+    const options = new RequestOptions({headers: headers});
+    return this.http.get(requestUrl, options)
+      .do(res => console.log(res))
+      .map((res) => stripJSONPrefix(res))
       .map((res) => JSON.parse(res))
       .map((data) => {
         const PostObject = data.payload.references.Post;
@@ -40,17 +41,16 @@ export class MediumService {
         }
         return posts;
       });
-      */
   }
 }
 
-/*function stripJSONPrefix(response: any): Promise<any> {
+function stripJSONPrefix(response: Response): Promise<string> {
   return new Promise((resolve, reject) => {
     response.text()
-      .then(prefixedString => prefixedString.replace('])}while(1);</x>', ''))
+      .then((prefixedString: string) => prefixedString.replace('])}while(1);</x>', ''))
       .then(resolve);
   });
-}*/
+}
 function serialize(obj: any): string {
   const str = [];
   for (let p in obj)
