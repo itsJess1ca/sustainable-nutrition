@@ -20,6 +20,7 @@
   padding: 16px;
   position: relative;
   margin-bottom: 0;
+  @include linear-gradient(135deg, rgba($sn-yellow, 0.3) 0%, rgba($sn-orange, 0.6) 100%);
   @include respond-to(large) {
     max-width: 600px;
     font-size: 0.8em;

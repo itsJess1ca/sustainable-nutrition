@@ -13,6 +13,7 @@ export class StripeFormComponent implements OnInit {
   stripeFormVisible: boolean = false;
   @Input() purchase: StripePurchase;
   @Output() message: EventEmitter<PayMessage> = new EventEmitter<PayMessage>();
+  @Output() closed: EventEmitter<void> = new EventEmitter<void>();
   inlineMessage: string;
   api: 'stripe' | 'paymentRequest' = (<any>window).PaymentRequest ? 'paymentRequest' : 'stripe';
 
@@ -142,7 +143,8 @@ export class StripeFormComponent implements OnInit {
     this.stripeFormVisible = false;
     this.resetStripeButton();
     this.resetFormValues();
-    this.message.emit({type: 'closed', message: 'Pay window closed'});
+    this.closed.emit();
+    // this.message.emit({type: 'closed', message: 'Pay window closed'});
   }
 
   resetFormValues() {

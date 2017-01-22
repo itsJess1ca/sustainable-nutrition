@@ -3,12 +3,6 @@
   <div class="blog-container" *ngFor="let blog of blogs">
     <div class="blog--date--social">
       <span class="blog--date">{{blog.updatedAt}}</span>
-      <!--<div class="blog&#45;&#45;social">
-        <span class="blog&#45;&#45;social-share">share</span>
-        <i class="sn-social-icon icon-facebook"></i>
-        <i class="sn-social-icon icon-twitter"></i>
-        <i class="sn-social-icon material-icons">email</i>
-      </div>-->
     </div>
 
     <a class="blog--title" href="{{blog.url}}" target="_blank">{{blog.title}}</a>

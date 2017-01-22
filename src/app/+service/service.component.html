@@ -1,5 +1,6 @@
 <sn-page-title [title]="service.title"></sn-page-title>
 
+<a id="backToServices" [routerLink]="['/services']">Back to services</a>
 <section id="service-content">
   <div id="service-description">
     <div id="pay-response" *ngIf="payMessage" [ngClass]="{success: payMessage.type === 'success'}">{{payMessage.message}}</div>
@@ -17,6 +18,7 @@
         #stripeForm
         [purchase]="{productName: service.title, productPrice: service.cost}"
         (message)="handleCompleted($event)"
+        (closed)="processingPayment = false"
       ></sn-stripe-form>
     </div>
   </div>

@@ -8,6 +8,6 @@ export class ServiceResolver implements Resolve<Service> {
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Promise<Service> {
     let name = route.params['service'];
 
-    return this.contentful.getService(name);
+    return this.contentful.getService(name).toPromise();
   }
 }

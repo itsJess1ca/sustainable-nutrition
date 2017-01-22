@@ -16,51 +16,44 @@ export class ContentfulService {
 
   constructor(private marked: Marked) {}
 
-  get services(): Promise<Service[]> {
-    return new Promise((resolve, reject) => {
-      if (!this._services) {
-        this.getEntries({'content_type': 'services'})
-          .map((services) => {
-            return services.map((service) => {
-              return Object.assign({} , service, {
-                id: `${slugify(service.title)}`,
-                description: this.marked.transform(service.description),
-                summary: this.marked.transform(service.summary),
-                image: {
-                  name: service.image.fields.title,
-                  url: service.image.fields.file.url
-                }
-              });
+  get services(): Observable<Service[]> {
+    if (this._services) {
+      return Observable.of(this._services);
+    } else {
+      return this.getEntries({'content_type': 'services'})
+        .map((services) => {
+          return services.map((service) => {
+            return Object.assign({} , service, {
+              id: `${slugify(service.title)}`,
+              description: this.marked.transform(service.description),
+              summary: this.marked.transform(service.summary),
+              image: {
+                name: service.image.fields.title,
+                url: service.image.fields.file.url
+              },
+              isService: true
             });
-          })
-          .subscribe((services: any[]) => {
-          this._services = services;
-            resolve(services);
           });
-      } else {
-        resolve(this._services);
-      }
-    });
+        })
+        .do((services: Service[]) => this._services = services);
+    }
   }
 
-  get coaches(): Promise<Coach[]> {
-    return new Promise((resolve, reject) => {
-      if (!this._coaches) {
-        this.getEntries({'content_type': 'coaches'})
-          .map((coaches: any[]) => {
-            return coaches.map((coach: any) => {
-              coach.shortDescription = this.marked.transform(coach.shortDescription);
-              return coach;
-            });
-          })
-          .subscribe(coaches => {
-            this._coaches = coaches;
-            resolve(coaches);
+  get coaches(): Observable<Coach[]> {
+    if (this._coaches) {
+      return Observable.of(this._coaches);
+    } else {
+      return this.getEntries({'content_type': 'coaches'})
+        .map((coaches: any[]) => {
+          return coaches.map((coach: any) => {
+            coach.shortDescription = this.marked.transform(coach.shortDescription);
+            return coach;
           });
-      } else {
-        resolve(this._coaches);
-      }
-    });
+        })
+        .do((coaches: Coach[]) => {
+          this._coaches = coaches;
+        });
+    }
   }
 
   getEntries(query: EntriesQuery): Observable<any[]> {
@@ -97,17 +90,10 @@ export class ContentfulService {
       .map(testimonials => testimonials[Math.floor(Math.random() * testimonials.length)]);
   }
 
-  getService(serviceID: number) {
-    return new Promise((resolve, reject) => {
-      this.services.then((services: Service[]) => {
-        const service = services.filter((svc) => svc.id === serviceID)[0];
-        if (service) {
-          resolve(service);
-        } else {
-          reject('No service found');
-        }
-      });
-    });
+  getService(serviceID: number): Observable<Service> {
+    return this.services
+      .map((services) =>
+        services.filter((svc) => svc.id === serviceID)[0]);
   }
 }
 
@@ -122,6 +108,7 @@ export interface Service {
   };
   summary: string;
   title: string;
+  isService: boolean;
 }
 
 export interface Coach {

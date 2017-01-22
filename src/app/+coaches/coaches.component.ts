@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ContentfulService, Coach } from '../shared/contentful.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'sn-coaches',
@@ -7,7 +8,7 @@ import { ContentfulService, Coach } from '../shared/contentful.service';
   styleUrls: ['./coaches.component.css']
 })
 export class CoachesComponent implements OnInit {
-  coaches: Promise<Coach[]> = this.content.coaches;
+  coaches: Observable<Coach[]> = this.content.coaches;
   constructor(private content: ContentfulService) { }
 
   ngOnInit() {

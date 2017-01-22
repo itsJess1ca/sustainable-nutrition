@@ -1,5 +1,5 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { ContentfulService } from '../shared/contentful.service';
+import { ContentfulService, Service } from '../shared/contentful.service';
 import { Observable } from 'rxjs';
 import { Marked } from '../shared/marked.service';
 @Component({
@@ -14,8 +14,8 @@ export class HomeComponent implements OnInit {
     return data;
   });
   testimonial: Observable<any> = this.content.getRandomTestimonial();
-  coaches: Promise<any> = this.content.coaches;
-  services: Promise<any> = this.content.services;
+  coaches: Observable<any> = this.content.coaches;
+  services: Observable<Service[]> = this.content.services;
   constructor(public content: ContentfulService, private marked: Marked) { }
 
   ngOnInit() {
