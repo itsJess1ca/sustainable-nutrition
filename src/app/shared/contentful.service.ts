@@ -14,7 +14,7 @@ export class ContentfulService {
 
   private _coaches: Coach[] = null;
   private _services: Service[] = null;
-  private _testimonials: RawTestimonial[] = null;
+  private _testimonials: Testimonial[] = null;
 
   constructor(private marked: Marked, private sanitizer: DomSanitizer) {}
 
@@ -63,8 +63,7 @@ export class ContentfulService {
       return Observable.of(this._testimonials);
     } else {
       return this.getEntries<RawTestimonial>({'content_type': 'testimonials'})
-        .map(testimonials => {
-          console.log(testimonials);
+        .map((testimonials): Testimonial[] => {
           return testimonials.map((testimonial) => {
             return Object.assign({}, testimonial, {
               beforeImage: testimonial.beforeImage && this.convertContentfulImage(testimonial.beforeImage),
@@ -74,7 +73,7 @@ export class ContentfulService {
             });
           });
         })
-        .do((testimonials: RawTestimonial[]) => {
+        .do((testimonials: Testimonial[]) => {
           this._testimonials = testimonials;
         });
     }
