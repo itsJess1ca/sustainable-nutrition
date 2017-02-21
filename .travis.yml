@@ -6,6 +6,8 @@ git:
 branches:
   only:
   - master
+  - staging
+  - dev
 cache:
   directories:
   - node_modules
