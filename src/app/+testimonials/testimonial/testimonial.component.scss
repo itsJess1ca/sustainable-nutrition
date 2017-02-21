@@ -1,0 +1,76 @@
+@import '../../variables';
+:host {
+  display: flex;
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
+  @include respond-to(large) {
+    height: 450px;
+  }
+}
+
+.testimonial {
+  height: 100%;
+  width: 100%;
+}
+.testimonial-author {
+  font-family: $antonio;
+  color: $sn-orange;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+.testimonial-content {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+
+  .before-photo, .after-photo {
+    width: 200px;
+    height: 325px;
+    @include card(1);
+    border-radius: 3px;
+    display: none;
+    @include respond-to(large) {
+      display: block;
+    }
+  }
+  .before-photo {
+  }
+  .content {
+    width: 540px;
+    @include card(2);
+    background-color: white;
+    border-radius: 3px;
+    @include respond-to(large) {
+      transform: scale(1.1);
+      height: 304px;
+    }
+  }
+  .content.text {
+    text-align: center;
+    padding: 10px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+  }
+  .content.text /deep/ p {
+    font-family: $metropolis;
+    font-weight: 400;
+    font-size: 1em;
+    margin-bottom: 20px;
+    line-height: 1.5em;
+    @include respond-to(medium) {
+      font-size: 1.5em;
+    }
+  }
+  .content.video {
+    width: 90%;
+    max-width: 540px;
+  }
+  .after-photo {
+  }
+}

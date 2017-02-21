@@ -4,6 +4,7 @@ import { TestimonialsComponent } from './testimonials.component';
 import { RouterModule } from '@angular/router';
 import { TESTIMONIALS_ROUTES } from './testimonials.routes';
 import { PageTitleModule } from '../shared/page-title/page-title.module';
+import { TestimonialComponent } from './testimonial/testimonial.component';
 
 @NgModule({
   imports: [
@@ -11,6 +12,9 @@ import { PageTitleModule } from '../shared/page-title/page-title.module';
     PageTitleModule,
     RouterModule.forChild(TESTIMONIALS_ROUTES)
   ],
-  declarations: [TestimonialsComponent]
+  declarations: [
+    TestimonialComponent,
+    TestimonialsComponent
+  ]
 })
 export class TestimonialsModule { }

@@ -33,17 +33,41 @@ before_script:
 - ls
 script: npm run ci
 deploy:
-  provider: s3
-  access_key_id: "$AWS_ACCESS_KEY"
-  secret_access_key: "$AWS_SECRET_KEY"
-  bucket: susnutrition
-  region: eu-west-1
-  skip_cleanup: true
-  local-dir: dist/client
-  acl: public_read
-  detect_encoding: true
-  on:
-    branch: master
+  - provider: s3
+    access_key_id: "$AWS_ACCESS_KEY"
+    secret_access_key: "$AWS_SECRET_KEY"
+    bucket: susnutrition
+    region: eu-west-1
+    skip_cleanup: true
+    local-dir: dist/client
+    acl: public_read
+    detect_encoding: true
+    on:
+      branch: master
+  - provider: s3
+    access_key_id: "$AWS_ACCESS_KEY"
+    secret_access_key: "$AWS_SECRET_KEY"
+    bucket: susnutrition-staging
+    region: eu-west-1
+    skip_cleanup: true
+    local-dir: dist/client
+    acl: public_read
+    detect_encoding: true
+    on:
+      branch: staging
+  - provider: s3
+    access_key_id: "$AWS_ACCESS_KEY"
+    secret_access_key: "$AWS_SECRET_KEY"
+    bucket: susnutrition-dev
+    region: eu-west-1
+    skip_cleanup: true
+    local-dir: dist/client
+    acl: public_read
+    detect_encoding: true
+    on:
+      branch: dev
+
+
 notifications:
   email:
     on_success: change
