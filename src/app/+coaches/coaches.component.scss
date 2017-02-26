@@ -2,12 +2,15 @@
 :host {
   display: flex;
   flex-flow: column nowrap;
+  align-items: center;
   flex: 1;
   width: 100%;
 }
 
 #page-content {
+  width: 90%;
   padding: 0 $gutterMobile;
+  max-width: 1024px;
   @include respond-to(large) {
     padding: 0 $gutterDesktop;
   }

@@ -80,10 +80,13 @@
 .blog--title {
   font-family: $metropolis;
   font-weight: 900;
-  line-height: 1em;
+  line-height: 0.7em;
   font-variant: all-small-caps;
   font-size: 2em;
   color: $sn-orange;
+  @include respond-to(medium) {
+    line-height: 1em;
+  }
 }
 
 .blog--desc {
