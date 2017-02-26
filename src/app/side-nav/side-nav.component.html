@@ -14,7 +14,7 @@
   </header>
   <ul id="menu">
     <li *ngFor="let navItem of routes" class="menu__list-item">
-      <a [routerLink]="navItem.destination" class="menuItem">{{navItem.name | uppercase}}</a>
+      <a (click)="navigateTo(navItem.destination)" class="menuItem">{{navItem.name | uppercase}}</a>
     </li>
   </ul>
 </nav>

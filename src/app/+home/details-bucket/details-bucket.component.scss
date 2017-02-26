@@ -17,7 +17,7 @@
   //width: 100%;
   flex: 0.5;
   max-width: 400px;
-  padding: 16px;
+  padding: 32px;
   position: relative;
   margin-bottom: 0;
   @include linear-gradient(135deg, rgba($sn-yellow, 0.3) 0%, rgba($sn-orange, 0.6) 100%);
@@ -54,7 +54,6 @@
 #details-body {
   /deep/ p {
     font-size: 1em;
-    line-height: 1em;
     font-family: $metropolis;
     @include respond-to(medium) {
       font-size: 1.3em;
@@ -84,7 +83,7 @@
     letter-spacing: 5px;
     padding-bottom: 10px;
     font-family: $antonio;
-    font-size: 0.74em;
+    font-size: 1.3em;
     display: block;
     width: 100%;
     text-align: right;
