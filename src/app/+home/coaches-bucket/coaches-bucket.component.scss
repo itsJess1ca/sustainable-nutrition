@@ -8,6 +8,7 @@
   position: relative;
   min-height: 600px;
   flex-flow: row wrap;
+  overflow: hidden;
   @include respond-to(medium) {
     flex-flow: row nowrap;
     justify-content: space-between;
@@ -22,6 +23,7 @@
   overflow: hidden;
   -webkit-clip-path: circle(69.7% at 21% 42%);
   clip-path: circle(69.7% at 21% 42%);
+  min-width: 525px;
   /*-webkit-mask: url('../../../assets/img/curved-shape.svg');
   -webkit-mask-repeat: no-repeat;
   -webkit-mask-position-x: 0;*/
@@ -100,7 +102,6 @@
   font-size: 1em;
   #coach-description {
     max-width: 600px;
-    font-size: 0.5em;
     line-height: 1.2em;
   }
   #coachName {
@@ -110,8 +111,10 @@
     margin-bottom: 10px;
   }
   #title {
-    font-size: 1.2em;
-    line-height: 1em;
+    font-family: $metropolis;
+    font-weight: 900;
+    font-size: 1.5em;
+    letter-spacing: 0.2em;
   }
 }
 
