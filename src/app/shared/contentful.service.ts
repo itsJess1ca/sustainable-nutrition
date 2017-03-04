@@ -49,6 +49,7 @@ export class ContentfulService {
         .map((coaches: any[]) => {
           return coaches.map((coach: any) => {
             coach.shortDescription = this.marked.transform(coach.shortDescription);
+            coach.fullDescription = this.marked.transform(coach.fullDescription);
             return coach;
           });
         })
@@ -198,6 +199,7 @@ export interface Coach {
   firstName: string;
   lastName: string;
   shortDescription: string;
+  fullDescription: string;
   telephoneNumber: string;
 }
 
