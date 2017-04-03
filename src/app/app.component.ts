@@ -48,6 +48,7 @@ export class AppComponent implements OnInit {
   }
   ngOnInit() {
     this.router.events.subscribe((event: NavigationEnd) => {
+      window.scrollTo(0, 0);
       if (event instanceof NavigationEnd) {
         const r: possibleRoutes = <possibleRoutes>event.url.replace('/', '');
         this.currentPage = r === '' ? 'home' : r;
