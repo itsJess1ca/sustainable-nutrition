@@ -13,6 +13,7 @@ import { BrandLogoModule } from './brand-logo/brand-logo.module';
 import { SimpleNotificationsModule } from 'angular2-notifications';
 import { GraphqlService } from './shared/graphql';
 import { HttpModule } from '@angular/http';
+import { ContentfulService } from './shared/contentful.service';
 
 describe('App Component', () => {
   beforeEach(() => {
@@ -24,7 +25,7 @@ describe('App Component', () => {
         FooterModule,
         RouterTestingModule.withRoutes(routes)
         ],
-      providers: [GraphqlService],
+      providers: [GraphqlService, ContentfulService],
       declarations: [
         AppComponent,
         SideNavComponent,
