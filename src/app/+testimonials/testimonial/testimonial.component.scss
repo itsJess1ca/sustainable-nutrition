@@ -28,11 +28,15 @@
   .before-photo, .after-photo {
     width: 200px;
     height: 325px;
+    overflow: hidden;
     @include card(1);
     border-radius: 3px;
     display: none;
     @include respond-to(large) {
       display: block;
+    }
+    .before-photo__img, .after-photo__img {
+      max-height: 100%;
     }
   }
   .before-photo {

@@ -2,7 +2,7 @@
   <h1 class="testimonial-author">{{testimonial.author}}</h1>
   <div class="testimonial-content">
     <div class="before-photo">
-      <img [src]="testimonial.beforeImage.url" alt="Before image of testimonial, named: {{testimonial.beforeImage.name}}">
+      <img class="before-photo__img" [src]="testimonial.beforeImage.url" alt="Before image of testimonial, named: {{testimonial.beforeImage.name}}">
     </div>
     <div class="content video" *ngIf="testimonial.videoUrl">
       <iframe class="ytplayer" type="text/html" [width]="videoSize.width" [height]="videoSize.height"
@@ -12,7 +12,7 @@
     <div class="content text" *ngIf="!testimonial.videoUrl" [innerHTML]="testimonial.content">
     </div>
     <div class="after-photo">
-      <img [src]="testimonial.afterImage.url" alt="After image of testimonial, named: {{testimonial.afterImage.name}}">
+      <img class="after-photo__img" [src]="testimonial.afterImage.url" alt="After image of testimonial, named: {{testimonial.afterImage.name}}">
     </div>
   </div>
 </article>
