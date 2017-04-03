@@ -48,8 +48,8 @@ export class AppComponent implements OnInit {
   }
   ngOnInit() {
     this.router.events.subscribe((event: NavigationEnd) => {
-      window.scrollTo(0, 0);
       if (event instanceof NavigationEnd) {
+        window.scrollTo(0, 0);
         const r: possibleRoutes = <possibleRoutes>event.url.replace('/', '');
         this.currentPage = r === '' ? 'home' : r;
         this.activeTheme = this.currentPage === 'home' ? 'home' : 'other';
