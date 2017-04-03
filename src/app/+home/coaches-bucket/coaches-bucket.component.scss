@@ -38,15 +38,12 @@
     height: 580px;
     width: 60%;
     max-width: 100vw;
-    background: url('../../../assets/img/james.jpg') no-repeat -.5% 0;
-    -webkit-mask-image: url('../../../assets/img/james_clip.png');
-    mask-image: url('../../../assets/img/james_clip.png');
-    -webkit-mask-position: 0 1px;
-    mask-position: 0 1px;
-    -webkit-mask-size: 99.9%;
+    background: url('../../../assets/img/james.jpg') no-repeat -0.6% 0;
     position: absolute;
     background-size: 200%;
     z-index: 2;
+    -webkit-clip-path: url(#jamesClip);
+    clip-path: url(#jamesClip);
 
     @include respond-to(medium) {
       width: calc(779px / 2);
@@ -78,7 +75,7 @@
     }
   }
   #james.inactive {
-    background-position-x: 100%;
+    background-position-x: 99.8%;
   }
   #clare.inactive {
     background-position-x: 100%;
