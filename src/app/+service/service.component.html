@@ -12,6 +12,7 @@
     <div id="service-image-container">
       <img id="service-image" src="{{service.image.url}}" alt="Image for service {{service.title}}">
     </div>
+    <h1 id="display-cost">£{{service.cost}}</h1>
     <div id="service-buy-container">
       <a bordered-header class="orange" id="purchase-button" (click)="processingPayment ? 0 : openStripeForm()">Purchase</a>
       <sn-stripe-form
