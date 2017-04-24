@@ -7,9 +7,11 @@
 
 .page-content {
   width: 960px;
+  max-width: calc(100vw - #{$gutterMobile * 2});
   margin: 0 auto;
   padding: 0 $gutterMobile;
   @include respond-to(large) {
+    max-width: calc(100vw - #{$gutterDesktop * 2});
     padding: 0 $gutterDesktop;
   }
   margin-bottom:20px;

@@ -119,6 +119,13 @@
   }
 }
 
+#jamesClip-path {
+  transform: scale(0.85) translate(-36px, -21px);
+  @include respond-to(medium) {
+    transform: translate(-24.1px, -10px);
+  }
+}
+
 #more-info:hover {
   text-decoration: underline;
 }

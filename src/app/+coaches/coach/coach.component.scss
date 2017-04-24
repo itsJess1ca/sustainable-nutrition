@@ -48,7 +48,14 @@
     background-image: url('../../../assets/img/james.png');
   }
   &.clare {
+    background-position: right;
     background-image: url('../../../assets/img/clare.png');
+    -moz-transform: scaleX(-1);
+    -o-transform: scaleX(-1);
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
+    filter: FlipH;
+    -ms-filter: "FlipH";
   }
   background-size: contain;
 }

@@ -42,20 +42,22 @@
   .blog--date, .blog--title, .blog--desc {
     transition: color 250ms ease-in-out;
   }
-  &:hover, &:focus {
-    &:after {
-      opacity: 1;
-    }
-    .blog--date, .blog--title, .blog--desc {
-      color: white;
+  @include respond-to(medium) {
+    &:hover, &:focus {
+      &:after {
+        opacity: 1;
+      }
+      .blog--date, .blog--title, .blog--desc {
+        color: white;
 
-    }
-    .blog--social {
-      display: flex;
-    }
+      }
+      .blog--social {
+        display: flex;
+      }
 
-    .blog--arrow {
-      display: block;
+      .blog--arrow {
+        display: block;
+      }
     }
   }
 }

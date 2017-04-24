@@ -164,7 +164,7 @@ $width1: 90px;
     font-family: $metropolis;
     font-weight: 600;
     line-height: 1.2em;
-    font-size: 0.65em;
+    font-size: 1em;
     color: rgba(255,255,255,1);
     @include respond-to(medium) {
       font-size: 1.15em;

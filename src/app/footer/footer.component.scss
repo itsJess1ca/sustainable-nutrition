@@ -20,7 +20,7 @@
   flex: 1;
   flex-flow: column nowrap;
   justify-content: space-around;
-  font-size: 1.2em;
+  font-size: 1.1em;
   position: relative;
   #contact-info {
     margin-top: 20px;
@@ -37,10 +37,14 @@
     flex-flow: row;
   }
 }
+.contact-tel {
+  margin-bottom: 5px;
+}
 
 .contact-container {
   margin-right: 10px;
   height: 1.5em;
+  padding: 5px 0;
   a {
     text-decoration: none;
     color: currentColor;
@@ -57,7 +61,7 @@
 
   .contact-content {
     font-size: 1em;
-    line-height: 26px;
+    line-height: 15px;
     a {
       text-decoration: underline;
     }
