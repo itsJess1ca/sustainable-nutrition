@@ -113,7 +113,7 @@
     "@ngrx/store-devtools": "3.2.2",
     "@ngrx/store-log-monitor": "3.0.2",
     "angular2-express-engine": "2.1.0-rc.1",
-    "angular2-notifications": "^0.4.49",
+    "angular2-notifications": "0.4.53",
     "angular2-platform-node": "2.1.0-rc.1",
     "angular2-universal": "2.1.0-rc.1",
     "angular2-universal-polyfills": "2.1.0-rc.1",
