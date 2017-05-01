@@ -192,8 +192,8 @@ $width1: 90px;
 
   .sn-service--details-body /deep/ p {
     font-family: $metropolis;
-    font-weight: 600;
-    line-height: 1em;
+    font-weight: 500;
+    line-height: 1.25em;
     font-size: 1em;
     color: rgba(255,255,255,1);
     @include respond-to(medium) {
