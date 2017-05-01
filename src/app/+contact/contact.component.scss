@@ -29,18 +29,18 @@
   font-variant: all-small-caps;
   font-size: 1em;
   color: rgba(0,0,0,0.5);
+  margin-bottom: 0;
   @include respond-to(medium) {
     font-size: 1.5em;
   }
 }
 
 #contact-number__content, #business-address__content /deep/ p {
-  margin-top: 25px;
+  margin-top: 10px;
   font-family: $metropolis;
-  font-weight: 900;
+  font-weight: 500;
   line-height: 1em;
-  font-variant: all-small-caps;
-  font-size: 1.25em;
+  font-size: 1em;
   color: rgba(0,0,0,0.4);
 }
 
@@ -54,7 +54,7 @@
 .form {
   display:flex;
   flex-flow:row wrap;
-  max-width: 700px;
+  max-width: 960px;
   /*background: linear-gradient(0deg, rgba(0,0,0,0.1) 0%,rgba(0,0,0,0.08) 100%);*/
   margin-top:15px;
   padding: 20px 15px 20px 15px;

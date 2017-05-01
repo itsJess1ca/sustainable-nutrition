@@ -71,6 +71,9 @@
     transform: scaleX(-1);
     filter: FlipH;
     -ms-filter: "FlipH";
+    @include respond-to(medium) {
+      background-position: center;
+    }
   }
   background-size: contain;
 }
@@ -78,8 +81,9 @@
 #coach-details /deep/ p {
   color: rgba(0,0,0,0.4);
   font-family: $metropolis;
-  font-weight: 600;
-  font-size: 1.1em;
+  font-weight: 500;
+  font-size: 1em;
+  line-height: 1.25em;
 }
 
 

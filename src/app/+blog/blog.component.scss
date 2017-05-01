@@ -35,6 +35,9 @@
     opacity: 0;
     transition: opacity 250ms ease-in-out;
   }
+  .blog--date--social {
+    margin-bottom: 5px;
+  }
   .blog--date--social, .blog--title, .blog--desc {
     position: relative;
     z-index: 1;
