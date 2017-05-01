@@ -1,9 +1,12 @@
-<div id="left-side" [ngClass]="{odd: index % 2}">
-  <template [ngTemplateOutlet]="index % 2 ? details : image"></template>
+<div id="coach">
+  <div id="left-side" [ngClass]="{odd: index % 2}">
+    <template [ngTemplateOutlet]="index % 2 ? details : image"></template>
+  </div>
+  <div id="right-side">
+    <template [ngTemplateOutlet]="index % 2 ? image : details"></template>
+  </div>
 </div>
-<div id="right-side">
-  <template [ngTemplateOutlet]="index % 2 ? image : details"></template>
-</div>
+<div id="gradient-background"></div>
 
 
 <template #details>
