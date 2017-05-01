@@ -11,11 +11,13 @@
 
   background: $sn-orange url(../../../assets/img/buckets/home-details/background-patternv2.jpg) left bottom;
   background-size: cover;
+  @include respond-to(medium) {
+    background-position: center right;
+  }
 }
 
 #details-content {
   //width: 100%;
-  flex: 0.5;
   max-width: 90%;
   padding: 32px;
   position: relative;
