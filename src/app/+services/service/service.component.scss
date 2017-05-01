@@ -14,7 +14,7 @@
   display: flex;
   flex-flow: row wrap;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: center;
   position: relative;
   @include respond-to(medium) {
     flex-flow: row nowrap;
