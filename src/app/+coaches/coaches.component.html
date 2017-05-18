@@ -1,9 +1,5 @@
 <sn-page-title [title]="'Coaches'"></sn-page-title>
 <section id="page-content">
-  <div id="page-description">
-    <p>&nbsp;</p>
-  </div>
-
   <sn-coach
     *ngFor="let coach of (coaches | async); let i = index;"
     [coach]="coach"
