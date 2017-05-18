@@ -76,11 +76,13 @@
   font-family: $metropolis;
   text-align: center;
 }
-
+#service-buy-container {
+  display: flex;
+}
 #purchase-button {
   $button-width: 200px;
   $button-padding: 15px;
-  margin: 0 35px;
+  margin: 0 auto;
   width: 200px;
   padding: 15px;
   cursor: pointer;
