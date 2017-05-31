@@ -70,11 +70,15 @@ $headerHeight: 175px;
 #menu-header {
   height: $headerHeight;
   background: $sn-orange;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   #wide-brand-logo {
-    height: 100%;
+    height: 150px;
+    width: 150px;
     background-size: cover;
-    background: url('../../assets/img/wide-logo-small.png') no-repeat center center;
+    background: url('../../assets/img/logo.min.svg') no-repeat center center;
   }
 }
 
