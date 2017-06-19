@@ -1,4 +1,4 @@
-import { Component, Renderer, ElementRef, HostListener } from '@angular/core';
+import { Component, Renderer, ElementRef, HostListener, Input } from '@angular/core';
 
 @Component({
   selector: '[bordered-header]',
@@ -7,12 +7,13 @@ import { Component, Renderer, ElementRef, HostListener } from '@angular/core';
 })
 export class BorderedHeaderComponent {
   isAlive: boolean = false;
+  @Input() hoverEffect: boolean = true;
 
   @HostListener('mouseover') onMouseOver() {
-    this.renderer.setElementClass(this.el.nativeElement.querySelector('.ripple'), 'active', true);
+    if (this.hoverEffect) this.renderer.setElementClass(this.el.nativeElement.querySelector('.ripple'), 'active', true);
   }
   @HostListener('mouseleave') onMouseLeave() {
-    this.clearRipple();
+    if (this.hoverEffect) this.clearRipple();
   }
 
   constructor(private el: ElementRef, private renderer: Renderer) {}
