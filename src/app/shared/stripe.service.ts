@@ -23,7 +23,7 @@ export class StripeService {
   }
 
   requestCharge(purchase: StripePurchase) {
-    return this.http.post('https://bzv2kepqhi.execute-api.eu-west-1.amazonaws.com/dev/create-charge', purchase);
+    return this.http.post('https://82mjkxvbqd.execute-api.eu-west-1.amazonaws.com/development/create-charge', purchase);
   }
 }
 

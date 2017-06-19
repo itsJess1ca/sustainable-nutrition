@@ -1,8 +1,8 @@
 <div id="stripeForm" *ngIf="stripeFormVisible">
-  <div id="background" (click)="closePayWindow()"></div>
+  <div id="background" (click)="closePayWindow($event)"></div>
   <div id="payment-form-container">
     <header>
-      <a id="close-pay-button" href="#" (click)="closePayWindow()">Close x</a>
+      <a id="close-pay-button" href="#" (click)="closePayWindow($event)">Close x</a>
       <div id="header-content">
         <div id="product">
           <span>{{purchase.productName}}</span>

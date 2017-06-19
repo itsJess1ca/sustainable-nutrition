@@ -3,6 +3,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { StripeService, StripePurchase, StripeCard } from '../stripe.service';
 import { NotificationsService } from 'angular2-notifications';
 import { Observable } from 'rxjs';
+import 'rxjs/add/operator/switchMap';
 
 @Component({
   selector: 'sn-stripe-form',
@@ -110,7 +111,7 @@ export class StripeFormComponent implements OnInit {
       if (response.statusCode === 200) {
         this.stripeButtonMessage = 'Thank you.';
         this.message.emit({type: 'success', message: 'Thank you for your purchase'});
-        this.closePayWindow();
+        this.closePayWindow({preventDefault: () => {}});
       } else {
         this.resetStripeButton();
         this.message.emit({type: 'success', message: 'Payment failed'});
@@ -138,7 +139,7 @@ export class StripeFormComponent implements OnInit {
       .catch(e => Observable.of(e));
   }
 
-  closePayWindow() {
+  closePayWindow(event) {
     event.preventDefault();
     this.stripeFormVisible = false;
     this.resetStripeButton();
