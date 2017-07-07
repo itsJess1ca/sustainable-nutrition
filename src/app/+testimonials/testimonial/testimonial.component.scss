@@ -21,19 +21,54 @@
 }
 .testimonial-content {
   display: flex;
-  flex-flow: row nowrap;
+  flex-flow: column nowrap;
   justify-content: center;
   align-items: center;
+  @include respond-to(large) {
+    flex-flow: row nowrap;
+  }
 
-  .before-photo, .after-photo {
-    width: 200px;
-    height: 325px;
+  #photos {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
+    width: 90vw;
+    @include respond-to(medium) {
+      flex-flow: row nowrap;
+      width: 400px;
+      min-width: 400px;
+    }
+  }
+
+  .before-photo, & .after-photo {
+    max-width: 150px;
+    width: 100%;
+    max-height: 325px;
+    min-height: 200px;
     overflow: hidden;
-    @include card(1);
     border-radius: 3px;
-    display: none;
+    border: 1px solid rgba(0,0,0,0.15);
+    position: relative;
+    display: block;
+    // Background
+    background-size: cover;
+    background-repeat: no-repeat;
+    @include respond-to(medium) {
+      max-width: 200px;
+      min-height: 325px;
+    }
     @include respond-to(large) {
-      display: block;
+    }
+    #before-photo__label, #after-photo__label {
+      position: absolute;
+      top: 0;
+      left: 0;
+      padding: 5px 0 0 5px;
+      font-family: $antonio;
+      font-size: 1.2em;
+      color: rgba(0,0,0,0.76);
+      background-color: rgba(255,255,255,0.5);
     }
     .before-photo__img, .after-photo__img {
       max-height: 100%;
@@ -43,16 +78,18 @@
   .before-photo {
   }
   .content {
-    width: 540px;
-    @include card(2);
+    flex: 1;
+    border: 1px solid rgba(0,0,0,0.15);
+    width: 90vw;
     background-color: white;
     border-radius: 3px;
     @include respond-to(large) {
-      transform: scale(1.1);
+      width: 540px;
       height: 304px;
     }
   }
   .content.text {
+    width: calc(90vw - 20px);
     text-align: center;
     padding: 10px;
     text-overflow: ellipsis;

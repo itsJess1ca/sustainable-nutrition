@@ -114,7 +114,7 @@ export class ContentfulService {
   private convertContentfulImage(image: ContentfulImage): {name: string, url: SafeUrl} {
     return {
       name: image.fields.title,
-      url: this.sanitizer.bypassSecurityTrustResourceUrl(image.fields.file.url)
+      url: image.fields.file.url
     };
   }
 }

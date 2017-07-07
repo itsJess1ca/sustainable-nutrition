@@ -22,6 +22,7 @@ interface WebpackConfig {
     noInfo?: boolean;
     watchOptions?: any;
     https?: boolean;
+    disableHostCheck: boolean;
   };
   node?: {
     process?: boolean;

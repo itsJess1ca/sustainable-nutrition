@@ -12,7 +12,7 @@ export class TestimonialsComponent implements OnInit {
   testimonials: Testimonial[] = [];
 
   placeholderImage = {
-    url: this.sanitizer.bypassSecurityTrustResourceUrl('assets/img/testimonial-placeholder.png'),
+    url: 'assets/img/testimonial-placeholder.png',
     name: 'Sustainable Nutrition Logo'
   };
 

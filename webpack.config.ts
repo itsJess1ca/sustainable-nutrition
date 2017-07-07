@@ -276,7 +276,8 @@ const clientConfig = function webpackConfig(): WebpackConfig {
     },
     host: '0.0.0.0',
     watchOptions: DEV_SERVER_WATCH_OPTIONS,
-    https: true
+    https: true,
+    disableHostCheck: true
   };
 
   if (USE_DEV_SERVER_PROXY) {
