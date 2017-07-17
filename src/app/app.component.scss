@@ -83,7 +83,9 @@
 
   #brand-logo {
     height: 125px;
+    width: 115px;
     @include respond-to(large) {
+      width: 200px;
       height: 175px;
     }
   }

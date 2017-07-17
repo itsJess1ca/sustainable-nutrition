@@ -81,14 +81,17 @@
     flex: 1;
     border: 1px solid rgba(0,0,0,0.15);
     width: 90vw;
-    background-color: white;
+    background-color: $sn-green;
+    color: rgba(255,255,255,0.75);
     border-radius: 3px;
+    margin-left: 2px;
     @include respond-to(large) {
       width: 540px;
       height: 304px;
     }
   }
   .content.text {
+    color: rgba(255,255,255,0.75);
     width: calc(90vw - 20px);
     text-align: center;
     padding: 10px;
@@ -100,9 +103,9 @@
     align-items: center;
   }
   .content.text /deep/ p {
+    color: rgba(255,255,255,0.75);
     font-family: $metropolis;
     font-weight: 400;
-    color: rgba(0,0,0,0.76);
     font-size: 1em;
     margin-bottom: 20px;
     line-height: 1.5em;
