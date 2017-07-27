@@ -86,7 +86,8 @@ export class StripeFormComponent implements OnInit {
           cvc: paymentResponse.details.cardSecurityCode,
           number: paymentResponse.details.cardNumber
         };
-        this.handlePayment(card).subscribe(response => {
+        this.handlePayment(card)
+          .subscribe(response => {
           if (response.statusCode === 200) {
             paymentResponse.complete('success').then(() => {
               this.message.emit({type: 'success', message: 'Thank you for your purchase.'});
@@ -99,6 +100,7 @@ export class StripeFormComponent implements OnInit {
       })
       .catch(err => {
         console.error('Uh oh, something bad happened', err.message);
+        request.abort();
       });
 
   }
