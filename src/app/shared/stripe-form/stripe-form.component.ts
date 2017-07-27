@@ -73,13 +73,12 @@ export class StripeFormComponent implements OnInit {
 
     // Create a `PaymentRequest` instance
     const request = new PaymentRequest(supportedInstruments, details, options);
-
     // Show the native UI with `.show()`
     request.show()
       // Process the payment
       .then((paymentResponse: any) => {
-      console.log(paymentResponse);
-      this.purchase.receipt_email = paymentResponse.payerEmail;
+        console.log(paymentResponse);
+        this.purchase.receipt_email = paymentResponse.payerEmail;
         const card: StripeCard = {
           exp_month: paymentResponse.details.expiryMonth,
           exp_year: paymentResponse.details.expiryYear,
@@ -88,19 +87,18 @@ export class StripeFormComponent implements OnInit {
         };
         this.handlePayment(card)
           .subscribe(response => {
-          if (response.statusCode === 200) {
-            paymentResponse.complete('success').then(() => {
-              this.message.emit({type: 'success', message: 'Thank you for your purchase.'});
-            });
-          } else {
-            paymentResponse.complete('fail');
-            this.message.emit({type: 'fail', message: 'Payment Failed.'});
-          }
-        });
+            if (response.statusCode === 200) {
+              paymentResponse.complete('success').then(() => {
+                this.message.emit({type: 'success', message: 'Thank you for your purchase.'});
+              });
+            } else {
+              paymentResponse.complete('fail');
+              this.message.emit({type: 'fail', message: 'Payment Failed.'});
+            }
+          });
       })
       .catch(err => {
-        console.error('Uh oh, something bad happened', err.message);
-        request.abort();
+        console.error(err);
       });
 
   }
