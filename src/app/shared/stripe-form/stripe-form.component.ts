@@ -99,6 +99,7 @@ export class StripeFormComponent implements OnInit {
       })
       .catch(err => {
         console.error(err);
+        this.message.emit({type: 'fail', message: 'Payment Cancelled.'});
       });
 
   }
