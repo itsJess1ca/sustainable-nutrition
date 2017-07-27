@@ -32,6 +32,7 @@ export class ServiceComponent implements OnInit, OnDestroy {
     this.stripeForm.openCheckout();
   }
   handleCompleted(response) {
+    console.log('payment method response: ', response);
     this.payMessage = response;
     this.processingPayment = false;
   }
