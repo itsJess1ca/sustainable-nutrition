@@ -156,11 +156,11 @@ export class StripeFormComponent implements OnInit {
 
   resetFormValues() {
     this.card = new FormGroup({
-      number: new FormControl('4242 4242 4242 4242'),
-      exp_month: new FormControl('08'),
-      exp_year: new FormControl('18'),
-      cvc: new FormControl('123'),
-      receipt_email: new FormControl('fake-email@nowhere.land')
+      number: new FormControl(ENV === 'production' ? '' : '4242 4242 4242 4242'),
+      exp_month: new FormControl(ENV === 'production' ? '' : '08'),
+      exp_year: new FormControl(ENV === 'production' ? '' : '18'),
+      cvc: new FormControl(ENV === 'production' ? '' : '123'),
+      receipt_email: new FormControl(ENV === 'production' ? '' : 'fake-email@nowhere.land')
     });
   }
 
