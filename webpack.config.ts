@@ -10,7 +10,7 @@ import {
   USE_DEV_SERVER_PROXY, DEV_SERVER_PROXY_CONFIG, DEV_SERVER_WATCH_OPTIONS,
   DEV_SOURCE_MAPS, PROD_SOURCE_MAPS, STORE_DEV_TOOLS,
   MY_COPY_FOLDERS, MY_POLYFILL_DLLS, MY_VENDOR_DLLS, MY_CLIENT_PLUGINS, MY_CLIENT_PRODUCTION_PLUGINS,
-  MY_CLIENT_RULES, MY_SERVER_RULES, MY_SERVER_INCLUDE_CLIENT_PACKAGES, STRIPE_KEY
+  MY_CLIENT_RULES, MY_SERVER_RULES, MY_SERVER_INCLUDE_CLIENT_PACKAGES
 } from './constants';
 
 const {
@@ -70,7 +70,12 @@ const CONSTANTS = {
   PORT: PORT,
   STORE_DEV_TOOLS: JSON.stringify(STORE_DEV_TOOLS),
   UNIVERSAL: UNIVERSAL,
-  STRIPE_KEY: JSON.stringify(STRIPE_KEY)
+  STRIPE_KEY: PROD ?
+    JSON.stringify('pk_live_QeQMkPRJcxHbNRuxNOc7gogP') :
+    JSON.stringify('pk_test_WNst2izhZNt7KxujQyvYh4io'),
+  STRIPE_URL: PROD ?
+    JSON.stringify('https://0a9xs6tx04.execute-api.eu-west-1.amazonaws.com/production/create-charge') :
+    JSON.stringify('https://ssfii6hjsi.execute-api.eu-west-1.amazonaws.com/development/create-charge')
 };
 
 const DLL_VENDORS = [

@@ -31,6 +31,7 @@ export class StripeFormComponent implements OnInit {
   }
 
   openCheckout() {
+    console.log('Opening payment with api: ', this.api);
     const methods = {
       stripe: this.openStripeForm.bind(this),
       paymentRequest: this.usePaymentRequest.bind(this)
@@ -98,8 +99,12 @@ export class StripeFormComponent implements OnInit {
           });
       })
       .catch(err => {
-        console.error(err);
-        this.message.emit({type: 'fail', message: 'Payment Cancelled.'});
+        if (err.code === 9) {
+          this.openStripeForm();
+        } else {
+          console.error(err);
+          this.message.emit({type: 'fail', message: 'Payment Cancelled.'});
+        }
       });
 
   }
