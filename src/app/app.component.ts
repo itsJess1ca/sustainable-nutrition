@@ -45,6 +45,10 @@ export class AppComponent implements OnInit {
       console.log(`Preloaded ${posts.length} blog posts`);
     });
     PageScrollConfig.defaultDuration = 250;
+
+
+    console.log('Setting Stripe key to: ', STRIPE_KEY);
+    Stripe.setPublishableKey(STRIPE_KEY);
   }
   ngOnInit() {
     this.router.events.subscribe((event: NavigationEnd) => {
