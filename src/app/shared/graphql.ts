@@ -7,7 +7,7 @@ import { Post } from '../+blog/blog.component';
 @Injectable()
 export class GraphqlService {
   fetching: BehaviorSubject<boolean> = new BehaviorSubject(false);
-  apiUrl: string = 'https://svttum58sd.execute-api.eu-west-1.amazonaws.com/dev/graphql';
+  apiUrl: string = `${API_BASE_URL}/gql`;
   headers: Headers = new Headers({'Content-Type': 'application/json'});
   options: RequestOptions = new RequestOptions({headers: this.headers});
   _blog: Post[];

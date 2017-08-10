@@ -73,9 +73,9 @@ const CONSTANTS = {
   STRIPE_KEY: PROD ?
     JSON.stringify('pk_live_QeQMkPRJcxHbNRuxNOc7gogP') :
     JSON.stringify('pk_test_WNst2izhZNt7KxujQyvYh4io'),
-  STRIPE_URL: PROD ?
-    JSON.stringify('https://0a9xs6tx04.execute-api.eu-west-1.amazonaws.com/production/create-charge') :
-    JSON.stringify('https://ssfii6hjsi.execute-api.eu-west-1.amazonaws.com/development/create-charge')
+  API_BASE_URL: PROD ?
+    JSON.stringify('https://api.susnutrition.com') :
+    JSON.stringify('https://api-dev.susnutrition.com')
 };
 
 const DLL_VENDORS = [

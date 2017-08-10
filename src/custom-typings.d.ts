@@ -34,6 +34,7 @@ declare var System: SystemJS;
 declare var UNIVERSAL: boolean;
 declare var StripeCheckout: any;
 declare var PaymentRequest: any;
+declare var API_BASE_URL: string;
 declare module 'contentful' {
    export function createClient(options: any): ContentfulClient;
 }

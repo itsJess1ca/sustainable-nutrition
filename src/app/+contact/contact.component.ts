@@ -14,7 +14,7 @@ export class ContactComponent implements OnInit {
     name: '',
     from: '',
     message: '',
-    isDebug: true
+    isDebug: ENV !== 'production'
   };
 
   submitted = false;
@@ -31,7 +31,7 @@ export class ContactComponent implements OnInit {
     this.submitted = true;
     const headers = new Headers({ 'Content-Type': 'application/json'});
     const options = new RequestOptions({ headers: headers });
-    this.http.post('https://ojrat822va.execute-api.eu-west-1.amazonaws.com/dev/contact-form', this.model, options)
+    this.http.post(`${API_BASE_URL}/mailer/send`, this.model, options)
       .subscribe(() => {
         console.log('Contact message sent');
       });
