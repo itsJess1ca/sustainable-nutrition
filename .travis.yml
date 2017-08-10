@@ -33,7 +33,6 @@ before_script:
 - if [ "$TRAVIS_BRANCH" = "dev" ]; then npm run compile:dev; fi
 - if [ "$TRAVIS_BRANCH" = "staging" ]; then npm run compile:aot; fi
 - if [ "$TRAVIS_BRANCH" = "master" ]; then npm run compile:aot; fi
-- npm run compile:aot
 - ls
 script: npm run ci
 deploy:
