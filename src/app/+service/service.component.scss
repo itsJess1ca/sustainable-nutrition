@@ -31,9 +31,9 @@
   margin: 5px 0 20px;
 }
 #service-description {
-  padding: 0 25px;
   margin-right: 25px;
   flex: 2;
+  padding: 0 25px 50px;
   #service-description__title {
     font-family: $metropolis;
     font-weight: 900;
@@ -45,7 +45,6 @@
     font-family: $metropolis;
     font-weight: 400;
     color: rgba(0,0,0,0.87);
-    padding-bottom: 50px;
   }
 }
 #service-info {
@@ -72,15 +71,25 @@
   }
 }
 
-#display-cost {
-  font-family: $metropolis;
-  color: $sn-orange;
-  text-align: center;
-}
+
 #service-buy-container {
   display: flex;
 }
+#display-cost {
+  display: none;
+  &--mobile {
+    display: block;
+    font-family: $metropolis;
+    color: $sn-orange;
+    text-align: center;
+  }
+}
+
 #purchase-button {
+  display: none;
+}
+#purchase-button--mobile {
+  display: block;
   $button-width: 200px;
   $button-padding: 15px;
   margin: 0 auto;
@@ -93,7 +102,34 @@
     border-color: $disabledColor;
   }
 }
-
+@include respond-to(medium) {
+  #display-cost {
+     display: block;
+     font-family: $metropolis;
+     color: $sn-orange;
+     text-align: center;
+    &--mobile {
+      display: none;
+    }
+   }
+  #purchase-button {
+    display: block;
+    $button-width: 200px;
+    $button-padding: 15px;
+    margin: 0 auto;
+    width: 200px;
+    padding: 15px;
+    cursor: pointer;
+    &[disabled] {
+      $disabledColor: rgba(0,0,0,0.75);
+      color: $disabledColor;
+      border-color: $disabledColor;
+    }
+    &--mobile {
+      display: none;
+    }
+  }
+}
 #pay-response {
   background-color: rgba(red, 0.2);
   width: 100%;
