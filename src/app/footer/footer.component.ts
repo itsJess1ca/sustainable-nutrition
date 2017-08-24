@@ -12,7 +12,7 @@ export class FooterComponent implements OnInit {
   socialMedia: any[] = [
     {
       name: 'facebook',
-      destination: ''
+      destination: 'https://www.facebook.com/SustainableNutrition'
     },
     {
       name: 'twitter',
@@ -20,7 +20,7 @@ export class FooterComponent implements OnInit {
     },
     {
       name: 'instagram',
-      destination: ''
+      destination: 'https://www.instagram.com/susnutrition/'
     },
   ];
 
