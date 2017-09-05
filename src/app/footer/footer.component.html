@@ -18,7 +18,9 @@
     <div id="copyright">© Copyright Sustainable Nutrition 2016</div>
   </div>
   <section id="social-buttons">
-    <a *ngFor="let icon of socialMedia" href="{{icon.destination}}" target="_blank"><i class="sn-social-icon icon-{{icon.name}}"></i></a>
+    <ng-container *ngFor="let icon of socialMedia" >
+      <a *ngIf="icon.destination" href="{{icon.destination}}" target="_blank"><i class="sn-social-icon icon-{{icon.name}}"></i></a>
+    </ng-container>
   </section>
 
 </section>
