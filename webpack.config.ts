@@ -279,7 +279,7 @@ const clientConfig = function webpackConfig(): WebpackConfig {
     historyApiFallback: {
       disableDotRule: true,
     },
-    host: '0.0.0.0',
+    host: 'dev.susnutrition.com',
     watchOptions: DEV_SERVER_WATCH_OPTIONS,
     https: true,
     disableHostCheck: true

@@ -16,7 +16,7 @@
       <textarea name="message" id="message" required [(ngModel)]="model.message"></textarea>
     </div>
 
-    <button type="submit" class="form-submit-btn btn-success" [disabled]="!contactForm.form.valid">Submit</button>
+    <button type="submit" class="form-submit-btn btn-success" [disabled]="!contactForm.form.valid || sent || sending">{{sending ? 'SENDING' : sent ? 'SENT' : 'SUBMIT'}}</button>
   </form>
 
   <section id="contact-number">
