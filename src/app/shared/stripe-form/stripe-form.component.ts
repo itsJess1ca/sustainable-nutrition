@@ -113,6 +113,7 @@ export class StripeFormComponent implements OnInit {
     this.stripeButtonActive = false;
     this.purchase.receipt_email = card.receipt_email;
     delete card.receipt_email;
+    delete card.receipt_email;
     this.handlePayment(card).subscribe(response => {
       if (response.statusCode === 200) {
         this.stripeButtonMessage = 'Thank you.';
@@ -120,7 +121,7 @@ export class StripeFormComponent implements OnInit {
         this.closePayWindow({preventDefault: () => {}});
       } else {
         this.resetStripeButton();
-        this.message.emit({type: 'success', message: 'Payment failed'});
+        this.message.emit({type: 'fail', message: 'Payment failed'});
       }
     });
   }
