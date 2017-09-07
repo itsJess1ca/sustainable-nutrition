@@ -115,7 +115,8 @@ export class StripeFormComponent implements OnInit {
     delete card.receipt_email;
     delete card.receipt_email;
     this.handlePayment(card).subscribe(response => {
-      if (response.statusCode === 200) {
+      console.log('response', response);
+      if (response.status === 'succeeded') {
         this.stripeButtonMessage = 'Thank you.';
         this.message.emit({type: 'success', message: 'Thank you for your purchase'});
         this.closePayWindow({preventDefault: () => {}});
