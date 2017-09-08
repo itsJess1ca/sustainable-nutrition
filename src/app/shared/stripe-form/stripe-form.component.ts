@@ -1,5 +1,4 @@
-import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { Component, OnInit, Input, EventEmitter, Output, AfterViewInit, ViewChild } from '@angular/core';
 import { StripeService, StripePurchase, StripeCard } from '../stripe.service';
 import { NotificationsService } from 'angular2-notifications';
 import { Observable } from 'rxjs';
@@ -10,7 +9,7 @@ import 'rxjs/add/operator/switchMap';
   templateUrl: 'stripe-form.component.html',
   styleUrls: ['stripe-form.component.css']
 })
-export class StripeFormComponent implements OnInit {
+export class StripeFormComponent implements OnInit, AfterViewInit {
   stripeFormVisible: boolean = false;
   @Input() purchase: StripePurchase;
   @Output() message: EventEmitter<PayMessage> = new EventEmitter<PayMessage>();
@@ -18,10 +17,19 @@ export class StripeFormComponent implements OnInit {
   inlineMessage: string;
   api: 'stripe' | 'paymentRequest' = (<any>window).PaymentRequest ? 'paymentRequest' : 'stripe';
 
-  stripeButtonActive: boolean = true;
+  receiptEmail: string = '';
+
+  stripeButtonActive: boolean = false;
   stripeButtonMessage: string = 'Submit Payment';
 
-  card: FormGroup;
+  card: StripeCard = {
+    cvc: '',
+    exp_month: '',
+    exp_year: '',
+    number: ''
+  };
+  tokenizedCard: string;
+  elements = (<any>window).stripe.elements();
 
   constructor(private stripe: StripeService,
               private notifications: NotificationsService) { }
@@ -29,9 +37,54 @@ export class StripeFormComponent implements OnInit {
   ngOnInit() {
     this.resetFormValues();
   }
+  ngAfterViewInit() {
+    this.configureStripeForm();
+  }
+
+  configureStripeForm() {
+    const cardNumber = this.elements.create('cardNumber', {
+      classes: {
+        base: 'form-input__field card-number'
+      }
+    });
+    const cardExpiration = this.elements.create('cardExpiry', {
+      classes: {
+        base: 'form-input__field card-expiry'
+      }
+    });
+    const cardCvc = this.elements.create('cardCvc', {
+      classes: {
+        base: 'form-input__field card-cvc'
+      }
+    });
+
+    const setOutcome = (result) => {
+      console.log('result', result);
+      console.log('receiptEmail:', this.receiptEmail);
+
+      if (result.token) {
+        this.tokenizedCard = result.token.id;
+        this.stripeButtonActive = true;
+      } else if (result.error) {
+        this.stripeButtonActive = false;
+        console.error(result.error);
+      } else {
+        (window as any).stripe.createToken(cardNumber, {
+          receipt_email: this.receiptEmail
+        }).then(setOutcome);
+      }
+    };
+
+    cardNumber.addEventListener('change', setOutcome);
+    cardExpiration.addEventListener('change', setOutcome);
+    cardCvc.addEventListener('change', setOutcome);
+    cardNumber.mount('#card-number');
+    cardExpiration.mount('#card-expiration');
+    cardCvc.mount('#card-cvc');
+  }
 
   openCheckout() {
-    console.log('Opening payment with api: ', this.api);
+    console.log('Opening payment with api:', this.api);
     const methods = {
       stripe: this.openStripeForm.bind(this),
       paymentRequest: this.usePaymentRequest.bind(this)
@@ -86,7 +139,8 @@ export class StripeFormComponent implements OnInit {
           cvc: paymentResponse.details.cardSecurityCode,
           number: paymentResponse.details.cardNumber
         };
-        this.handlePayment(card)
+        this.stripe.getToken(card)
+          .switchMap((token) => this.handlePayment(token.id))
           .subscribe(response => {
             if (response.statusCode === 200) {
               paymentResponse.complete('success').then(() => {
@@ -109,12 +163,12 @@ export class StripeFormComponent implements OnInit {
 
   }
 
-  submitStripePayment(card: any = this.card.value) {
+  submitStripePayment(card: any = this.card) {
     this.stripeButtonActive = false;
     this.purchase.receipt_email = card.receipt_email;
     delete card.receipt_email;
-    delete card.receipt_email;
-    this.handlePayment(card).subscribe(response => {
+    this.handlePayment(card)
+      .subscribe(response => {
       console.log('response', response);
       if (response.status === 'succeeded') {
         this.stripeButtonMessage = 'Thank you.';
@@ -127,11 +181,10 @@ export class StripeFormComponent implements OnInit {
     });
   }
 
-  handlePayment(card: StripeCard) {
-    console.log(`Handle payment for ${this.purchase.productName}`, card);
+  handlePayment(stripeToken: string) {
+    console.log(`Handle payment for ${this.purchase.productName}`, stripeToken);
 
-    return this.stripe
-      .getToken(card)
+    return Observable.of(stripeToken)
       .switchMap((token) => {
         console.log('Got Charge token', token);
         this.stripeButtonMessage = 'Card Confirmed.';
@@ -139,7 +192,7 @@ export class StripeFormComponent implements OnInit {
           this.stripeButtonMessage = 'Processing...';
         }, 500);
         this.stripeButtonActive = false;
-        this.purchase.stripeToken = token.id;
+        this.purchase.stripeToken = token;
         return this.stripe.requestCharge(this.purchase);
       })
       .map(response => response.json())
@@ -157,13 +210,13 @@ export class StripeFormComponent implements OnInit {
   }
 
   resetFormValues() {
-    this.card = new FormGroup({
-      number: new FormControl(ENV === 'production' ? '' : '4242 4242 4242 4242'),
-      exp_month: new FormControl(ENV === 'production' ? '' : '08'),
-      exp_year: new FormControl(ENV === 'production' ? '' : '18'),
-      cvc: new FormControl(ENV === 'production' ? '' : '123'),
-      receipt_email: new FormControl(ENV === 'production' ? '' : 'fake-email@nowhere.land')
-    });
+    this.card = {
+      number: ENV === 'production' ? '' : '4242 4242 4242 4242',
+      exp_month: ENV === 'production' ? '' : '08',
+      exp_year: ENV === 'production' ? '' : '18',
+      cvc: ENV === 'production' ? '' : '123',
+      receipt_email: ENV === 'production' ? '' : 'fake-email@nowhere.land'
+    };
   }
 
   resetStripeButton() {

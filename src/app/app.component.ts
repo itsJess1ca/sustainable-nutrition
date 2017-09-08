@@ -48,7 +48,7 @@ export class AppComponent implements OnInit {
 
 
     console.log('Setting Stripe key to: ', STRIPE_KEY);
-    Stripe.setPublishableKey(STRIPE_KEY);
+    (window as any).stripe = (window as any).Stripe(STRIPE_KEY);
   }
   ngOnInit() {
     this.router.events.subscribe((event: NavigationEnd) => {

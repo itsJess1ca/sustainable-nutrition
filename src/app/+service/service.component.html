@@ -1,3 +1,10 @@
+<sn-stripe-form
+  #stripeForm
+  [purchase]="{productName: service.title, productPrice: service.cost}"
+  (message)="handleCompleted($event)"
+  (closed)="processingPayment = false"
+></sn-stripe-form>
+
 <sn-page-title [title]="service.title"></sn-page-title>
 
 <a id="backToServices" [routerLink]="['/services']">Back to services</a>
@@ -9,12 +16,6 @@
     <h1 id="display-cost--mobile">£{{service.cost}}</h1>
     <div id="service-buy-container--mobile">
       <a bordered-header class="orange" id="purchase-button--mobile" (click)="processingPayment ? 0 : openStripeForm()">Purchase</a>
-      <sn-stripe-form
-        #stripeForm
-        [purchase]="{productName: service.title, productPrice: service.cost}"
-        (message)="handleCompleted($event)"
-        (closed)="processingPayment = false"
-      ></sn-stripe-form>
     </div>
   </div>
   <div id="service-info">
@@ -24,12 +25,6 @@
     <h1 id="display-cost">£{{service.cost}}</h1>
     <div id="service-buy-container">
       <a bordered-header class="orange" id="purchase-button" (click)="processingPayment ? 0 : openStripeForm()">Purchase</a>
-      <sn-stripe-form
-        #stripeForm
-        [purchase]="{productName: service.title, productPrice: service.cost}"
-        (message)="handleCompleted($event)"
-        (closed)="processingPayment = false"
-      ></sn-stripe-form>
     </div>
   </div>
 </section>

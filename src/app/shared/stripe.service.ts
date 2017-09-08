@@ -8,17 +8,16 @@ export class StripeService {
 
   getToken(card: StripeCard): Observable<StripeTokenResponse> {
     return Observable.create((observer: Observer<any>) => {
-      (<any>window).Stripe.card.createToken(card,
-        (status: number, response: any) => {
-          this.zone.run(() => {
-            if (status === 200) {
-              observer.next(response);
-            } else {
-              observer.error(response.error);
-            }
-            observer.complete();
-          });
+      (<any>window).stripe.createToken(card).then(result => {
+        this.zone.run(() => {
+          if (result.error) {
+            observer.error(result.error);
+          } else {
+            observer.next(result.token);
+          }
+          observer.complete();
         });
+      });
     });
   }
 
@@ -39,4 +38,5 @@ export interface StripeCard {
   exp_month: string;
   exp_year: string;
   cvc: string;
+  receipt_email?: string;
 }
