@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, EventEmitter, Output, AfterViewInit, ViewChild } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output, AfterViewInit } from '@angular/core';
 import { StripeService, StripePurchase, StripeCard } from '../stripe.service';
 import { NotificationsService } from 'angular2-notifications';
 import { Observable } from 'rxjs';
