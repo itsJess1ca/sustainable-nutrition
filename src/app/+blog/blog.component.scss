@@ -35,6 +35,9 @@
     opacity: 0;
     transition: opacity 250ms ease-in-out;
   }
+  .blog--date--social {
+    margin-bottom: 5px;
+  }
   .blog--date--social, .blog--title, .blog--desc {
     position: relative;
     z-index: 1;
@@ -42,20 +45,22 @@
   .blog--date, .blog--title, .blog--desc {
     transition: color 250ms ease-in-out;
   }
-  &:hover, &:focus {
-    &:after {
-      opacity: 1;
-    }
-    .blog--date, .blog--title, .blog--desc {
-      color: white;
+  @include respond-to(medium) {
+    &:hover, &:focus {
+      &:after {
+        opacity: 1;
+      }
+      .blog--date, .blog--title, .blog--desc {
+        color: white;
 
-    }
-    .blog--social {
-      display: flex;
-    }
+      }
+      .blog--social {
+        display: flex;
+      }
 
-    .blog--arrow {
-      display: block;
+      .blog--arrow {
+        display: block;
+      }
     }
   }
 }
@@ -80,10 +85,13 @@
 .blog--title {
   font-family: $metropolis;
   font-weight: 900;
-  line-height: 1em;
+  line-height: 0.7em;
   font-variant: all-small-caps;
   font-size: 2em;
   color: $sn-orange;
+  @include respond-to(medium) {
+    line-height: 1em;
+  }
 }
 
 .blog--desc {

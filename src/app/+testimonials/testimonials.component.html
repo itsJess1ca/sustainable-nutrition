@@ -1,1 +1,8 @@
 <sn-page-title [title]="'Testimonials'"></sn-page-title>
+
+<section id="page-content">
+  <sn-testimonial
+    [testimonial]="testimonial"
+    *ngFor="let testimonial of testimonials; trackBy: testimonialTrackBy"
+  ></sn-testimonial>
+</section>

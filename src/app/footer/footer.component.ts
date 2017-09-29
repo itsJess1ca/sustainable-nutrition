@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ContentfulService } from '../shared/contentful.service';
 
 @Component({
   selector: 'sn-footer',
@@ -6,12 +7,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./footer.component.css']
 })
 export class FooterComponent implements OnInit {
-
+  contactEmail: Promise<string> = this.contentful.getEntry('3QsrPP2GqIUo82ecuey880').map((data: any) => data.fields.supportEmailAddress).toPromise();
   // todo: Add destinations for social media
   socialMedia: any[] = [
     {
       name: 'facebook',
-      destination: ''
+      destination: 'https://www.facebook.com/SustainableNutrition'
     },
     {
       name: 'twitter',
@@ -19,11 +20,11 @@ export class FooterComponent implements OnInit {
     },
     {
       name: 'instagram',
-      destination: ''
+      destination: 'https://www.instagram.com/susnutrition/'
     },
   ];
 
-  constructor() { }
+  constructor(private contentful: ContentfulService) { }
 
   ngOnInit() {
   }

@@ -1,12 +1,20 @@
 <section id="coach-images">
-  <div id="james" [ngClass]="{inactive: activeCoach !== 'james', active: activeCoach === 'james'}" (click)="switchCoachTo('james')"></div>
-  <div id="clare" [ngClass]="{inactive: activeCoach !== 'clare', active: activeCoach === 'clare'}" (click)="switchCoachTo('clare')"></div>
+  <div id="james" [ngClass]="{inactive: activeCoach !== 'james', active: activeCoach === 'james'}"></div>
+  <div id="clare" [ngClass]="{inactive: activeCoach !== 'clare', active: activeCoach === 'clare'}"></div>
 </section>
 <section id="coach-details">
   <div id="content">
     <h1 id="title">OUR COACHES</h1>
-    <span id="coachName" bordered-header [routerLink]="['coaches']">{{coach?.firstName | uppercase}} {{coach?.lastName | uppercase}}</span>
+    <ng-container *ngIf="activeCoach === 'james'">
+      <span class="coachName active" bordered-header [routerLink]="['coaches']">JAMES LOWE</span>
+      <span class="coachName" bordered-header [hoverEffect]="false" (click)="switchCoachTo('clare')">CLARE MILLER</span>
+    </ng-container>
+    <ng-container *ngIf="activeCoach === 'clare'">
+      <span class="coachName" bordered-header [hoverEffect]="false" (click)="switchCoachTo('james')">JAMES LOWE</span>
+      <span class="coachName active" bordered-header [routerLink]="['coaches']">CLARE MILLER</span>
+    </ng-container>
     <div id="coach-description" [innerHTML]="coach?.shortDescription"></div>
     <a href="#" id="more-info" [routerLink]="['coaches']">More Info</a>
   </div>
 </section>
+

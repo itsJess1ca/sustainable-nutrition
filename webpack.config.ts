@@ -69,7 +69,13 @@ const CONSTANTS = {
   HOST: JSON.stringify(HOST),
   PORT: PORT,
   STORE_DEV_TOOLS: JSON.stringify(STORE_DEV_TOOLS),
-  UNIVERSAL: UNIVERSAL
+  UNIVERSAL: UNIVERSAL,
+  STRIPE_KEY: PROD ?
+    JSON.stringify('pk_live_QeQMkPRJcxHbNRuxNOc7gogP') :
+    JSON.stringify('pk_test_WNst2izhZNt7KxujQyvYh4io'),
+  API_BASE_URL: PROD ?
+    JSON.stringify('https://api.susnutrition.com') :
+    JSON.stringify('https://api-dev.susnutrition.com')
 };
 
 const DLL_VENDORS = [
@@ -104,7 +110,7 @@ if (!DEV_SERVER) {
 }
 
 const commonConfig = function webpackConfig(): WebpackConfig {
-  let config: WebpackConfig = Object.assign({});
+  let config: WebpackConfig = {};
 
   config.module = {
     rules: [
@@ -202,7 +208,7 @@ const commonConfig = function webpackConfig(): WebpackConfig {
 // type definition for WebpackConfig at the bottom
 const clientConfig = function webpackConfig(): WebpackConfig {
 
-  let config: WebpackConfig = Object.assign({});
+  let config: WebpackConfig = {};
 
   config.cache = true;
   PROD ? config.devtool = PROD_SOURCE_MAPS : config.devtool = DEV_SOURCE_MAPS;
@@ -273,15 +279,14 @@ const clientConfig = function webpackConfig(): WebpackConfig {
     historyApiFallback: {
       disableDotRule: true,
     },
-    host: '0.0.0.0',
+    host: 'dev.susnutrition.com',
     watchOptions: DEV_SERVER_WATCH_OPTIONS,
-    https: true
+    https: true,
+    disableHostCheck: true
   };
 
   if (USE_DEV_SERVER_PROXY) {
-    Object.assign(config.devServer, {
-      proxy: DEV_SERVER_PROXY_CONFIG
-    });
+    config.devServer['proxy'] = DEV_SERVER_PROXY_CONFIG
   }
 
   config.node = {

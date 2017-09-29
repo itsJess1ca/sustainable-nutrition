@@ -4,13 +4,11 @@
   flex-flow: column nowrap;
   flex: 1;
   width: 100%;
+  align-items: center;
 }
 
 #page-content {
-  padding: 0 $gutterMobile;
-  @include respond-to(large) {
-    padding: 0 $gutterDesktop;
-  }
+  width: 99vw;
 }
 
 #page-description, #page-description /deep/ p {

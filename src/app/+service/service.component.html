@@ -1,23 +1,30 @@
+<sn-stripe-form
+  #stripeForm
+  [purchase]="{productName: service.title, productPrice: service.cost}"
+  (message)="handleCompleted($event)"
+  (closed)="processingPayment = false"
+></sn-stripe-form>
+
 <sn-page-title [title]="service.title"></sn-page-title>
 
+<a id="backToServices" [routerLink]="['/services']">Back to services</a>
 <section id="service-content">
-  <div id="pay-response" *ngIf="payMessage" [ngClass]="{success: payMessage.type === 'success'}">{{payMessage.message}}</div>
   <div id="service-description">
+    <div id="pay-response" *ngIf="payMessage" [ngClass]="{success: payMessage.type === 'success'}">{{payMessage.message}}</div>
     <h3 id="service-description__title">Service Details:</h3>
-    <hr id="service-divider">
     <div id="service-description__content" [innerHTML]="service.description"></div>
+    <h1 id="display-cost--mobile">£{{service.cost}}</h1>
+    <div id="service-buy-container--mobile">
+      <a bordered-header class="orange" id="purchase-button--mobile" (click)="processingPayment ? 0 : openStripeForm()">Purchase</a>
+    </div>
   </div>
   <div id="service-info">
     <div id="service-image-container">
       <img id="service-image" src="{{service.image.url}}" alt="Image for service {{service.title}}">
     </div>
+    <h1 id="display-cost">£{{service.cost}}</h1>
     <div id="service-buy-container">
-      <a bordered-header class="orange" id="purchase-button" (click)="stripeForm.openCheckout()">Purchase</a>
-      <sn-stripe-form
-        #stripeForm
-        [purchase]="{productName: service.title, productPrice: service.cost}"
-        (message)="payMessage = $event"
-      ></sn-stripe-form>
+      <a bordered-header class="orange" id="purchase-button" (click)="processingPayment ? 0 : openStripeForm()">Purchase</a>
     </div>
   </div>
 </section>

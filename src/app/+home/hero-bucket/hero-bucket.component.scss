@@ -3,7 +3,7 @@
   padding: 20px $gutterMobile 0;
   flex: 1;
   //min-height: calc(100vh - 10px);
-  background: #ffa914 url('../../../assets/img/buckets/home-hero/home-hero--mobile.jpg') no-repeat left bottom;
+  background: #ffa914 url('../../../assets/img/buckets/home-hero/home-hero--mobilev2.jpg') no-repeat left bottom;
   background-size: cover;
   display: flex;
   flex-flow: row nowrap;
@@ -13,8 +13,10 @@
   color: white;
   position: relative;
   z-index: 0;
+  height: calc(100vh - 200px);
 
   @include respond-to(medium) {
+    max-height: inherit;
     background-image: url('../../../assets/img/buckets/home-hero/background.jpg');
   }
   @include respond-to(large) {
@@ -89,7 +91,7 @@
   font-size: 1em;
   position: relative;
   z-index: 1;
-  height: 300px;
+  height: 60%;
 
   #title {
     font-size: 2em;
@@ -131,7 +133,7 @@
     letter-spacing: 5px;
     padding-bottom: 10px;
     font-family: $antonio;
-    font-size: 0.74em;
+    font-size: 1.3em;
     display: block;
     width: 100%;
     text-align: right;

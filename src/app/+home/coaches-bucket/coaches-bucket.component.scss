@@ -8,7 +8,8 @@
   position: relative;
   min-height: 600px;
   flex-flow: row wrap;
-  @include respond-to(medium) {
+  overflow: hidden;
+  @include respond-to(large) {
     flex-flow: row nowrap;
     justify-content: space-between;
   }
@@ -20,96 +21,108 @@
   position: relative;
   @include patterned-linear-gradient($sn-yellow, 180deg, $sn-yellow 0%, $sn-yellow 15%, #409b42 65%);
   overflow: hidden;
-  -webkit-mask: url('../../../assets/img/curved-shape.svg');
-  -webkit-mask-repeat: no-repeat;
-  -webkit-mask-position-x: 0;
+  min-width: 525px;
 
-  @include respond-to(medium) {
+  @include respond-to(large) {
     flex: 1;
     width: auto;
     max-height: 100%;
   }
 
-  #james {
-    height: 580px;
-    width: 60%;
-    max-width: 100vw;
-    background: url('../../../assets/img/james.jpg') no-repeat -.5% 0;
-    -webkit-mask-image: url('../../../assets/img/james_clip.png');
-    mask-image: url('../../../assets/img/james_clip.png');
-    -webkit-mask-position: 0 1px;
-    mask-position: 0 1px;
-    -webkit-mask-size: 99.9%;
-    position: absolute;
-    background-size: 200%;
-    z-index: 2;
-
-    @include respond-to(medium) {
-      width: calc(779px / 2);
-      bottom: -35px;
-      left: -30px;
-    }
-  }
-  #clare {
-    height: 580px;
-    width: 60%;
-    max-width: 100vw;
-    background: url('../../../assets/img/clare.jpg') no-repeat 0 0;
-    background-size: 200%;
-    -webkit-mask-image: url('../../../assets/img/clare_clip.png');
-    mask-image: url('../../../assets/img/clare_clip.png');
-    -webkit-mask-position: 0 0;
-    -webkit-mask-size: 100%;
-    mask-position: 0 0;
-
-    position: absolute;
-    left: calc(779px/6);
-    top: 8%;
-
-    @include respond-to(medium) {
-      width: calc(779px / 2);
-      top: auto;
-      bottom: -75px;
-      left: calc(779px/4);
-    }
-  }
   #james.inactive {
     background-position-x: 100%;
   }
   #clare.inactive {
     background-position-x: 100%;
   }
-  #james.inactive:hover {
-    background-position-x: -.5%;
-    cursor: pointer;
+  #james {
+    height: 290px;
+    left: 0px;
+    width: 216px;
+    max-width: 100vw;
+    background: url('../../../assets/img/james-sprite.png') no-repeat;
+    position: absolute;
+    background-size: 435px 307px;
+
+    z-index: 2;
+
+    @include respond-to(large) {
+      &.inactive {
+        background-position-x: -386px;
+      }
+      background-size: 776px;
+      width: calc(779px / 2);
+      bottom: -35px;
+      left: -30px;
+      height: 535px;
+    }
   }
-  #clare.inactive:hover {
-    background-position-x: 0;
-    cursor: pointer;
+  #clare {
+    height: 290px;
+    width: 216px;
+    max-width: 100vw;
+    background: url('../../../assets/img/clare-sprite.png') no-repeat 0 0;
+    background-size: 435px 300px;
+
+    position: absolute;
+    left: 129px;
+    top: 8%;
+
+    @include respond-to(large) {
+      &.inactive {
+        background-position-x: 100%;
+      }
+      top: auto;
+      background-size: 776px;
+      width: calc(779px / 2);
+      bottom: -75px;
+      left: calc(779px/4);
+      height: 562px;
+    }
   }
 }
 
 #coach-details {
   position: relative;
   z-index: 5;
-  flex: 1;
+  flex: 2;
   background: $sn-green;
   padding: 20px $gutterMobile;
   font-size: 1em;
+  #content {
+    margin-top: 50px;
+    margin-left: 50px;
+  }
   #coach-description {
     max-width: 600px;
-    font-size: 0.5em;
     line-height: 1.2em;
+    margin-top: 25px;
   }
-  #coachName {
+  .coachName {
     font-size: 1.3em;
     line-height: 1em;
     cursor: pointer;
     margin-bottom: 10px;
+    opacity: 0.5;
+    &:hover {
+      opacity: 0.75;
+    }
+    &.active {
+      opacity: 1;
+    }
   }
   #title {
-    font-size: 1.2em;
-    line-height: 1em;
+    font-family: $metropolis;
+    font-weight: 900;
+    font-size: 1.5em;
+    letter-spacing: 0.2em;
+  }
+}
+
+#jamesClip-path {
+  transform: scale(0.88) translate(-53px, -38px);
+  @include respond-to(large) {
+    transform: translate(-24.1px, -10px);
   }
 }
 

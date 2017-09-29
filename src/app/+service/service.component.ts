@@ -1,7 +1,7 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Service } from '../shared/contentful.service';
-import { PayMessage } from '../shared/stripe-form/stripe-form.component';
+import { PayMessage, StripeFormComponent } from '../shared/stripe-form/stripe-form.component';
 @Component({
   selector: 'sn-service-page',
   templateUrl: 'service.component.html',
@@ -10,6 +10,8 @@ import { PayMessage } from '../shared/stripe-form/stripe-form.component';
 export class ServiceComponent implements OnInit, OnDestroy {
   service: Service;
   payMessage: PayMessage;
+  processingPayment: boolean = false;
+  @ViewChild('stripeForm') stripeForm: StripeFormComponent;
 
   constructor(private route: ActivatedRoute) {
 
@@ -23,5 +25,15 @@ export class ServiceComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
 
+  }
+
+  openStripeForm() {
+    this.processingPayment = true;
+    this.stripeForm.openCheckout();
+  }
+  handleCompleted(response) {
+    console.log('payment method response: ', response);
+    this.payMessage = response;
+    this.processingPayment = false;
   }
 }

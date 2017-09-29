@@ -8,22 +8,21 @@ export class StripeService {
 
   getToken(card: StripeCard): Observable<StripeTokenResponse> {
     return Observable.create((observer: Observer<any>) => {
-      (<any>window).Stripe.card.createToken(card,
-        (status: number, response: any) => {
-          this.zone.run(() => {
-            if (status === 200) {
-              observer.next(response);
-            } else {
-              observer.error(response.error);
-            }
-            observer.complete();
-          });
+      (<any>window).stripe.createToken(card).then(result => {
+        this.zone.run(() => {
+          if (result.error) {
+            observer.error(result.error);
+          } else {
+            observer.next(result.token);
+          }
+          observer.complete();
         });
+      });
     });
   }
 
   requestCharge(purchase: StripePurchase) {
-    return this.http.post('https://bzv2kepqhi.execute-api.eu-west-1.amazonaws.com/dev/create-charge', purchase);
+    return this.http.post(`${API_BASE_URL}/stripe/create-charge`, purchase);
   }
 }
 
@@ -39,4 +38,5 @@ export interface StripeCard {
   exp_month: string;
   exp_year: string;
   cvc: string;
+  receipt_email?: string;
 }

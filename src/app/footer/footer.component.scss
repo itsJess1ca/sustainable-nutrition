@@ -2,7 +2,7 @@
 
 :host {
   min-height: $footerHeight - 20;
-  font-size: 1.2em;
+  font-size: 0.6rem;
   //max-height: $footerHeight;
   background-color: $sn-accent;
   display: flex;
@@ -15,15 +15,26 @@
   }
 }
 
+#left-side {
+  display: flex;
+  flex-flow: column nowrap;
+}
+
 #main-content {
   display: flex;
   flex: 1;
   flex-flow: column nowrap;
+  margin-top: 20px;
   justify-content: space-around;
-  font-size: 1.2em;
+  @include respond-to(medium) {
+    margin-top: 0;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: space-between;
+  }
+  font-size: 1.1em;
   position: relative;
   #contact-info {
-    margin-top: 20px;
     display: block;
     order: -5;
     @include respond-to(medium) {
@@ -33,13 +44,18 @@
   }
   .contact-tel, .contact-email {
     display: flex;
-    flex-flow: row nowrap;
+    align-items:center;
+    flex-flow: row;
   }
+}
+.contact-tel {
+  margin-bottom: 5px;
 }
 
 .contact-container {
   margin-right: 10px;
   height: 1.5em;
+  padding: 5px 0;
   a {
     text-decoration: none;
     color: currentColor;
@@ -56,7 +72,7 @@
 
   .contact-content {
     font-size: 1em;
-    line-height: 26px;
+    line-height: 15px;
     a {
       text-decoration: underline;
     }
@@ -82,26 +98,26 @@
   color: white;
   font-family: $metropolis;
   font-weight: 500;
+  //white-space: nowrap;
+  font-size: 0.8em;
+  a {
+    white-space: nowrap;
+  }
+  @include respond-to(medium) {
+    font-size: 1em;
+  }
 }
 
 #copyright {
-  order: 5;
-  font-size: 1em;
+  font-size: 0.8em;
   font-family: $roboto;
 }
 
 #social-buttons {
-  align-self: flex-start;
   padding: 10px 0;
-  @include respond-to(medium) {
-    align-self: flex-end;
-    position: absolute;
-    top: 5px;
-  }
   $icon-size: 36px;
   height: $icon-size;
   color: white;
-  order: -3;
 
   a {
     color: white;

@@ -5,6 +5,7 @@
   flex: 1;
   width: 100%;
   align-items: center;
+  padding-bottom: 20px;
 }
 
 #page-content {
@@ -17,9 +18,9 @@
   }
 }
 #page-description-header, #page-description {
-  @include respond-to(large) {
-    max-width: 900px;
-  }
+  max-width: 960px;
+  width: 100%;
+  text-align: left;
 }
 #page-description-header {
   /deep/ p {
@@ -38,12 +39,7 @@
 
 #page-description, #page-description /deep/ p {
   font-family: $metropolis;
-  font-weight: 900;
-  line-height: 1em;
-  font-variant: all-small-caps;
+  font-weight: 500;
   font-size: 1em;
   color: rgba(0,0,0,0.4);
-  @include respond-to(medium) {
-    font-size: 1.25em;
-  }
 }

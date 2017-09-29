@@ -6,6 +6,7 @@ import { ServicesResolver } from './+services/services.resolver';
 import { ContactPageResolver } from './+contact/contact.resolver';
 import { BlogResolver } from './+blog/blog.resolver';
 import { GraphqlService } from './shared/graphql';
+import { NotificationsService } from 'angular2-notifications';
 
 export const APP_PROVIDERS = [
   GraphqlService,
@@ -14,6 +15,7 @@ export const APP_PROVIDERS = [
   ServicesResolver,
   ContactPageResolver,
   ContentfulService,
+  NotificationsService,
   WindowSize,
   Marked
 ];

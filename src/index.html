@@ -2,6 +2,12 @@
 <html>
 <head>
 	<title>Sustainable Nutrition</title>
+
+	<meta name="description" content="
+	At Sustainable Nutrition, we offer a way of living, not just dieting.
+	Our methods are easy to implement, they will change the way you view your food forever.
+	They will help you achieve your long term goals, whether it be weight loss, gain or just having more energy to get through the day.
+	Find out how">
 	<meta http-equiv="x-ua-compatible" content="ie=edge">
 	<meta charset='utf-8'>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
@@ -46,16 +52,13 @@
 	<script src="sw-install.js"></script>
 	<script>
 		if ('serviceWorker' in navigator) {
-		  installServiceWorker();
+		  // installServiceWorker();
 		}
 	</script>
 	<script type="text/javascript" src="hammer.min.js"></script>
 	<script type="text/javascript" src="modernizer-touch-events.min.js"></script>
 	<script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=console.*,Intl.~locale.en&gated=1"></script>
-	<script type="text/javascript" src="https://js.stripe.com/v2/"></script>
-	<script type="text/javascript">
-    Stripe.setPublishableKey('pk_test_4spoIPk72A3xSHPSI4z7yLJV');
-	</script>
+	<script type="text/javascript" src="https://js.stripe.com/v3/"></script>
 	<script async src="https://storage.googleapis.com/prshim/v1/payment-shim.js"></script>
 	<div id="str-dlls">
 		<%= '<' %>script src="/polyfill.dll.js"<%= '>' %><%= '<' %>/script<%= '>' %>

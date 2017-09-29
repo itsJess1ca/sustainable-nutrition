@@ -1,5 +1,6 @@
 @import '../../variables';
 
+
 #stripeForm {
   position: fixed;
   top: 0;
@@ -10,11 +11,26 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  transform: translateY(-1000px);
+  transition: transform 0.25s ease-out;
   #background {
     height: 100%;
     width: 100%;
     position: absolute;
     background-color: rgba(0,0,0,0.4);
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0;
+    transition: opacity 0.25s ease-out;
+    transition-delay: 0.25s;
+  }
+  &.visible {
+    transform: translateY(0);
+    #background {
+      opacity: 1;
+    }
   }
 }
 
@@ -77,6 +93,7 @@
 .form-row {
   align-self: flex-start;
   margin: 5px 0;
+  width: 100%;
   .form-input__label {
     font-family: $metropolis;
     font-weight: 600;
@@ -96,8 +113,22 @@
   .contact-email, .card-number {
     width: 90%;
   }
+  .card-expiry {
+    width: 60px;
+  }
+  .card-cvc {
+    width: 35px;
+  }
 }
-
+.StripeElement {
+  background-color: white;
+  padding: 8px 12px;
+  border-radius: 4px;
+  border: 1px solid transparent;
+  box-shadow: 0 1px 3px 0 #e6ebf1;
+  -webkit-transition: box-shadow 150ms ease;
+  transition: box-shadow 150ms ease;
+}
 
 #pay-button {
   $button-width: 200px;

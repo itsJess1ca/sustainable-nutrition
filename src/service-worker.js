@@ -51,7 +51,7 @@ self.onfetch = evt => {
         const request = evt.request;
         return fetch(request).then(fetchResponse => {
           // Never cache Analytics requests or Chrome extension requests.
-          if (/analytics/.test(request.url) || /graphql/.test(request.url) || /chrome-extension/.test(request.url)) {
+          if (/analytics/.test(request.url) || /graphql/.test(request.url) || /contentful/.test(request.url) || /chrome-extension/.test(request.url)) {
             return fetchResponse;
           }
 

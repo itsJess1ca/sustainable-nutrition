@@ -1,4 +1,5 @@
-export declare const DEV: string;
+export declare const STRIPE_KEY: string;
+export declare const API_BASE_URL: string;
 export declare const HOST: string;
 export declare const DEV_PORT: number;
 export declare const E2E_PORT: number;

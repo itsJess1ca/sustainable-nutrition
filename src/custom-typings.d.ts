@@ -23,6 +23,7 @@ import * as _ from 'lodash'
 
 // Extra variables that live on Global that will be replaced by webpack DefinePlugin
 declare var DEV: boolean;
+declare var STRIPE_KEY: string;
 declare var AOT: boolean;
 declare var ENV: string;
 declare var HMR: boolean;
@@ -33,6 +34,7 @@ declare var System: SystemJS;
 declare var UNIVERSAL: boolean;
 declare var StripeCheckout: any;
 declare var PaymentRequest: any;
+declare var API_BASE_URL: string;
 declare module 'contentful' {
    export function createClient(options: any): ContentfulClient;
 }

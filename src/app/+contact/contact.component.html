@@ -1,32 +1,33 @@
 <sn-page-title [title]="'Contact'"></sn-page-title>
 <section class="page-content">
+  <form class="form" (ngSubmit)="sendContact()" #contactForm="ngForm">
+    <div class="form-group">
+      <label for="name">Name</label>
+      <input type="text" class="form-control" id="name" name="name" required [(ngModel)]="model.name">
+    </div>
 
-  <div class="form">
-    <div class="form-input">
-      <input type="text" name="name" value="" placeholder="Name">
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input type="email" class="form-control" id="email" name="from" required [(ngModel)]="model.from">
     </div>
-    <div class="form-input">
-      <input type="email" name="email" value="" placeholder="Email">
+
+    <div class="form-group">
+      <label for="message">Message</label>
+      <textarea name="message" id="message" required [(ngModel)]="model.message"></textarea>
     </div>
-    <div class="form-input">
-      <textarea name="message" value="" placeholder="Enquiry"></textarea>
-    </div>
-    <div class="form-actions">
-      <button class="btn">SUBMIT</button>
-    </div>
-  </div>
+
+    <button type="submit" class="form-submit-btn btn-success" [disabled]="!contactForm.form.valid || sent || sending">{{sending ? 'SENDING' : sent ? 'SENT' : 'SUBMIT'}}</button>
+  </form>
 
   <section id="contact-number">
     <h3 id="contact-number__title">FURTHER CONTACT DETAILS</h3>
     <div id="contact-number__content">
-      If you wish to speak to us directly, we are availably during working hours (9 till 5) Monday to Friday, at the below number:
-      <br/>
-      <span id="contact-number__value">{{data.contactNumber}}</span>
+      If you would like to chat about anything we do at Sustainable Nutrition, Please call Clare on 07775727351
     </div>
   </section>
-
+<!--
   <section id="business-address">
     <h3 id="business-address__title">OUR BUSINESS ADDRESS</h3>
     <div id="business-address__content" [innerHTML]="data.businessAddress"></div>
-  </section>
+  </section>-->
 </section>

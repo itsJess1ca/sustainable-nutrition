@@ -3,6 +3,7 @@ import * as Contentful from 'contentful';
 import { Observable } from 'rxjs';
 import { Marked } from './marked.service';
 import { slugify } from '../utils/slugify';
+import { SafeUrl, DomSanitizer } from '@angular/platform-browser';
 
 @Injectable()
 export class ContentfulService {
@@ -13,63 +14,80 @@ export class ContentfulService {
 
   private _coaches: Coach[] = null;
   private _services: Service[] = null;
+  private _testimonials: Testimonial[] = null;
 
-  constructor(private marked: Marked) {}
+  constructor(private marked: Marked, private sanitizer: DomSanitizer) {}
 
-  get services(): Promise<Service[]> {
-    return new Promise((resolve, reject) => {
-      if (!this._services) {
-        this.getEntries({'content_type': 'services'})
-          .map((services) => {
-            return services.map((service) => {
-              return Object.assign({} , service, {
-                id: `${slugify(service.title)}`,
-                description: this.marked.transform(service.description),
-                summary: this.marked.transform(service.summary),
-                image: {
-                  name: service.image.fields.title,
-                  url: service.image.fields.file.url
-                }
-              });
+  get services(): Observable<Service[]> {
+    if (this._services) {
+      return Observable.of(this._services);
+    } else {
+      return this.getEntries<RawService>({'content_type': 'services'})
+        .map((services) => {
+          return services.map((service) => {
+            return Object.assign({} , service, {
+              id: `${slugify(service.title)}`,
+              description: this.marked.transform(service.description),
+              summary: this.marked.transform(service.summary),
+              image: {
+                name: service.image.fields.title,
+                url: service.image.fields.file.url
+              },
+              isService: true
             });
-          })
-          .subscribe((services: any[]) => {
-          this._services = services;
-            resolve(services);
           });
-      } else {
-        resolve(this._services);
-      }
-    });
+        })
+        .do((services: Service[]) => this._services = services);
+    }
   }
 
-  get coaches(): Promise<Coach[]> {
-    return new Promise((resolve, reject) => {
-      if (!this._coaches) {
-        this.getEntries({'content_type': 'coaches'})
-          .map((coaches: any[]) => {
-            return coaches.map((coach: any) => {
-              coach.shortDescription = this.marked.transform(coach.shortDescription);
-              return coach;
-            });
-          })
-          .subscribe(coaches => {
-            this._coaches = coaches;
-            resolve(coaches);
+  get coaches(): Observable<Coach[]> {
+    if (this._coaches) {
+      return Observable.of(this._coaches);
+    } else {
+      return this.getEntries<Coach>({'content_type': 'coaches'})
+        .map((coaches: any[]) => {
+          return coaches.map((coach: any) => {
+            coach.shortDescription = this.marked.transform(coach.shortDescription);
+            coach.fullDescription = this.marked.transform(coach.fullDescription);
+            return coach;
           });
-      } else {
-        resolve(this._coaches);
-      }
-    });
+        })
+        .do((coaches: Coach[]) => {
+          this._coaches = coaches;
+        });
+    }
   }
 
-  getEntries(query: EntriesQuery): Observable<any[]> {
+  get testimonials(): Observable<Testimonial[]> {
+    if (this._testimonials) {
+      return Observable.of(this._testimonials);
+    } else {
+      return this.getEntries<RawTestimonial>({'content_type': 'testimonials'})
+        .map((testimonials): Testimonial[] => {
+          return testimonials.map((testimonial) => {
+            return Object.assign({}, testimonial, {
+              beforeImage: testimonial.beforeImage && this.convertContentfulImage(testimonial.beforeImage),
+              afterImage: testimonial.afterImage && this.convertContentfulImage(testimonial.afterImage),
+              content: this.marked.transform(testimonial.content),
+              videoUrl: testimonial.videoUrl ? this.sanitizer.bypassSecurityTrustResourceUrl(testimonial.videoUrl.replace('watch?v=', 'embed/')) : null
+            });
+          });
+        })
+        .do((testimonials: Testimonial[]) => {
+          this._testimonials = testimonials;
+        });
+    }
+  }
+
+  getEntries<T>(query: EntriesQuery): Observable<T[]> {
     return Observable
       .fromPromise(new Promise(resolve => {
         this.contentful.getEntries(query).then((entries) => resolve(entries));
       }))
       .map((entries: any) => entries.items.map(e => {
         let r = e.fields;
+        r.contentID = e.sys.id;
         r.fieldType = e.sys.contentType.sys.id;
         return r;
       }));
@@ -82,54 +100,106 @@ export class ContentfulService {
       }));
   }
 
-  // Testimonials
-  getTestimonials(): Observable<any> {
-    return this.getEntries({content_type: 'testimonials'})
-      .map(testimonials => testimonials.map((testimonial: any) => {
-        testimonial.content = this.marked.transform(testimonial.content);
-        return testimonial;
-      }))
-      .distinctUntilChanged();
-  }
-
-  getRandomTestimonial(): Observable<any> {
-    return this.getTestimonials()
+  getRandomTestimonial(): Observable<Testimonial> {
+    return this.testimonials
       .map(testimonials => testimonials[Math.floor(Math.random() * testimonials.length)]);
   }
 
-  getService(serviceID: number) {
-    return new Promise((resolve, reject) => {
-      this.services.then((services: Service[]) => {
-        const service = services.filter((svc) => svc.id === serviceID)[0];
-        if (service) {
-          resolve(service);
-        } else {
-          reject('No service found');
-        }
-      });
-    });
+  getService(serviceID: number): Observable<Service> {
+    return this.services
+      .map((services) =>
+        services.filter((svc) => svc.id === serviceID)[0]);
+  }
+
+  private convertContentfulImage(image: ContentfulImage): {name: string, url: SafeUrl} {
+    return {
+      name: image.fields.title,
+      url: image.fields.file.url
+    };
   }
 }
 
-export interface Service {
+export interface ContentfulImage {
+  fields: {
+    file: {
+      contentType: string;
+      details: {
+        image: {
+          height: number;
+          width: number;
+        }
+        size: number;
+      }
+      fileName: string;
+      url: string;
+    }
+    title: string;
+  };
+  sys: {
+    createdAt: string;
+    id: string;
+    locale: string;
+    revision: number;
+    space: {
+      sys: {
+        id: string;
+        linkType: string;
+        type: string;
+      }
+      type: string;
+      updatedAt: string;
+    }
+  };
+}
+export interface TestimonialCore {
+  contentID: string;
+  content: string;
+  videoUrl?: SafeUrl;
+  dateSubmitted: string;
+  author: string;
+}
+export interface RawTestimonial extends TestimonialCore {
+  beforeImage: ContentfulImage;
+  afterImage: ContentfulImage;
+  videoUrl: string;
+}
+export interface Testimonial extends TestimonialCore {
+  beforeImage: {
+    name: string;
+    url: SafeUrl;
+  };
+  afterImage: {
+    name: string;
+    url: SafeUrl;
+  };
+}
+export interface ServiceCore {
+  contentID: string;
   cost: string;
   description: string;
   fieldType: 'service';
   id: number;
+  summary: string;
+  title: string;
+  isService: boolean;
+}
+export interface RawService extends ServiceCore {
+  image: ContentfulImage;
+}
+export interface Service extends ServiceCore {
   image: {
     name: string;
     url: string;
   };
-  summary: string;
-  title: string;
 }
-
 export interface Coach {
+  contentID: string;
   emailAddress: string;
   fieldType: 'coaches';
   firstName: string;
   lastName: string;
   shortDescription: string;
+  fullDescription: string;
   telephoneNumber: string;
 }
 

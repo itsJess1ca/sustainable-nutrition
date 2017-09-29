@@ -1,7 +1,7 @@
 @import '../../../variables';
 
 $min-size: 100px;
-$max-size: 192px;
+$max-size: 150px;
 $size: 25vw;
 $padding: 16px;
 
@@ -43,11 +43,14 @@ $padding: 16px;
 #title {
   font-family: $antonio;
   font-weight: 600;
-  font-size: 1.3em;
+  font-size: 1em;
   line-height: 1.2em;
   letter-spacing: 0.3em;
   position: relative;
   z-index: 1;
+  @include respond-to(medium) {
+    font-size: 1.3em;
+  }
 }
 
 #service-background-image {

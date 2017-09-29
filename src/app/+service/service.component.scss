@@ -5,25 +5,35 @@
   align-items: center;
   justify-content: center;
 }
-
+#backToServices {
+  width: 95%;
+  display: block;
+  text-align: left;
+  font-family: $antonio;
+  margin: 5px 5px 0;
+}
 #service-content {
   padding-top: 50px;
   display: flex;
-  flex-flow: row nowrap;
+  flex-flow: column nowrap;
   justify-content: center;
   width: 100%;
   max-width: 960px;
+  @include respond-to(medium) {
+    flex-flow: row nowrap;
+  }
 }
 #service-divider {
   width: 80%;
-  margin: 5px 0;
   height: 1px;
   border: none;
   background-color: rgba(0,0,0,0.25);
+  margin: 5px 0 20px;
 }
 #service-description {
-  padding: 0 25px;
+  margin-right: 25px;
   flex: 2;
+  padding: 0 25px 50px;
   #service-description__title {
     font-family: $metropolis;
     font-weight: 900;
@@ -35,11 +45,15 @@
     font-family: $metropolis;
     font-weight: 400;
     color: rgba(0,0,0,0.87);
-    padding-bottom: 50px;
   }
 }
 #service-info {
+  order: -1;
   flex: 1;
+  margin-bottom: 25px;
+  @include respond-to(medium) {
+    order: 0;
+  }
 }
 #service-image-container {
   $max-size: 300px;
@@ -49,7 +63,7 @@
   max-width: $max-size;
   @include card(1);
   padding: 0;
-  margin-bottom: 10px;
+  margin: 0 auto 10px;
 
   #service-image {
     width: 100%;
@@ -57,10 +71,28 @@
   }
 }
 
+
+#service-buy-container {
+  display: flex;
+}
+#display-cost {
+  display: none;
+  &--mobile {
+    display: block;
+    font-family: $metropolis;
+    color: $sn-orange;
+    text-align: center;
+  }
+}
+
 #purchase-button {
+  display: none;
+}
+#purchase-button--mobile {
+  display: block;
   $button-width: 200px;
   $button-padding: 15px;
-  margin: 0 35px;
+  margin: 0 auto;
   width: 200px;
   padding: 15px;
   cursor: pointer;
@@ -68,5 +100,43 @@
     $disabledColor: rgba(0,0,0,0.75);
     color: $disabledColor;
     border-color: $disabledColor;
+  }
+}
+@include respond-to(medium) {
+  #display-cost {
+     display: block;
+     font-family: $metropolis;
+     color: $sn-orange;
+     text-align: center;
+    &--mobile {
+      display: none;
+    }
+   }
+  #purchase-button {
+    display: block;
+    $button-width: 200px;
+    $button-padding: 15px;
+    margin: 0 auto;
+    width: 200px;
+    padding: 15px;
+    cursor: pointer;
+    &[disabled] {
+      $disabledColor: rgba(0,0,0,0.75);
+      color: $disabledColor;
+      border-color: $disabledColor;
+    }
+    &--mobile {
+      display: none;
+    }
+  }
+}
+#pay-response {
+  background-color: rgba(red, 0.2);
+  width: 100%;
+  padding: 10px;
+  border: 1px solid rgba(red, 0.4);
+  &.success {
+    background-color: rgba(green, 0.2);
+    border-color: rgba(green, 0.4);
   }
 }

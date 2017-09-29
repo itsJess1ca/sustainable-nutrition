@@ -6,7 +6,10 @@ git:
 branches:
   only:
   - master
+  - staging
+  - dev
 cache:
+  yarn: true
   directories:
   - node_modules
 node_js:
@@ -26,24 +29,48 @@ before_install:
 - sudo apt-get install -y libappindicator1 fonts-liberation
 - wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 - sudo dpkg -i google-chrome*.deb
-install:
-- npm install
 before_script:
-- npm run compile:aot
+- if [ "$TRAVIS_BRANCH" = "dev" ]; then npm run compile:dev; fi
+- if [ "$TRAVIS_BRANCH" = "staging" ]; then npm run compile:aot; fi
+- if [ "$TRAVIS_BRANCH" = "master" ]; then npm run compile:aot; fi
 - ls
 script: npm run ci
 deploy:
-  provider: s3
-  access_key_id: "$AWS_ACCESS_KEY"
-  secret_access_key: "$AWS_SECRET_KEY"
-  bucket: susnutrition
-  region: eu-west-1
-  skip_cleanup: true
-  local-dir: dist/client
-  acl: public_read
-  detect_encoding: true
-  on:
-    branch: master
+  - provider: s3
+    access_key_id: "$AWS_ACCESS_KEY"
+    secret_access_key: "$AWS_SECRET_KEY"
+    bucket: susnutrition
+    region: eu-west-1
+    skip_cleanup: true
+    local-dir: dist/client
+    acl: public_read
+    detect_encoding: true
+    on:
+      branch: master
+  - provider: s3
+    access_key_id: "$AWS_ACCESS_KEY"
+    secret_access_key: "$AWS_SECRET_KEY"
+    bucket: susnutrition-staging
+    region: eu-west-1
+    skip_cleanup: true
+    local-dir: dist/client
+    acl: public_read
+    detect_encoding: true
+    on:
+      branch: staging
+  - provider: s3
+    access_key_id: "$AWS_ACCESS_KEY"
+    secret_access_key: "$AWS_SECRET_KEY"
+    bucket: susnutrition-dev
+    region: eu-west-1
+    skip_cleanup: true
+    local-dir: dist/client
+    acl: public_read
+    detect_encoding: true
+    on:
+      branch: dev
+
+
 notifications:
   email:
     on_success: change

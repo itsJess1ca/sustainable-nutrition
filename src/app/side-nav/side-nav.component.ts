@@ -8,6 +8,7 @@ import {
   NgZone,
   HostBinding
 } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'sn-side-nav',
@@ -26,7 +27,8 @@ export class SideNavComponent implements OnInit {
 
   constructor(
     private renderer: Renderer,
-    private zone: NgZone
+    private zone: NgZone,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -44,6 +46,13 @@ export class SideNavComponent implements OnInit {
     requestAnimationFrame(() => {
       this.visible = false;
     });
+  }
+
+  navigateTo(route) {
+    this.router.navigate(route)
+      .then(() => {
+        this.close();
+      });
   }
 
   onTransitionEnd(event) {

@@ -2,9 +2,9 @@ interface WebpackConfig {
   cache?: boolean;
   target?: string;
   devtool?: string;
-  entry: any;
+  entry?: any;
   externals?: any;
-  output: any;
+  output?: any;
   module?: any;
   plugins?: Array<any>;
   resolve?: {
@@ -22,6 +22,7 @@ interface WebpackConfig {
     noInfo?: boolean;
     watchOptions?: any;
     https?: boolean;
+    disableHostCheck: boolean;
   };
   node?: {
     process?: boolean;

@@ -1,23 +1,45 @@
 @import '../../variables';
 :host {
   display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  position: relative;
+}
+#coach {
+  display: flex;
   flex-flow: row wrap;
   flex: 1;
   width: 100%;
+  max-width: 960px;
   margin: 20px auto;
+  position: relative;
+}
+#gradient-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 99vw;
+  height: 100%;
+  @include linear-gradient(0deg, rgba(0,0,0,0.05) 0%, transparent 100%);
 }
 
 #left-side, #right-side {
-  height: 500px;
+  padding: 10px;
   width: 100%;
   display: flex;
   flex-flow: column;
   justify-content: center;
-  @include respond-to(large) {
+  @include respond-to(medium) {
+    padding: 0;
     width: 50%;
   }
 }
-#left-side {}
+#left-side:not(.odd), #left-side.odd + #right-side {
+  height: 302px;
+  @include respond-to(medium) {
+    height: 500px;
+  }
+}
 #left-side.odd {
   order: 1;
   @include respond-to(medium) {
@@ -27,15 +49,31 @@
 
 #coach-name {
   margin-bottom: 25px;
+  text-transform: uppercase;
 }
 #coach-image {
   height: 100%;
-  background: no-repeat center;
+  background-repeat: no-repeat;
+  background-position: left;
+  @include respond-to(medium){
+    background-repeat: no-repeat;
+    background-position: center;
+  }
   &.james {
     background-image: url('../../../assets/img/james.png');
   }
   &.clare {
+    background-position: right;
     background-image: url('../../../assets/img/clare.png');
+    -moz-transform: scaleX(-1);
+    -o-transform: scaleX(-1);
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
+    filter: FlipH;
+    -ms-filter: "FlipH";
+    @include respond-to(medium) {
+      background-position: center;
+    }
   }
   background-size: contain;
 }
@@ -43,8 +81,9 @@
 #coach-details /deep/ p {
   color: rgba(0,0,0,0.4);
   font-family: $metropolis;
-  font-weight: 600;
-  font-size: 1.3em;
+  font-weight: 500;
+  font-size: 1em;
+  line-height: 1.25em;
 }
 
 
@@ -56,7 +95,11 @@
   background: no-repeat center;
   align-self: center;
 }
-
+#coach-container {
+  @media (max-width: 320px) {
+    margin-top:25px;
+  }
+}
 #coach-phone, #coach-email {
   display: flex;
   flex-flow: row nowrap;
@@ -65,11 +108,13 @@
 }
 
 #coach-phone__details {
+  margin-left: 10px;
   display: flex;
   flex-flow: column;
 }
 #coach-phone__icon {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 22.34 37.46'%3E%3Crect width='21.34' height='36.46' x='.5' y='.5' fill='none' stroke='%23231f20' stroke-miterlimit='10' rx='3' ry='3'/%3E%3Cpath fill='none' stroke='%23231f20' stroke-miterlimit='10' d='M.5 6.8h21.34M6.8 4.48h8.73M.5 30.23h21.34'/%3E%3Cellipse cx='11.19' cy='33.62' fill='none' stroke='%23231f20' stroke-miterlimit='10' rx='1.78' ry='1.55'/%3E%3C/svg%3E");
+  margin: 0;
 }
 #coach-phone__title {
   margin: 0 0;
@@ -82,15 +127,17 @@
 #coach-phone__number {
   color: $sn-orange;
   font-family: $antonio;
-  font-size: 1.5em;
+  font-size: 1.2em;
 }
 
 #coach-email__details {
+  margin-left: 10px;
   display: flex;
   flex-flow: column;
 }
 #coach-email__icon {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 44.92 34.19'%3E%3Crect width='43.92' height='26.72' x='.5' y='.5' fill='none' stroke='%23231f20' stroke-miterlimit='10' rx='2' ry='2'/%3E%3Crect width='36.33' height='22.1' x='4.3' y='2.81' fill='none' stroke='%23231f20' stroke-miterlimit='10' rx='1' ry='1'/%3E%3Cpath fill='none' stroke='%23231f20' stroke-miterlimit='10' d='M18.44 27.22v6.1m7.6-6.1v6.1m-12.34.38h17.5'/%3E%3C/svg%3E");
+  margin: 0;
 }
 #coach-email__title {
   margin: 0 0;
@@ -103,5 +150,5 @@
 #coach-email__email {
   color: $sn-orange;
   font-family: $antonio;
-  font-size: 1.5em;
+  font-size: 1.2em;
 }

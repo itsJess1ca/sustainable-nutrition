@@ -7,7 +7,7 @@ import { Post } from '../+blog/blog.component';
 @Injectable()
 export class GraphqlService {
   fetching: BehaviorSubject<boolean> = new BehaviorSubject(false);
-  apiUrl: string = 'https://svttum58sd.execute-api.eu-west-1.amazonaws.com/dev/graphql';
+  apiUrl: string = `${API_BASE_URL}/gql`;
   headers: Headers = new Headers({'Content-Type': 'application/json'});
   options: RequestOptions = new RequestOptions({headers: this.headers});
   _blog: Post[];
@@ -28,14 +28,17 @@ export class GraphqlService {
             }
           }
         `)
-          .map((response: {posts: Post[]}) => response.posts.map((post: Post) => {
-            const date = new Date(post.updatedAt);
-            const day = date.getDate();
-            const monthIndex = date.getMonth();
-            const year = date.getFullYear();
-            post.updatedAt = `${day}/${monthIndex}/${year}`;
-            return post;
-          }))
+          .map((response: {posts: Post[]}) => {
+            console.log('gql response', response);
+            return response.posts.map((post: Post) => {
+              const date = new Date(post.updatedAt);
+              const day = date.getDate();
+              const monthIndex = date.getMonth();
+              const year = date.getFullYear();
+              post.updatedAt = `${day}/${monthIndex}/${year}`;
+              return post;
+            });
+          })
           .subscribe((data) => {
             this._blog = data;
             resolve(data);
