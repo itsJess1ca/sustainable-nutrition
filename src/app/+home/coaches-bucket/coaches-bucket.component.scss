@@ -30,11 +30,12 @@
   }
   #james {
     height: 290px;
+    width: 100%;
     max-width: 100vw;
     background: url('../../../assets/img/james.png') no-repeat;
     position: absolute;
     background-size: contain;
-
+    left: 50px;
     z-index: 2;
 
     @include respond-to(large) {
