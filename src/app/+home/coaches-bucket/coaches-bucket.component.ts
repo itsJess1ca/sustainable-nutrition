@@ -27,7 +27,4 @@ export class CoachesBucketComponent implements OnInit {
     if (!this.coaches) return;
     return this.coaches.filter(coach => coach.firstName.toLowerCase() === this.activeCoach)[0];
   }
-  switchCoachTo(name: 'james' | 'clare') {
-    this.activeCoach = name;
-  }
 }
