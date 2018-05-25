@@ -24,16 +24,9 @@
   min-width: 525px;
 
   @include respond-to(large) {
-    flex: 1;
+    flex: 0.3;
     width: auto;
     max-height: 100%;
-  }
-
-  #james.inactive {
-    background-position-x: 100%;
-  }
-  #clare.inactive {
-    background-position-x: 100%;
   }
   #james {
     height: 290px;
@@ -51,6 +44,7 @@
       width: calc(779px / 2);
       bottom: -35px;
       height: 535px;
+      left: 75px;
     }
   }
 
@@ -59,7 +53,7 @@
 #coach-details {
   position: relative;
   z-index: 5;
-  flex: 2;
+  flex: 0.6;
   background: $sn-green;
   padding: 20px $gutterMobile;
   font-size: 1em;
