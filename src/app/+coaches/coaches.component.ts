@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
   styleUrls: ['./coaches.component.css']
 })
 export class CoachesComponent implements OnInit {
-  coaches: Observable<Coach[]> = this.content.coaches;
+  coaches: Observable<Coach[]> = this.content.coaches.map(coaches => coaches.filter(coach => coach.firstName.toLowerCase() !== 'clare'));
   constructor(private content: ContentfulService) { }
 
   ngOnInit() {
