@@ -6,7 +6,7 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['coaches-bucket.component.css']
 })
 export class CoachesBucketComponent implements OnInit {
-  activeCoach: 'james' | 'clare' = Math.random() > 0.5 ? 'james' : 'clare';
+  activeCoach: 'james' = 'james';
   @Input() coaches: any;
   /*coaches: any = {
     james: {
@@ -26,8 +26,5 @@ export class CoachesBucketComponent implements OnInit {
   get coach() {
     if (!this.coaches) return;
     return this.coaches.filter(coach => coach.firstName.toLowerCase() === this.activeCoach)[0];
-  }
-  switchCoachTo(name: 'james' | 'clare') {
-    this.activeCoach = name;
   }
 }
